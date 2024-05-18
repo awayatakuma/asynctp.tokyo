@@ -8,13 +8,13 @@ import {
   FAVICON_IMAGE_PATH,
   GA_ID,
   GITHUB_URL,
-  SITE_URL,
+  SITE_ORIGIN,
   TITLE,
   TWITTER_HANDLE,
 } from '@/constants'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(SITE_ORIGIN),
   title: {
     template: '%s | ' + TITLE,
     default: TITLE,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
-    url: SITE_URL,
+    url: SITE_ORIGIN,
     title: TITLE,
     description: DESCRIPTION,
     siteName: TITLE,

@@ -1,10 +1,10 @@
-import { FaGithub, FaTwitter } from 'react-icons/fa'
+import { FaGithub, FaTwitter, FaRss } from 'react-icons/fa'
 import type { NavLink, SocialLink } from '@/types'
 
 // common
 export const SITE_NAME = '⚡🦀☔💤'
-export const SITE_URL =
-  process.env.SITE_URL || ('https://acynctp.tokyo/' as const)
+export const SITE_ORIGIN =
+  process.env.SITE_ORIGIN || ('https://asynctp.tokyo' as const)
 export const AUTHOR = 'asynctp' as const
 
 export const TWITTER_HANDLE = '@asynctp' as const
@@ -38,8 +38,10 @@ export const NAV_LINKS: NavLink[] = [
 
 // Social links
 export const GITHUB_URL = 'https://github.com/awayatakuma' as const
-export const TWITTER_URL = 'https://twitter.com/awayatakuma' as const
+export const TWITTER_URL = 'https://twitter.com/asynctp' as const
+export const RSS_URL = `${SITE_ORIGIN}/feed` as const
 export const SOCIAL_LINKS: SocialLink[] = [
   { name: 'GitHub', href: GITHUB_URL, Icon: FaGithub },
   { name: 'Twitter', href: TWITTER_URL, Icon: FaTwitter },
+  { name: 'RSS', href: RSS_URL, Icon: FaRss },
 ]

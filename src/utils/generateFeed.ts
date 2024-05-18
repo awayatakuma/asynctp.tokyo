@@ -5,7 +5,7 @@ import {
   HERO_ICON,
   MAIL,
   SITE_NAME,
-  SITE_URL,
+  SITE_ORIGIN,
 } from '@/constants'
 import { getAllPosts } from '@/utils'
 
@@ -14,30 +14,30 @@ export const generateFeed = async () => {
   const author = {
     name: AUTHOR,
     email: MAIL,
-    link: SITE_URL,
+    link: SITE_ORIGIN,
   }
   const date = new Date()
   console.log(date)
   const feed = new Feed({
     title: SITE_NAME,
     description: DESCRIPTION,
-    id: SITE_URL,
-    link: SITE_URL,
+    id: SITE_ORIGIN,
+    link: SITE_ORIGIN,
     language: 'ja',
-    image: `${SITE_URL}/${HERO_ICON}`,
-    favicon: `${SITE_URL}/assets/favicon.ico`,
+    image: `${SITE_ORIGIN}/${HERO_ICON}`,
+    favicon: `${SITE_ORIGIN}/assets/favicon.ico`,
     copyright: `All rights reserved ${date.getFullYear()}, ${author.name}`,
     updated: date,
     feedLinks: {
-      rss2: `${SITE_URL}/rss/feed.xml`,
-      json: `${SITE_URL}/rss/feed.json`,
-      atom: `${SITE_URL}/rss/atom.xml`,
+      rss2: `${SITE_ORIGIN}/rss/feed.xml`,
+      json: `${SITE_ORIGIN}/rss/feed.json`,
+      atom: `${SITE_ORIGIN}/rss/atom.xml`,
     },
     author: author,
   })
   const postMetadata = getAllPosts()
   postMetadata.forEach((metadatum) => {
-    const url = `${SITE_URL}/${metadatum.uri}`
+    const url = `${SITE_ORIGIN}${metadatum.uri}`
     feed.addItem({
       title: `${metadatum.title}`,
       description: `${metadatum.description}`,
