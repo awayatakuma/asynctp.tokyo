@@ -1,7 +1,7 @@
-import { Box, Flex, Image, Spacer, Text } from '@chakra-ui/react'
-import { TOP_PAGE_IMAGE_PC_PATH, TOP_PAGE_IMAGE_SMP_PATH } from '@/constants'
+import { Flex, Image, Spacer } from '@chakra-ui/react'
+import { TOP_PAGE_IMAGE_PC_PATH } from '@/constants'
 
-export default function About() {
+export default async function About() {
   return (
     <Flex direction="column" h="calc(65vh)">
       <Spacer />
