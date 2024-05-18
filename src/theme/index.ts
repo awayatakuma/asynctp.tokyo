@@ -31,7 +31,7 @@ const overrides = {
     // mono: "'Noto Sans JP','roboto-Mono', monospace",
     heading: "'Noto Sans JP','Titillium Web', sans-serif",
     body: "'Noto Sans JP','Titillium Web', sans-serif",
-    mono: "'Noto Sans JP','roboto-Mono', monospace",
+    mono: "'Noto Sans JP','ubuntu-Mono', 'Titillium Web'",
   },
   fontSizes: {
     '2xl': '1.5rem',

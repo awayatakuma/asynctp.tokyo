@@ -51,7 +51,6 @@ export const Header: React.FC = () => {
               href={href}
               px={2}
               py={1}
-              fontFamily="mono"
               letterSpacing="-0.02em"
               textDecoration="none"
               boxSizing="content-box"

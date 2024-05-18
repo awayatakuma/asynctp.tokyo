@@ -11,7 +11,7 @@ export const BlogCard = (metadata: PostMetadatum) => {
       <Link href={metadata.uri} textDecoration="none" data-group as="a">
         <Text
           as="h2"
-          textStyle="h2-mono"
+          textStyle="h2"
           fontSize="2xl"
           color="primary"
           key={metadata.title}
