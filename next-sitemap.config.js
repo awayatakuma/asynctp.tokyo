@@ -1,4 +1,4 @@
 module.exports = {
-  siteUrl: 'https://acynctp.me/',
+  siteUrl: 'https://acynctp.tokyo/',
   generateRobotsTxt: true,
 }

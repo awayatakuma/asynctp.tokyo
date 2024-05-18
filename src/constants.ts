@@ -3,16 +3,18 @@ import type { NavLink, SocialLink } from '@/types'
 
 // common
 export const SITE_NAME = '⚡🦀☔💤'
-export const SITE_URL = process.env.SITE_URL || ('https://acynctp.me/' as const)
+export const SITE_URL =
+  process.env.SITE_URL || ('https://acynctp.tokyo/' as const)
 export const AUTHOR = 'asynctp' as const
 
 export const TWITTER_HANDLE = '@asynctp' as const
 export const DEFAULT_IMAGE_PATH = '/assets/siteicon.svg' as const
 export const FAVICON_IMAGE_PATH = '/assets/favicon.ico' as const
 export const TOP_PAGE_IMAGE_PATH = '/assets/top_image.JPG' as const
-export const HERO_ICON = '/assets/top_image.JPG' as const
+export const HERO_ICON = '/assets/pixel_icon.png' as const
 export const OG_IMAGE_PATH = TOP_PAGE_IMAGE_PATH
 export const MAIL = 'awayatakuma@gmail.com' as const
+export const GA_ID = process.env.GA_ID || ('G-ABCDE12345' as const)
 
 // Metadata
 export const TITLE = "asynctp's blog" as const
