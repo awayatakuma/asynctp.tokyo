@@ -26,9 +26,6 @@ const overrides = {
   },
   components: {},
   fonts: {
-    // heading: "'Noto Sans JP','roboto', sans-serif",
-    // body: "'Noto Sans JP','roboto', sans-serif",
-    // mono: "'Noto Sans JP','roboto-Mono', monospace",
     heading: "'Noto Sans JP','Titillium Web', sans-serif",
     body: "'Noto Sans JP','Titillium Web', sans-serif",
     mono: "'Noto Sans JP','ubuntu-Mono', 'Titillium Web'",
@@ -74,17 +71,16 @@ const overrides = {
           display: 'inline',
         },
       },
-      table: {
-        border: '1px solid #555',
-      },
-      tr: {
-        border: '1px solid #555',
-      },
       td: {
-        border: '1px solid #555',
+        border: '1px solid #999',
+        boxSizing: 'border-box',
+        textAlign: 'center',
       },
       th: {
-        border: '1px solid #555',
+        border: '1px solid #999',
+        boxSizing: 'border-box',
+        textAlign: 'center',
+        backgroundColor: '#eee',
       },
     }),
   },

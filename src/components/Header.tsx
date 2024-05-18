@@ -38,7 +38,6 @@ export const Header: React.FC = () => {
               color="primary"
               fontWeight="bold"
               fontStyle="italic"
-              fontFamily="Roboto"
             >
               {SITE_NAME}
             </Text>
