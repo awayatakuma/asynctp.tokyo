@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  experimental: {
+    optimizePackageImports: ['shiki', 'next-mdx-remote/rsc'],
+  },
+}
 
 export default nextConfig

@@ -36,7 +36,7 @@
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.0",
     "remark-rehype": "^11.1.0",
-    "shiki": "^1.2.4"
+    "shiki": "^1.5.1"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
