@@ -1,7 +1,50 @@
-'use client'
+import { Metadata } from 'next'
 import { Providers } from './providers'
 import { Footer, Header } from '@/components'
-import { Fonts } from '@/components/Fonts'
+import {
+  AUTHOR,
+  DESCRIPTION,
+  FAVICON_IMAGE_PATH,
+  GITHUB_URL,
+  SITE_URL,
+  TITLE,
+  TWITTER_HANDLE,
+} from '@/constants'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    template: '%s | ' + TITLE,
+    default: TITLE,
+  },
+  description: DESCRIPTION,
+  openGraph: {
+    type: 'website',
+    locale: 'ja_JP',
+    url: SITE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    siteName: TITLE,
+    images: ['og-image.png'],
+  },
+  authors: [
+    {
+      name: AUTHOR,
+      url: GITHUB_URL,
+    },
+  ],
+  creator: AUTHOR,
+
+  twitter: {
+    card: 'summary_large_image',
+    title: AUTHOR,
+    images: ['/og-image.png'],
+    creator: TWITTER_HANDLE,
+  },
+  icons: {
+    icon: FAVICON_IMAGE_PATH,
+  },
+}
 
 export default function RootLayout({
   children,
@@ -15,7 +58,6 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
-          <Fonts />
         </Providers>
       </body>
     </html>

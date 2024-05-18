@@ -1,6 +1,7 @@
 import { Text, Avatar, Flex } from '@chakra-ui/react'
 import type { FlexProps } from '@chakra-ui/react'
 import { Section } from '@/components'
+import { HERO_ICON } from '@/constants'
 
 interface HeroProps extends FlexProps {
   stargazersCount?: number
@@ -16,7 +17,7 @@ export const Hero: React.FC<HeroProps> = ({ ...props }) => (
     {...props}
   >
     <Flex h="fit-content" alignItems="center" justify="center" minHeight={200}>
-      <Avatar name="hero-icon" src="/00000-907990529.png" size="xl" />{' '}
+      <Avatar name="hero-icon" src={HERO_ICON} size="xl" />{' '}
       <Flex
         h="fit-content"
         direction="column"

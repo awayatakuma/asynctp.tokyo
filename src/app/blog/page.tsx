@@ -1,6 +1,12 @@
 import { Flex, Heading } from '@chakra-ui/react'
+import { Metadata } from 'next'
 import { BlogCard } from '@/components'
 import { getAllPosts } from '@/utils'
+
+export const metadata: Metadata = {
+  title: 'Blog posts',
+  description: 'All blog posts',
+}
 
 export default async function BlogPage() {
   const postMetadata = await getAllPosts()

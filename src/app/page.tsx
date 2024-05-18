@@ -1,12 +1,12 @@
 import { Flex, Image, Spacer } from '@chakra-ui/react'
-import { TOP_PAGE_IMAGE_PC_PATH } from '@/constants'
+import { TOP_PAGE_IMAGE_PATH } from '@/constants'
 
-export default async function About() {
+export default async function Top() {
   return (
     <Flex direction="column" h="calc(65vh)">
       <Spacer />
       <Image
-        src={TOP_PAGE_IMAGE_PC_PATH}
+        src={TOP_PAGE_IMAGE_PATH}
         alt="toppage-image"
         objectFit="cover"
         w="95%"
