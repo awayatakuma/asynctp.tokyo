@@ -9,7 +9,7 @@ export interface MDXArticleProps {
   content: string
 }
 
-export const MDXArticle = ({ content }: MDXArticleProps) => {
+export const MDXArticle = async ({ content }: MDXArticleProps) => {
   const components = useMDXComponents()
   return (
     <MDXRemote
@@ -23,7 +23,7 @@ export const MDXArticle = ({ content }: MDXArticleProps) => {
               rehypePrettyCode,
               {
                 theme: 'dracula',
-                getHighlighter: getHighlighter,
+                getHighlighter: await getHighlighter,
               },
             ],
           ],
