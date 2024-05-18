@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Metadata } from 'next'
 import { Providers } from './providers'
 import { Footer, Header } from '@/components'
@@ -5,6 +6,7 @@ import {
   AUTHOR,
   DESCRIPTION,
   FAVICON_IMAGE_PATH,
+  GA_ID,
   GITHUB_URL,
   SITE_URL,
   TITLE,
@@ -60,6 +62,7 @@ export default function RootLayout({
           <Footer />
         </Providers>
       </body>
+      <GoogleAnalytics gaId={GA_ID} />
     </html>
   )
 }
