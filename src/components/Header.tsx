@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
               fontSize="2xl"
               color="primary"
               fontWeight="bold"
-              fontStyle="italic"
+              // fontStyle="italic"
             >
               {SITE_NAME}
             </Text>
