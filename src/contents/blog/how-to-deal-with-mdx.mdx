@@ -1,0 +1,125 @@
+---
+title: 'The way how to deal with mdx files in Next.js in app router age'
+date: '2024-05-25'
+description: 'share my way how to introduce mdx system in Next.js app router system'
+emoji: '⚒️'
+tags: ['react', 'nextjs']
+---
+
+I renewed my blog using Next.js. I'm usually engaged to backend engineers so I'm now familiar with frontend technology, let alone the concept of app routers!!
+
+Creating pages itself is very fun, on the other hand, I had awful troubles mainly related to internal standards in Next.js
+
+One of them is about MDX.
+
+Next.js' official document tells how to deal with mdx and markdowns. https://nextjs.org/docs/pages/building-your-application/configuring/mdx
+
+However the document is too short for me to satisfy my requirements.
+
+In the first place, I wanted to create a blog site and wanted to manage blog posts in mdx. This means the contents are changed dynamically.
+
+The documents use a large part of the article to explain how to deal with mdx statically. In other words, contents written in mdx are rerely added because it is little troublesome to add mdx contents in jsx.
+
+If you want to add mdx files and reflect them without any other tasks such as modefying jsxes, you may need to use https://nextjs.org/docs/pages/building-your-application/configuring/mdx#remote-mdx system. At least it's true of me.
+
+However, there is no explanation how to mix remote-mdx and mdx-components.tsx.
+In this post, I want how to synthesis them.
+
+## About [mdx-components.tsx](https://nextjs.org/docs/pages/building-your-application/configuring/mdx#add-a-mdx-componentstsx-file)
+
+In short, mdx-componets.tsx helps you customize html and css transformed mdx into. For example, if you use chakura ui and transform images into Image tags prepared by chakura ui library, you can do so by edit mdx-components file.
+
+This system is very useful, however, only default setting showed in Next.js' document
+
+## About [Remote MDX](https://nextjs.org/docs/pages/building-your-application/configuring/mdx#remote-mdx)
+
+The Next.js document tells that
+
+> If your MDX files or content lives *somewhere else*, you can fetch it dynamically on the server. This is useful for content stored in a separate local folder, CMS, database, or anywhere else.
+
+If you want to create blog site, you will manage posts in "a separete local folder" and this means you may need the system of Remote MDX.
+
+In my implementation, I fetch post files written in MDX remotely by fs library.
+
+If you already read the document, you will realize there is no solution to introduce mdx-component but Remote MDX.
+
+## How to use mdx-components.tsx in Remote MDX (For my case)
+
+Unfortunately, mdx-components.tsx and Remote MDX are inpompatible. But you can use mdx-components.tsx in perse processes of mdx.
+
+In more procise, you can pass your mdx-components.tsx to [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)/rsc' components.
+
+The following is the excerpt of my codes:
+
+```js
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import rehypePrettyCode from 'rehype-pretty-code'
+import remarkBreaks from 'remark-breaks'
+import remarkGfm from 'remark-gfm'
+import { getHighlighter } from 'shiki'
+import { useMDXComponents } from '@/mdx-components'
+
+export interface MDXArticleProps {
+  content: string
+}
+
+export const MDXArticle = async ({ content }: MDXArticleProps) => {
+  const components = useMDXComponents()
+  return (
+    <MDXRemote
+      components={components}
+      source={content}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkGfm, remarkBreaks],
+          rehypePlugins: [
+            [
+              rehypePrettyCode,
+              {
+                theme: 'dracula',
+                getHighlighter: await getHighlighter,
+              },
+            ],
+          ],
+        },
+      }}
+    />
+  )
+}
+```
+
+useMDXComponents is mdx-components.tsx placed in src directory. If you want to use this function, you don't need to place the file in the root directory. In other words, you can choose where to put the file as long as your file system can recognize it as import targets.
+
+After importing the component, only thing you do is to pass it to MDXRemote as attributes at the same time to set other attributes such as rehype plugins.
+
+## Caveat
+
+If you want to use next-mdx-remote/rsc, you need [v5.0.0](https://github.com/hashicorp/next-mdx-remote/releases/tag/v5.0.0) rather than [v4.4.1](https://github.com/hashicorp/next-mdx-remote/releases/tag/v4.4.1). If you use older version, you may bump into the following message:
+
+```bash
+ ⨯ [Error: [next-mdx-remote] error compiling MDX:
+Cannot set properties of undefined (setting 'inTable')
+
+More information: https://mdxjs.com/docs/troubleshooting-mdx] {
+  digest: '199367153'
+}
+ ⨯ [Error: [next-mdx-remote] error compiling MDX:
+Cannot set properties of undefined (setting 'inTable')
+
+More information: https://mdxjs.com/docs/troubleshooting-mdx] {
+  digest: '199367153'
+}
+ GET /blog/test-page 500 in 8189ms
+```
+
+## Conclusion
+
+The innovation of app router seems desireble in the long run, but it produce a lot of complex problems to engineers as side effect of its novelity. To continue to use traditional way of page router is not bad choice for now in the viewpoint of legacy, that is, knowledge accumulate in the internet.
+
+However, as is often the case to programming, be in touch with novel product is always fun so it is worth that you try to use app router's system. And constructing your own blog page will offer you the oppotunity to take in a new system with not so heavy burden.
+
+## Resources
+
+- https://github.com/awayatakuma/asynctp.tokyo
+- https://github.com/hashicorp/next-mdx-remote
+- https://nextjs.org/

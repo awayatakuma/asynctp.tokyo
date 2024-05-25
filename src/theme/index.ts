@@ -61,6 +61,12 @@ const overrides = {
         maxWidth: '48rem',
         minHeight: '100vh',
       },
+      pre: {
+        borderRadius: '8px',
+        padding: '12px',
+        marginBottom: '12px',
+        overflowX: 'scroll',
+      },
       ol: {
         listStyleType: 'decimal',
       },
