@@ -11,6 +11,7 @@ import {
   SITE_ORIGIN,
   TITLE,
   TWITTER_HANDLE,
+  OG_IMAGE_PATH,
 } from '@/constants'
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     siteName: TITLE,
-    images: ['og-image.png'],
+    images: [OG_IMAGE_PATH],
   },
   authors: [
     {
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: AUTHOR,
-    images: ['/og-image.png'],
+    images: [OG_IMAGE_PATH],
     creator: TWITTER_HANDLE,
   },
   icons: {
