@@ -9,6 +9,16 @@ export interface MDXFrontmatterProps {
 export const MDXFrontmatter = ({ metadatum }: MDXFrontmatterProps) => {
   return (
     <Flex direction="column" alignItems="center" justify="center" mb={8}>
+      <Text
+        as="h1"
+        fontSize="4xl"
+        color="primary"
+        fontWeight="bold"
+        mb={4}
+        key={metadatum.title}
+      >
+        {metadatum.title}
+      </Text>
       {metadatum.emoji && (
         <Text
           as="h1"
@@ -22,16 +32,6 @@ export const MDXFrontmatter = ({ metadatum }: MDXFrontmatterProps) => {
         </Text>
       )}
 
-      <Text
-        as="h1"
-        fontSize="4xl"
-        color="primary"
-        fontWeight="bold"
-        mb={4}
-        key={metadatum.title}
-      >
-        {metadatum.title}
-      </Text>
       <Text color="primary"> {metadatum.date}</Text>
       <Flex>
         {metadatum.tags.map((tag) => (
