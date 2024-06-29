@@ -25,6 +25,11 @@ export async function generateMetadata({
   return {
     title: metadatum.title,
     description: metadatum.description,
+    openGraph: {
+      type: 'article',
+      title: metadatum.title,
+      description: metadatum.description,
+    },
   }
 }
 
