@@ -33,7 +33,7 @@ export function useMDXComponents(
         fontWeight="black"
         fontFamily="heading"
         _before={{
-          content: '"#"',
+          content: '"# "',
           fontWeight: 'black',
           pr: '0.1rem',
         }}
@@ -51,7 +51,7 @@ export function useMDXComponents(
         color="header"
         fontWeight="bold"
         fontFamily="heading"
-        _before={{ content: '"#"', fontWeight: 'black' }}
+        _before={{ content: '"## "', fontWeight: 'black' }}
       >
         {children}
       </Heading>
@@ -67,7 +67,7 @@ export function useMDXComponents(
         fontFamily="heading"
         mt={{ base: 8, md: 12 }}
         mb={{ base: 4, md: 6 }}
-        _before={{ content: '"#"', fontWeight: 'bold' }}
+        _before={{ content: '"### "', fontWeight: 'bold' }}
       >
         {children}
       </Heading>
@@ -80,7 +80,7 @@ export function useMDXComponents(
         color="text"
         fontWeight="bold"
         fontFamily="heading"
-        _before={{ content: '"#"', fontWeight: 'bold' }}
+        _before={{ content: '"#### "', fontWeight: 'bold' }}
       >
         {children}
       </Heading>
@@ -93,7 +93,7 @@ export function useMDXComponents(
         color="text"
         fontWeight="bold"
         fontFamily="heading"
-        _before={{ content: '"#"', fontWeight: 'bold' }}
+        _before={{ content: '"##### "', fontWeight: 'bold' }}
       >
         {children}
       </Heading>

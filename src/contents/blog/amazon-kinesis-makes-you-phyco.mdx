@@ -1,0 +1,117 @@
+---
+title: 'Amazon Kinesis makes you phyco: an introduction to the MultiLang Daemon Labyrinth'
+date: '2024-06-29'
+description: 'introduction to the MultiLang Daemon and its complexities'
+emoji: '🤪'
+tags: ['aws', 'message-queue']
+---
+
+## Amazon Kinesis makes you phyco: an introduction to the MultiLang Daemon Labyrinth
+
+In the ever-evolving landscape of cloud computing, AWS (Amazon Web Services) stands as a titan, offering a plethora of services to meet diverse needs. Among its offerings, the realm of managed message queue services shines bright, with AWS SQS (Simple Queue Service) often stealing the spotlight for its flexibility and broad applicability. However, nestled within this ecosystem lies a powerful yet complex beast: [AWS Kinesis Data Stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html).
+
+### Understanding AWS Kinesis Data Stream
+
+AWS Kinesis Data Stream is not just another message queue service. It's a specialized tool designed for scenarios where high throughput and low latency are non-negotiable. Imagine a firehose of data - logs cascading from servers, IoT devices chirping incessantly, or clickstreams painting real-time user behavior. This is where Kinesis Data Stream thrives.
+
+At its core, Kinesis is a managed streaming data service that allows real-time processing of large data streams at scale. It's the go-to solution when you need to ingest, buffer, and process streaming data in real-time. Whether you're dealing with log aggregation, real-time analytics, or complex event processing, Kinesis offers the robustness and scalability to handle it.
+
+### The Robotics Use Case
+
+In my professional life, I work for a robotics company where data is our lifeblood. Our robots are constantly sensing, analyzing, and reacting to their environment. This generates an enormous amount of sensor data that needs to be processed in real-time. Other systems within our infrastructure rely on this data to make split-second decisions and adjustments.
+
+The need for real-time understanding of robot situations and states isn't just a nice-to-have; it's mission-critical. A delay of even a few seconds could mean the difference between smooth operation and costly mistakes. This high-stakes environment led me to investigate AWS Kinesis Data Stream as a potential solution to our data processing needs.
+
+### The Initial Allure of Kinesis
+
+On paper, Kinesis seemed like the perfect fit. High throughput? Check. Low latency? Check. Scalability? Check. With our application written in C++ and AWS offering an SDK for C++, I initially thought we had struck gold. The prospect of seamlessly integrating Kinesis into our existing C++ codebase was enticing.
+
+However, as I delved deeper into the world of Kinesis, I uncovered a reality that was far more complex than I had anticipated.
+
+### The Hidden Complexities of Kinesis
+
+As I continued my investigation, a surprising pattern emerged. Despite the availability of the AWS SDK, I discovered that engineers rarely use it directly to interact with Kinesis Data Stream. The reason? Kinesis is a complex beast, and managing it directly is akin to trying to tame a wild river with your bare hands.
+
+Let's break down some of the challenges:
+
+1. **Checkpoint Management**: In the world of stream processing, knowing where you left off is crucial. Kinesis requires you to manage checkpoints, which means you need to set up and maintain an AWS DynamoDB table just to keep track of your progress. This adds another layer of complexity and potential points of failure.
+
+2. **Scaling and Load Balancing**: When working directly with Kinesis, the responsibility of scaling your application and balancing the load across multiple consumers falls squarely on your shoulders. This isn't a trivial task, especially when dealing with fluctuating data rates.
+
+3. **Shard Management**: Kinesis streams are divided into shards, and managing these efficiently is critical for performance. Poor shard management can lead to underutilization or, worse, bottlenecks that negate the very benefits you sought from Kinesis.
+
+4. **Error Handling and Retry Logic**: In a distributed system, things will go wrong. Implementing robust error handling and retry logic is essential but complex when working directly with the Kinesis API.
+
+The irony of the situation wasn't lost on me. Here we were, reaching for Kinesis because of its promised efficiency, only to risk losing that very efficiency due to the complexities of managing it properly. It felt like a Faustian bargain - gaining the power of Kinesis at the cost of taking on a significant technical debt.
+
+### Enter the Kinesis Client Library (KCL)
+
+Recognizing these challenges, AWS offers a solution in the form of the Kinesis Client Library (KCL). This library is designed to abstract away many of the complexities of working with Kinesis. It handles checkpointing, load balancing, and many other low-level details, allowing developers to focus on processing the data rather than managing the stream.
+
+With KCL, you can:
+
+- Automatically manage checkpoints in DynamoDB
+- Handle scaling and load balancing across multiple instances
+- Manage leases on shards to ensure efficient processing
+- Implement fault-tolerant processing with automatic recovery
+
+On the surface, KCL seems like the perfect solution to our Kinesis woes. However, there's a catch, and it's a significant one.
+
+### The Java Conundrum
+
+Here's where our journey takes an unexpected turn. The Kinesis Client Library, for all its benefits, is primarily developed and officially supported only for Java. This creates a significant hurdle for applications written in other languages, including our C++ codebase.
+
+While AWS provides SDKs for various languages, the same courtesy isn't extended to KCL[^1]. This Java-centric approach creates a dilemma for developers working in other languages. Do we rewrite our application in Java? Do we create a Java service just to interface with Kinesis? Neither option seemed particularly appealing.
+
+### The MultiLang Daemon: A Bridge or a Barrier?
+
+> This is the structure if you want synthesis C++ application and MultiLangDaemon. As there is no KCL for C++, you'll need to develop all components in which C++ logos are pasted.
+
+![multilangdaemonwithcpp.png](/contents/multilangdaemonwithcpp.png 'multilangdaemonwithcpp.png')
+
+AWS's solution to this language barrier is the MultiLang Daemon. In essence, it's a Java-based application that runs in the background, acting as an intermediary between your non-Java application and Kinesis.
+
+According to AWS documentation[^2]:
+
+> "The KCL is a Java library; support for languages other than Java is provided using a multi-language interface called the MultiLangDaemon. This daemon is Java-based and runs in the background when you are using a KCL language other than Java."
+
+In practice, this means:
+
+1. You need to run a Java application (the MultiLang Daemon) alongside your main application.
+2. Your application communicates with this daemon, which then interacts with Kinesis.
+3. You need to implement a specific protocol for communicating with the daemon.
+
+The accompanying diagram illustrates this setup. For our C++ application, we would need to:
+
+1. Implement a C++ version of KCL (as it's not officially provided by AWS).
+2. Create a sample_kclcpp_app.cpp to handle the actual data processing.
+3. Use JSON for communication between our C++ code and the Java daemon.
+
+### The Standard I/O Surprise
+
+Perhaps the most startling discovery in this journey was the method of communication between your application and the MultiLang Daemon. Rather than using a high-performance inter-process communication method, it relies on standard input and output (stdin/stdout).
+
+This design choice raised several red flags:
+
+1. **Performance Concerns**: Using stdin/stdout for high-throughput data processing seemed counterintuitive, especially when dealing with real-time data.
+2. **Complexity**: Managing the communication protocol over stdin/stdout adds another layer of complexity to our application.
+3. **Debugging Challenges**: Troubleshooting issues in this setup could become a nightmare, with problems potentially arising from the C++ code, the Java daemon, or the communication between them.
+
+### Reconsidering Our Approach
+
+The journey from initially considering Kinesis to uncovering these complexities has been eye-opening. What started as a quest for high-performance, real-time data processing has led us to a crossroads.
+
+On one hand, Kinesis offers the raw power and scalability we need. On the other, the complexities of using it efficiently, especially from a C++ application, introduce significant challenges:
+
+1. **Performance Overhead**: The multiple layers of abstraction and the use of stdin/stdout for communication could potentially negate the performance benefits we initially sought from Kinesis.
+
+2. **Increased System Complexity**: Introducing a Java daemon and managing the communication between it and our C++ application adds considerable complexity to our system architecture.
+
+3. **Operational Challenges**: Managing and monitoring this multi-language, multi-process setup in a production environment presents its own set of challenges.
+
+4. **Development and Maintenance Overhead**: The need to maintain both C++ and Java codebases, along with the communication layer between them, increases our development and maintenance burden.
+
+This made us reconsider the way how to deal with Kinesis. In a next post, I'll shere our findings and how we decided to move forward. Stay tuned!
+
+[^1]: There is golang-native KCL, but it's not officially supported by AWS. It is by VMWare. According to [the article](https://blogs.vmware.com/cloud/2021/06/10/vmware-go-kcl-native-open-source-go-programming-language-library-amazon-kinesis-data-stream-consumption/), VMWare was also tortured by MultiLangDaemon.
+[^2]: [Developing a Kinesis Client Library Consumer in Python](https://docs.aws.amazon.com/streams/latest/dev/kcl2-standard-consumer-python-example.html)

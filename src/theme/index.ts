@@ -76,6 +76,9 @@ const overrides = {
         p: {
           display: 'inline',
         },
+        '&:last-child': {
+          marginBottom: '0.75rem',
+        },
       },
       td: {
         border: '1px solid #999',
@@ -87,6 +90,35 @@ const overrides = {
         boxSizing: 'border-box',
         textAlign: 'center',
         backgroundColor: '#eee',
+      },
+      blockquote: {
+        margin: '20px 0',
+        padding: '20px',
+        backgroundColor: '#f1f3f5',
+        borderRadius: '10px',
+        boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+        fontStyle: 'italic',
+        color: '#495057',
+        position: 'relative',
+        p: {
+          margin: 0,
+          lineHeight: 1.6,
+        },
+        '&::after': {
+          content: '""',
+          display: 'block',
+          width: '50px',
+          height: '2px',
+          backgroundColor: '#6610f2',
+          marginTop: '15px',
+        },
+        cite: {
+          display: 'block',
+          marginTop: '10px',
+          fontSize: '0.9em',
+          color: '#868e96',
+          fontStyle: 'normal',
+        },
       },
     }),
   },
