@@ -3,7 +3,12 @@ import path from 'path'
 import { Metadata } from 'next'
 import NotFound from '@/app/not-found'
 import { MDXArticle, MDXFrontmatter } from '@/components'
-import { BLOG_CONTENTS_DIR_PATH } from '@/constants'
+import {
+  BLOG_CONTENTS_DIR_PATH,
+  OG_IMAGE_PATH,
+  SITE_ORIGIN,
+  TITLE,
+} from '@/constants'
 import { getPost } from '@/utils'
 
 interface PageProps {
@@ -26,9 +31,13 @@ export async function generateMetadata({
     title: metadatum.title,
     description: metadatum.description,
     openGraph: {
-      type: 'article',
+      type: 'website',
+      locale: 'ja_JP',
+      url: SITE_ORIGIN,
       title: metadatum.title,
       description: metadatum.description,
+      siteName: TITLE,
+      images: [OG_IMAGE_PATH],
     },
   }
 }
