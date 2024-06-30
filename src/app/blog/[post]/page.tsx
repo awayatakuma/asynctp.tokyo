@@ -45,6 +45,7 @@ export async function generateMetadata({
       title: metadatum.title,
       images: [OG_IMAGE_PATH],
       creator: TWITTER_HANDLE,
+      description: metadatum.description,
     },
   }
 }
