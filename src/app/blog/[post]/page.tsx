@@ -7,7 +7,8 @@ import {
   BLOG_CONTENTS_DIR_PATH,
   OG_IMAGE_PATH,
   SITE_ORIGIN,
-  TITLE,
+  SITE_TITLE,
+  TWITTER_HANDLE,
 } from '@/constants'
 import { getPost } from '@/utils'
 
@@ -36,8 +37,14 @@ export async function generateMetadata({
       url: SITE_ORIGIN,
       title: metadatum.title,
       description: metadatum.description,
-      siteName: TITLE,
+      siteName: SITE_TITLE,
       images: [OG_IMAGE_PATH],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metadatum.title,
+      images: [OG_IMAGE_PATH],
+      creator: TWITTER_HANDLE,
     },
   }
 }

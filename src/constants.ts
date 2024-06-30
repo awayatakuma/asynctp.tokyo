@@ -18,7 +18,7 @@ export const MAIL = 'awayatakuma@gmail.com' as const
 export const GA_ID = process.env.GA_ID || ('G-ABCDE12345' as const)
 
 // Metadata
-export const TITLE = "asynctp's blog" as const
+export const SITE_TITLE = "asynctp's blog" as const
 export const DESCRIPTION = 'Tech blog of asynctp' as const
 
 // contents path

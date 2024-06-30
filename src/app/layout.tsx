@@ -9,7 +9,7 @@ import {
   GA_ID,
   GITHUB_URL,
   SITE_ORIGIN,
-  TITLE,
+  SITE_TITLE,
   TWITTER_HANDLE,
   OG_IMAGE_PATH,
 } from '@/constants'
@@ -17,17 +17,17 @@ import {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: {
-    template: '%s | ' + TITLE,
-    default: TITLE,
+    template: '%s | ' + SITE_TITLE,
+    default: SITE_TITLE,
   },
   description: DESCRIPTION,
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
     url: SITE_ORIGIN,
-    title: TITLE,
+    title: SITE_TITLE,
     description: DESCRIPTION,
-    siteName: TITLE,
+    siteName: SITE_TITLE,
     images: [OG_IMAGE_PATH],
   },
   authors: [
