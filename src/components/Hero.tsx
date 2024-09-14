@@ -1,4 +1,4 @@
-import { Text, Avatar, Flex } from '@chakra-ui/react'
+import { Text, Avatar, Flex, Box } from '@chakra-ui/react'
 import type { FlexProps } from '@chakra-ui/react'
 import { Section } from '@/components'
 import { HERO_ICON } from '@/constants'
@@ -35,7 +35,30 @@ export const Hero: React.FC<HeroProps> = ({ ...props }) => (
           fontFamily="Titillium Web"
           color="primary"
         >
-          {`Hello, I'm  `}
+          <Box
+            as="span"
+            sx={{
+              '&::before': {
+                content: '"🤚"',
+                animation: 'cycleCharacters 2s steps(10) infinite',
+              },
+              '@keyframes cycleCharacters': {
+                '10%': { content: '"👋"' },
+                '20%': { content: '"🤚"' },
+                '30%': { content: '"👋"' },
+                '40%': { content: '"🤚"' },
+                '50%': { content: '"👋"' },
+                '60%': { content: '"🤚"' },
+                '70%': { content: '"👋"' },
+                '80%': { content: '"🤚"' },
+                '90%': { content: '"👋"' },
+              },
+            }}
+          >
+            &nbsp;
+          </Box>
+          Hello
+          {`, I'm`}
         </Text>
         <Text
           position="relative"

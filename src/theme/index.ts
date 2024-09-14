@@ -26,8 +26,8 @@ const overrides = {
   },
   components: {},
   fonts: {
-    heading: "'Noto Sans JP','Titillium Web', sans-serif",
-    body: "'Noto Sans JP','Titillium Web', sans-serif",
+    heading: "'Titillium Web', 'Noto Sans JP', sans-serif",
+    body: "'Titillium Web', 'Noto Sans JP', sans-serif",
     mono: "'Noto Sans JP','ubuntu-Mono', 'Titillium Web'",
   },
   fontSizes: {
