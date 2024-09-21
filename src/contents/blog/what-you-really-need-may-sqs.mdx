@@ -1,0 +1,195 @@
+---
+title: 'All You Need is SQS, Not Kinesis: A Comprehensive Performance and Usability Analysis'
+date: '2024-09-21'
+description: 'comparation between sqs and kinesis in the viewpoint of performance and usability'
+emoji: '📦'
+tags: ['aws', 'message-queue']
+---
+
+## All You Need is SQS, Not Kinesis: A Comprehensive Performance and Usability Analysis
+
+### Introduction
+
+In [my previous article](https://asynctp.tokyo/blog/amazon-kinesis-makes-you-psycho), I delved into the complexities of Amazon Kinesis and the challenges it presents to developers. Today, we're taking a deeper dive into the world of message queues and stream processing by comparing Amazon Simple Queue Service (SQS) with Amazon Kinesis. The goal of this article is to provide a comprehensive analysis that will help you make an informed decision about which service best suits your needs.
+
+#### Understanding SQS and Kinesis: A Brief Overview
+
+Before we jump into the performance comparison, let's briefly review what SQS and Kinesis are, and their primary use cases.
+
+#### Amazon SQS
+
+Amazon SQS is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. It offers two types of message queues:
+
+1. Standard queues: Offer maximum throughput, best-effort ordering, and at-least-once delivery.
+2. FIFO queues: Provide exactly-once processing and strict ordering.
+
+SQS is ideal for workloads where you need reliable message delivery without the complexity of managing a message broker.
+
+#### Amazon Kinesis
+
+Amazon Kinesis, on the other hand, is a platform for streaming data on AWS, offering powerful services to load and analyze streaming data. It consists of four main services:
+
+1. Kinesis Data Streams: For collecting and processing large streams of data records in real-time.
+2. Kinesis Data Firehose: To load streaming data into data stores and analytics tools.
+3. Kinesis Data Analytics: For processing and analyzing streaming data using SQL or Java.
+4. Kinesis Video Streams: For streaming video from connected devices to AWS for analytics and machine learning.
+
+In our comparison, we'll focus primarily on Kinesis Data Streams, as it's the most comparable to SQS in terms of message handling.
+
+### Methodology for Comparing SQS and Kinesis
+
+To provide a fair and comprehensive comparison, I've set up a testing environment using AWS CDK. This approach ensures reproducibility and allows for easy modifications to the test parameters.
+
+### Setting Up the Test Environment
+
+The core of our test environment consists of:
+
+- An EC2 instance running Docker containers
+- Containers for data generation, pushing to SQS/Kinesis, and fetching from SQS/Kinesis
+- AWS SDK for Go (v2) for interacting with AWS services
+
+The complete CDK stack is available in this repository:
+[https://github.com/awayatakuma/cdk-sqs-kinesis-performance-check](https://github.com/awayatakuma/cdk-sqs-kinesis-performance-check)
+
+To get started with the test environment:
+
+1. Clone the repository
+2. Deploy the CDK stack to your AWS account
+3. SSH into the EC2 instance
+4. Run `docker compose up` to start the test containers
+
+### Performance Measurement Approach
+
+Our performance testing methodology involves the following steps:
+
+1. Data Generation: We create messages with timestamps indicating when they were generated.
+2. Data Pushing: We push these messages to both SQS and Kinesis at varying frequencies.
+3. Data Retrieval: We fetch the messages from SQS and Kinesis, measuring the time difference between when the message was created and when it was retrieved.
+4. Data Analysis: We analyze the collected timing data to compare the performance of SQS and Kinesis under different conditions.
+
+Key points to note:
+
+- Time measurements are in nanoseconds for high precision.
+- We focus on data points 4001 to 5000 to account for any warm-up effects.
+- We test with different message pushing frequencies to simulate various load scenarios.
+
+![Queue Verification Process](/contents/queue-verification.png 'Queue Verification Process')
+
+### Amazon SQS: Performance Analysis
+
+Let's start by examining the performance characteristics of Amazon SQS.
+
+#### SQS Architecture in Our Test Setup
+
+![SQS Verification Architecture](/contents/sqs-verification.png 'SQS Verification Architecture')
+
+In our setup, we have a producer container pushing messages to an SQS queue, and a consumer container retrieving these messages. This mimics a typical microservices architecture where services communicate asynchronously via message queues.
+
+#### SQS Performance Verification
+
+To understand SQS performance, we'll look at three scenarios with different message production rates.
+
+#### Scenario 1: No Frequency Control
+
+First, let's examine what happens when we push messages to SQS as fast as possible, without any artificial delay:
+
+![SQS (No Frequency Control)](/contents/sqs-with-no-freq-controll.png 'SQS (No Frequency Control)')
+
+These results reveal an interesting characteristic of SQS: there's a significant delay between message production and consumption. This is primarily due to SQS's polling nature - consumers must repeatedly ask SQS if there are any messages available.
+
+#### Scenario 2: Moderate Frequency Control
+
+Next, we introduced a delay of 1/10,000,000 seconds (100,000 nanoseconds) between each message:
+
+![SQS (Frequency 10,000,000ns)](/contents/sqs-with-freq-10_000_000.png 'SQS (Frequency 10,000,000ns)')
+
+With this moderate delay, we see a more consistent pattern in message retrieval times. The overall throughput is lower, but the system behaves more predictably.
+
+#### Scenario 3: Low Frequency Control
+
+Finally, we increased the delay to 1/100,000,000 seconds (10,000 nanoseconds):
+
+![SQS (Frequency 100,000,000ns)](/contents/sqs-with-freq-100_000_000.png 'SQS (Frequency 100,000,000ns)')
+
+At this lower frequency, SQS performs very consistently, with minimal variation in message retrieval times.
+
+### Key Takeaways from SQS Performance
+
+1. SQS shows higher latency at very high message production rates.
+2. Performance becomes more consistent and predictable at lower message frequencies.
+3. SQS is well-suited for applications that don't require extremely low latency but need reliable message delivery.
+
+## Amazon Kinesis: Performance Analysis
+
+Now, let's turn our attention to Amazon Kinesis and examine its performance characteristics.
+
+### Kinesis Architecture in Our Test Setup
+
+![Kinesis Verification Architecture](/contents/kinesis-verification.png 'Kinesis Verification Architecture')
+
+Our Kinesis setup involves a producer container pushing records to a Kinesis Data Stream, and a consumer container using the Kinesis Client Library (KCL) to retrieve and process these records.
+
+### Kinesis Performance Verification
+
+For Kinesis, we'll focus on its performance without any artificial delays in message production, as Kinesis is designed to handle high-throughput scenarios.
+
+![Kinesis (No Frequency Control)](/contents/kinesis-with-no-freq-controll.png 'Kinesis (No Frequency Control)')
+
+These results demonstrate Kinesis's strength in handling high-volume, real-time data streams. We observe:
+
+1. Consistently low latency between record production and consumption.
+2. High throughput capability, with the ability to process messages at a rate of about 1/40,000,000 seconds (25,000 messages per second).
+3. More predictable performance under high load compared to SQS.
+
+### Key Takeaways from Kinesis Performance
+
+1. Kinesis excels in scenarios requiring very low latency and high throughput.
+2. It provides more consistent performance under high load compared to SQS.
+3. Kinesis is well-suited for real-time data streaming applications, such as log and event data collection, real-time analytics, and IoT device data ingestion.
+
+## Comparative Analysis: SQS vs Kinesis
+
+Now that we've examined the performance characteristics of both SQS and Kinesis, let's compare them across several key factors:
+
+1. **Latency**: Kinesis clearly outperforms SQS in terms of latency, especially under high load. If your application requires real-time data processing with minimal delay, Kinesis has a clear advantage.
+
+2. **Throughput**: Both services can handle high throughput, but Kinesis maintains lower latency at high throughput levels. SQS's performance becomes less predictable as message frequency increases.
+
+3. **Scalability**: Both services are highly scalable, but they scale differently. SQS scales by adding more queues or increasing the number of consumers. Kinesis scales by adding shards to a stream.
+
+4. **Message Ordering**: SQS FIFO queues provide strict ordering, but with lower throughput. Kinesis maintains order within each shard, making it suitable for applications that require both high throughput and message ordering.
+
+5. **Complexity**: As discussed in my [previous article](https://asynctp.tokyo/blog/amazon-kinesis-makes-you-psycho), Kinesis has a steeper learning curve and more complex operational requirements. SQS, by comparison, is simpler to set up and manage.
+
+6. **Cost**: SQS is generally less expensive for lower volume applications, while Kinesis can be more cost-effective for high-volume, real-time data streaming scenarios.
+
+7. **Use Case Fit**: SQS is ideal for decoupling application components and handling background jobs. Kinesis is better suited for real-time analytics, log and event data processing, and IoT data ingestion.
+
+## Conclusion: Choosing Between SQS and Kinesis
+
+After this comprehensive analysis, we can conclude that while Kinesis offers superior performance in terms of latency and consistency under high load, SQS is often sufficient - and sometimes preferable - for many web applications and microservices architectures.
+
+Here's a guideline for choosing between the two:
+
+Choose SQS if:
+
+- Your application doesn't require extremely low latency (sub-millisecond)
+- You need a simple, cost-effective solution for decoupling application components
+- You're working with a traditional queue-based architecture
+- You want to minimize operational complexity
+
+Choose Kinesis if:
+
+- You need real-time data streaming with very low latency
+- Your use case involves processing millions of events per second
+- You require strict message ordering with high throughput
+- You're building applications for real-time analytics, IoT data processing, or log and event data handling
+
+Remember, as I pointed out in my [previous article about Kinesis](https://asynctp.tokyo/blog/amazon-kinesis-makes-you-psycho), the added complexity of Kinesis can be substantial. Unless your application specifically requires the real-time streaming capabilities of Kinesis, SQS often provides a more straightforward, cost-effective solution that's easier to implement and maintain.
+
+In the end, the choice between SQS and Kinesis should be driven by your specific use case, performance requirements, operational capabilities, and budget constraints. By understanding the strengths and limitations of each service, you can make an informed decision that best serves your application's needs.
+
+## Resources
+
+- cdk: https://github.com/awayatakuma/cdk-sqs-kinesis-performance-check
+- application: https://github.com/awayatakuma/message-queue-go-linkage

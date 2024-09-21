@@ -30,11 +30,11 @@ export function useMDXComponents(
         textStyle="h2"
         fontSize="2xl"
         color="header"
-        fontWeight="black"
+        fontWeight="bold"
         fontFamily="heading"
         _before={{
           content: '"# "',
-          fontWeight: 'black',
+          fontWeight: 'bold',
           pr: '0.1rem',
         }}
       >
@@ -51,7 +51,7 @@ export function useMDXComponents(
         color="header"
         fontWeight="bold"
         fontFamily="heading"
-        _before={{ content: '"## "', fontWeight: 'black' }}
+        _before={{ content: '"## "', fontWeight: 'bold' }}
       >
         {children}
       </Heading>
@@ -62,7 +62,7 @@ export function useMDXComponents(
         id={id}
         textStyle="h4"
         fontSize="1xl"
-        color="text"
+        color="header"
         fontWeight="bold"
         fontFamily="heading"
         mt={{ base: 8, md: 12 }}
