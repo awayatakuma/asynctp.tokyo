@@ -24,17 +24,20 @@ export const DESCRIPTION = 'Tech blog of asynctp' as const
 // contents path
 export const ABOUT_CONTENTS_PATH = 'src/contents/about/about.mdx'
 export const BLOG_CONTENTS_DIR_PATH = 'src/contents/blog/'
+export const WORKS_CONTENTS_DIR_PATH = 'src/contents/works/'
 
 // URIs
 export const HOME_PATH = '/' as const
 export const BLOG_PATH = '/blog/' as const
+export const WORKS_PATH = '/works/' as const
 export const BLOG_TAG_PATH = '/blog/tag/' as const
 export const ABOUT_PATH = '/about/' as const
 
 // Navigation link
 export const NAV_LINKS: NavLink[] = [
-  { name: 'Blog', href: BLOG_PATH },
   { name: 'About', href: ABOUT_PATH },
+  { name: 'Blog', href: BLOG_PATH },
+  { name: 'Works', href: WORKS_PATH },
 ]
 
 // Social links
