@@ -19,7 +19,19 @@ export type PostMetadatum = {
   emoji?: string
   tags: string[]
 }
+
 export type Post = {
   metadatum: PostMetadatum
+  content: string
+}
+
+export type WorkMetadatum = {
+  uri: string
+  title: string
+  date: string
+}
+
+export type Work = {
+  metadatum: WorkMetadatum
   content: string
 }
