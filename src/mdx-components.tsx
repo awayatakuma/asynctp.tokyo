@@ -58,6 +58,7 @@ export function useMDXComponents(
     ),
     h4: ({ children, id }: any) => (
       <Heading
+        py={2}
         as="h4"
         id={id}
         textStyle="h4"
@@ -65,8 +66,6 @@ export function useMDXComponents(
         color="header"
         fontWeight="bold"
         fontFamily="heading"
-        mt={{ base: 8, md: 12 }}
-        mb={{ base: 4, md: 6 }}
         _before={{ content: '"### "', fontWeight: 'bold' }}
       >
         {children}
@@ -74,6 +73,7 @@ export function useMDXComponents(
     ),
     h5: ({ children }: any) => (
       <Heading
+        py={1}
         as="h5"
         textStyle="h5-mono"
         fontSize="2xl"
@@ -87,6 +87,7 @@ export function useMDXComponents(
     ),
     h6: ({ children }: any) => (
       <Heading
+        py={1}
         as="h6"
         textStyle="h6-mono"
         fontSize="xl"
