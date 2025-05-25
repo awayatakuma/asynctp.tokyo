@@ -27,7 +27,7 @@ export const BlogCard = (metadata: PostMetadatum) => {
       <Text color="text" fontFamily="Titillium Web" key={metadata.description}>
         {metadata.description}
       </Text>
-      <Flex>
+      <Flex wrap="wrap">
         {metadata.tags.map((tag) => (
           // eslint-disable-next-line react/jsx-key
           <Link
