@@ -1,0 +1,246 @@
+---
+title: 'ThoughtWorks Technology Radar Volume 32から見るテクノロジートレンド'
+date: '2025-05-25'
+description: 'ThoughtWorks Technology Radar Volume 32を読んだまとめです'
+emoji: '📒'
+tags:
+  [
+    'thoughtworks',
+    'technology-radar',
+    'ai',
+    'rag',
+    'observability',
+    'data-engineering',
+    'coding-assistant',
+  ]
+---
+
+## 概要
+
+世の中のトレンドを把握するため、Technology Radar Vol 32 を読んでまとめました。みんなも読もう。
+
+## 前提
+
+### Technology Radar とは？
+
+[Thoughtworks](https://www.thoughtworks.com/)が定期的に発行する技術トレンドレポートで、IT業界の最新技術を体系的に評価・分類したものです。
+レポートは[こちら](https://www.thoughtworks.com/content/dam/thoughtworks/documents/radar/2025/04/tr_technology_radar_vol_32_en.pdf)から閲覧可能です。
+
+### 簡単な見方について
+
+Technology Radarは円形のマップで構成されています。まず4象限で領域（blips）が区切られており、第一象限から、Tools、Techniques、Platforms、Languages and Frameworksに分類されています。以下はThoughtWorks Technology Radar Volume 32からの抜粋となります。
+
+![tw_tr_vol32_radar.png](/contents/tw_tr_vol32_radar.png 'tw_tr_vol32_radar.png')
+
+次に成熟度（rings）は次の4段階で定義されています：
+
+- **Hold**: 使用に注意が必要
+- **Assess**: 自分の会社に与える影響について理解する価値がある
+- **Trial**: 追求する価値あり。リスクを管理できるなら試してみることも可能
+- **Adopt**: 採用を強く進める技術。ThoughtWorksでも適切な場合使用している
+
+## 今回の調査の概要
+
+今回のサマリーでは、以下の4つのテーマが挙げられていました：
+
+- Supervised agents in coding assistants
+- Evolving observability
+- R in RAG
+- Taming the data frontier
+
+すべて共通しているのはやはりAIの興隆だと感じます。今後も「Supervised agents in coding assistants」が重要なトピックでありつつも、そもそもデータドリブンなプロダクト制作を進める中で、どのようにデータを扱っていくか、どのような監視を行う必要があるかなども注視すべきトピックとして考えられているため、「Evolving observability」「Taming the data frontier」などがテーマとして挙げられているのでしょう。
+
+AI系は特に品質管理が難しいと思いますが、今後はちゃんとデータもAIも飼いならしていく姿勢が一般的なエンジニアにも求められていくのだろうと感じました。
+
+また、個人的には「R in RAG」が興味深かったです。利用者側としてRAGによるAI技術を触った経験がありますが、あまり業務で作成側で回ったことがなく、AIの一分野くらいの認識でした。ただ、言われてみるとこれまでのプログラミングの歴史の中で積み重ねられたテキストベースのことを考えると、進め方がわかりやすく、実現したときの便益が大きいことは想像に難くなく、私の見えていない広大な世界が広がっているんだろうなと感じました。
+
+そのように自己認識を改めるためにもこのようなサーベイを読んで整理するのは大事だと思います。また、AI以外にも個人的に興味があるトピックがたくさんあり、AI抜きにしてもまだまだIT業界全体が進化し続ける余地があるように思われ、とてもワクワクしました。
+
+## Supervised agents in coding assistants
+
+このテーマは、AIチャットから直接実装を推進する「agentic（エージェント的）」「prompt-to-code」「chat-oriented programming（CHOP）」といったモードへのコーディングアシスタントの急速な進化に焦点を当てています。AIアシスタントが質問応答やスニペット生成にとどまらず、コードのナビゲート、変更、テスト実行、エラー修正まで行うようになり、開発者がエージェントの行動をガイドし監督する監視付きアプローチに有望な結果が見られています。
+
+### Cline (Tools/Trial), Cursor (Tools/Trial), Windsurf (Tools/Assess)
+
+[Cline](https://github.com/cline/cline)はCLIベースで単純な作業を高速にこなす印象があります。一方、[Cursor](https://www.cursor.com/ja)は複雑なコードベースで総合的な作業を実施する目的に適合しているイメージです。[Windsurf](https://windsurf.com/editor)は更に高機能（ブラウザプレビュー機能など）を提供しており、機能拡張の安定具合などが他のツールと異なりAssess評価となっている理由でしょう。確かにClineとCursorが現時点での利用者数も多い印象を受けますし、それぞれ異なる用途で棲み分けができていそうです。
+
+### Software engineering agents (Tools/Trial)
+
+ソフトウェア開発において、完全自律型ではなく、IDE内でのチャット駆動による監視付きエージェンティックモードが注目されています。コードの修正だけではなく、コマンドやテストの実行、リンティング、コンパイルエラーの発見などIDEと共同してタスクを行えるようになっています。小さな問題範囲と低抽象化プロンプト、よく構造化されたコードベースで最も効果的に機能するとあるので、コードベース管理をAI向けに整理し直すことを今後考えていかなければならないかもしれません。
+
+### Using GenAI to understand legacy codebases (Techniques/Trial)
+
+ここ数ヶ月でGitHub CopilotなどのAIのレガシーコードベースの理解力が向上したようです。[Cody](https://sourcegraph.com/cody)などのツールが、開発者がレガシーコードベースを理解するのを助けています。世の中のソフトウェアの大半がレガシーソフトウェアですから、それらをAIが単独で理解し改修などを行うことができれば素晴らしいことです。
+
+### Complacency with AI-generated code (Techniques/Hold)
+
+AIが生成したコードを過度に信頼し、十分な検証や理解をせずに受け入れてしまうことへの警鐘です。[GitClearの2024年研究](https://www.gitclear.com/ai_assistant_code_quality_2025_research)によると、重複コードやコードチャーンが増え、リファクタリングなどの活動が減少したことが報告されています。AIエージェントの出現によってこの傾向はさらに強まっていくことが予測されます。
+
+### Local coding assistants (Techniques/Hold)
+
+組織は、特にコードの機密性に関する懸念から、サードパーティのAIコーディングアシスタントに対して慎重なままです。ローカルアシスタントは依然として、より大規模で高性能なモデルに依存するクラウドベースの対応物に遅れをとっているのが現状です。
+
+### Replacing pair programming with AI (Techniques/Hold)
+
+ペアプログラミングをAIに代替することには反対の立場です。ペアプログラミングの効用であるチームをより良くする作用を無視することになるからです。AIはコードを高速に組み立てることができますが、タスクの受け渡しや学び直しなどのチームコラボレーションの効用については助けになりません。
+
+## Evolving observability
+
+分散アーキテクチャの複雑化に伴い、可観測性の分野が大きく進化しています。特に、LLM observability（LLM可観測性）はAIの運用化において非常に重要になっています。AIを活用した分析や洞察強化（AI-assisted observability）もトレンドです。また、OpenTelemetryの採用が増加し、標準化された可観測性環境が促進されています。
+
+### OpenTelemetry (Languages and Framework/Adopt)
+
+[OpenTelemetry Protocol](https://opentelemetry.io/docs/specs/otel/protocol/)とOTLPプロトコルがオブザーバビリティの業界標準として確立されています。トレース、メトリクス、ログの標準化により、複数統合や大規模書き換えが不要となり、主要ベンダー（Datadog、New Relic、Grafana）が採用することでベンダーロックインを回避できます。
+
+### Weights & Biases (Platforms/Trial)、Arize Phoenix (Platforms/Assess)、Helicone (Platforms/Assess)
+
+LLMの観測性に関する話題です。[Weights & Biases](https://wandb.ai/site)はよりLLMに焦点を当てた機能を追加しており、[Arize Phoenix](https://github.com/Arize-ai/phoenix)も台頭してきています。LLMトレーシング、評価、プロンプト管理などの標準機能を提供し、主要なLLMプロバイダーやフレームワークとのシームレスな統合を実現しています。
+
+### Grafana シリーズ: Alloy、Loki、Tempo (Platforms/Trial)
+
+Grafana AlloyはOpenTelemetryのコレクターです。Grafana LokiはPrometheusインスパイアのマルチテナントログ集積システムで、Loki 3.0でOpenTelemetryをネイティブサポートしています。Grafana Tempoは大規模分散トレーシングバックエンドで、コスト効率を重視して設計されており、長期的なトレース保持にオブジェクトストレージを利用しています。
+
+## R in RAG
+
+このテーマは、RAG (retrieval-augmented generation) における「R」、つまりRetrieval（検索）の進化に焦点を当てています。LLMへのプロンプト入力で、関連性の高い有用な応答を生成するために、効果的なRetrievalの必要性が高まっています。
+
+### GraphRAG (Techniques/Trial)
+
+[GraphRAG](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/)は文書チャンク化→ナレッジグラフ作成→関連性に基づく検索拡張の2段階アプローチを採用しています。従来のRAGより文脈的関連性の高い情報検索が可能で、LLM応答品質を向上させ、レガシーコード理解にも有効です。
+
+### FastGraphRAG (Languages and Frameworks/Assess)
+
+GraphRAGのオープンソース実装で、Retrieval精度とパフォーマンスを目的に実装されています。
+
+### Graphiti (Platforms/Assess)
+
+[Graphiti](https://github.com/getzep/graphiti)は動的で時系列を考慮した知識グラフを構築し、GraphRAGでデータ関係を発見するために使用されます。
+
+### turbopuffer (Platforms/Assess)、VectorChord (Platforms/Assess)
+
+[turbopuffer](https://turbopuffer.com/)はサーバレスでマルチテナントな検索エンジンで、オブジェクトストレージに対する全文検索やベクター検索が可能です。[VectorChord](https://github.com/tensorchord/VectorChord)はPostgreSQLの拡張機能で、pgvectorのデータタイプと互換性があり、ディスク効率性と高効率なベクターサーチのためにデザインされています。
+
+### AnythingLLM (Tools/Assess)
+
+[AnythingLLM](https://github.com/Mintplex-Labs/anything-llm)は、LLMとベクトルデータベースとの即座に使える統合に支援される、大きな文書やコンテンツとチャットするためのオープンソースデスクトップアプリケーションです。
+
+### MarkItDown (Languages and Frameworks/Trial)
+
+[MarkItDown](https://github.com/microsoft/markitdown)はさまざまな形式のファイル（PDF、HTML、PowerPoint、Wordなど）をマークダウン化する技術です。LLMのインプットデータのための構造化によるユースケースがホットで、開発者の生産性向上に価値を提供するでしょう。
+
+## Taming the data frontier
+
+このテーマは、ビッグデータ、特にリッチで複雑な非構造化データの管理と活用に焦点が当てられています。AIアプリケーションや顧客分析など、様々な目的でデータを効果的に管理・パッケージングすることがビジネスにとって不可欠です。
+
+### Data product thinking (Techniques/Adopt)
+
+データ資産をプロダクトとして扱い、ライフサイクルや品質基準、コンシューマーのニーズを満たすことに焦点を当てる考え方です。データ管理のデフォルトアドバイスとして推奨されており、AI対応データを作成する上でも重要です。
+
+### Trino (Platform/Adopt)
+
+[Trino](https://trino.io/)は、多様なデータソースに対してインタラクティブな分析クエリを実行できる分散SQLクエリエンジンです。オンプレミスとクラウドで実行可能で、ParquetやApache Iceberg形式のデータを扱うことができます。
+
+### Metabase (Tools/Trial)
+
+[Metabase](https://www.metabase.com/)はオープンソースの分析＆BIツールで、RDBやNoSQLを含む多様なデータソースを分析・可視化できます。
+
+### Synthesized (Platforms/Assess)、Tonic.ai (Platforms/Assess)
+
+[Synthesized](https://www.synthesized.io/)は開発用のデータ作成をするツールで、マスキングや本番に近しい有意味なデータを作成することができます。[Tonic.ai](https://www.tonic.ai/)も開発用の安全なデータの作成補助を行います。
+
+## そのほか個人的に興味があるもの
+
+### AI系その他
+
+#### Small language models (Techniques/Trial)、DeepSeek R1 (Platforms/Assess)
+
+[DeepSeek R1](https://github.com/deepseek-ai/DeepSeek-R1)がSLMの大きな例として注目されています。より控えめなハードウェアで実行可能なように"蒸留"することでサイズを落とし、高性能な推論モデルとして設計されています。コスト効率の高いトレーニング＆推論を実現し、オープンウェイトモデルとして公開されています。
+
+#### YOLO (Tools/Assess)
+
+[YOLO](https://docs.ultralytics.com/ja/models/yolo11/)はコンピュータビジョンモデルで、エッジデバイスのリアルタイムアプリケーションに適合しています。
+
+### フロントエンド系
+
+#### Deno (Platforms/Assess)
+
+JavaScriptのランタイムとして、Deno 2がリリースされてNode.jsとの後方互換性も完備したことで成長が見込まれます。ただし、bunやNode.jsもある中でどれだけ存在感を示すことができるかが注目です。
+
+#### Vite (Tools/Adopt)
+
+かつてはWebpack地獄なるものがあったそうですが、今回のTechnology RadarではViteが採用推奨となっています。大きな投資も受けており今後の成長にも期待できます。
+
+#### React Hook Form (Language and Frameworks/Adopt)
+
+Formikの代替として、パフォーマンスに優れ、他のバリデーションライブラリーとの相性も良いフォームライブラリです。
+
+### パッケージ・ツール
+
+#### uv (Tools/Adopt)
+
+肯定的なフィードバック多数でAdopt入りを果たしています。次世代Pythonパッケージ＆プロジェクトマネジメントツールとして期待されており、速さと単一的なツールセットが特徴です。
+
+#### JSON Crack (Tools/Trial)
+
+[JSON Crack](https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode)はテキストデータからインタラクティブなグラフへレンダリングしてくれるVSCodeの拡張です。名前にも関わらずJSON以外も可能で、VSCodeに入れるだけなら競合も発生しなさそうなので試してみても良いかもしれません。
+
+#### Jujutsu (Tools/Assess)
+
+[Jujutsu](https://github.com/jj-vcs/jj)はGit完全互換のVCSで、first-class競合解決が特徴です。個人的にはGitが置き換わる未来が見えませんでしが、Assess評価となると使ってみても良いかもしれません。
+
+### プラットフォーム
+
+#### GitLab CI/CD (Platforms/Adopt)
+
+個人的にGitHubよりGitLabに思い入れがあります。パフォーマンスも良く、機能的にはビルトインのセキュリティ・コンプライアンスツールが優秀だそうです。
+
+#### Railway (Platforms/Trial)
+
+[Railway](https://railway.com/)はHerokuに変わりうるフルスタックなデプロイプラットフォームです。データベース、コンテナデプロイ、メインストリームのプログラミングフレームワークのほとんどをカバーしており、ThoughtWorksではデプロイメントとオブザーバビリティに満足しているとのことです。
+
+### その他
+
+#### SAFe® (Techniques/Hold)
+
+[SAFe®](https://framework.scaledagile.com/)はScaled Agile Frameworkの略です。最近は開発手法に関する関心が薄れつつあるので個人的にもホールドです。
+
+#### v0 (Tools/Assess)
+
+[v0](https://v0.dev/)はVercel製のAIツールで、スクリーンショットからフロントエンドのコードを生成できます。React、Vue、shadcn、Tailwindなどをサポートしており、プレビューからデプロイまでワンショットで可能です。
+
+## 終わりに
+
+もはやエンジニアとしてAIの恩恵を感受するだけではなく、プロダクトにどのように組み込んでいくのかを見据えて仕事をする必要があると感じました。個人的にはClineなどのエディターは使ったことすらなかったのでプライベートで使ってみようと思いました。
+
+あとGrafanaやOpenTelemetory、Parquetなどは横目でみていて気になる技術ではあるもののあまり触る機会なかったのでちょっとチュートリアルでもやってみようかなという気分になってます。
+
+また、個人的にPostgreSQLのファンなので、PostgreSQLの拡張機能が2つもエントリーしているのは嬉しかったです。turbopufferなどはRustで開発され、開発者も日本人の方みたいなのでちょっとチェックしてみようと思いました。
+
+全体として、今後求められるスキルのハードルにドキドキしつつも、大きな転換期をエンジニアとして感受できる喜びを感じることができました。
+
+## おまけ
+
+Adopt の項目だけ抜き出しました。
+
+### Techniques
+
+1. Data product thinking（Techniques/Adopt）
+2. Fuzz testing（Techniques/Adopt）
+3. Software Bill of Materials（Techniques/Adopt）
+4. Threat modeling（Techniques/Adopt）
+
+### Platforms
+
+23. GitLab CI/CD（Platforms/Adopt）
+24. Trino（Platforms/Adopt）
+
+### Tools
+
+51. Renovate（Tools/Adopt）
+52. uv（Tools/Adopt）
+53. Vite（Tools/Adopt）
+
+### Languages and Frameworks
+
+83. OpenTelemetry（Languages and Frameworks/Adopt）
+84. React Hook Form（Languages and Frameworks/Adopt）
