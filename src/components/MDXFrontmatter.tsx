@@ -33,7 +33,7 @@ export const MDXFrontmatter = ({ metadatum }: MDXFrontmatterProps) => {
       )}
 
       <Text color="primary"> {metadatum.date}</Text>
-      <Flex>
+      <Flex wrap="wrap">
         {metadatum.tags.map((tag) => (
           // eslint-disable-next-line react/jsx-key
           <Link
