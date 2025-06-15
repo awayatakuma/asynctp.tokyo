@@ -8,9 +8,11 @@ export default async function Top() {
         src={PC_TOP_PAGE_IMAGE_PATH}
         alt="toppage-image"
         objectFit="contain"
-        w="95%"
+        w="100vw"
         h="100%"
-        mx="2.5%"
+        position="relative"
+        left="50%"
+        transform="translateX(-50%)"
         pt={{ base: 4, md: 0 }}
       />
     </Flex>
