@@ -44,7 +44,7 @@ export const Hero: React.FC<HeroProps> = ({ ...props }) => (
             verticalAlign="middle"
             mr="1"
           />
-          {`Hello, I'm`}
+          {`Hello,`}
         </Text>
         <Text
           position="relative"
@@ -70,7 +70,7 @@ export const Hero: React.FC<HeroProps> = ({ ...props }) => (
             animation: 'blink-cursor 1.25s step-end infinite',
           }}
         >
-          {`awayatakuma`}
+          {`I'm asynct`}
         </Text>
       </Flex>
     </Flex>
