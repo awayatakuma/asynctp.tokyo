@@ -17,7 +17,12 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@next/third-parties": "^14.2.3",
+    "@pixiv/three-vrm": "^3.4.1",
+    "@pixiv/three-vrm-animation": "^3.4.1",
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
     "@types/mdx": "^2.0.13",
+    "@types/three": "^0.177.0",
     "feed": "^5.1.0",
     "framer-motion": "^12.19.2",
     "gray-matter": "^4.0.3",
@@ -31,7 +36,8 @@
     "rehype-pretty-code": "^0.13.1",
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.0",
-    "shiki": "^1.5.1"
+    "shiki": "^1.5.1",
+    "three": "^0.177.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",

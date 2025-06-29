@@ -13,7 +13,8 @@ export const Link: React.FC<LinkProps> = ({ href, ...props }) => {
   const path: string = href
   return (
     <NextLink href={path} passHref legacyBehavior>
-      <ChakraLink {...linkStyes} {...props} />
+      {/** biome-ignore lint/suspicious/noExplicitAny: verup**/}
+      <ChakraLink {...(linkStyes as any)} {...props} />
     </NextLink>
   )
 }

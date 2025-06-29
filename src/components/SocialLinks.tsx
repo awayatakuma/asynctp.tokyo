@@ -11,7 +11,8 @@ export const SocialLinks: React.FC<FlexProps> = (props) => (
     justify="center"
     minWidth="max-content"
     w="100%"
-    {...props}
+    // biome-ignore lint/suspicious/noExplicitAny: verup
+    {...(props as any)}
   >
     {SOCIAL_LINKS.map(({ name, href, Icon }) => (
       <Link href={href} key={name} textDecoration="none">
