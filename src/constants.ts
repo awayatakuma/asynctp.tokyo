@@ -1,4 +1,4 @@
-import { FaGithub, FaTwitter, FaRss } from 'react-icons/fa'
+import { FaGithub, FaRss, FaTwitter } from 'react-icons/fa'
 import type { NavLink, SocialLink } from '@/types'
 
 // common

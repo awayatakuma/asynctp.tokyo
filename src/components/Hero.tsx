@@ -1,5 +1,5 @@
-import { Text, Avatar, Flex, Image } from '@chakra-ui/react'
 import type { FlexProps } from '@chakra-ui/react'
+import { Avatar, Flex, Image, Text } from '@chakra-ui/react'
 import { Section } from '@/components'
 import { HERO_ICON } from '@/constants'
 

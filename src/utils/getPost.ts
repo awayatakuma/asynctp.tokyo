@@ -1,8 +1,8 @@
+import { BLOG_PATH } from '@/constants'
+import type { Post } from '@/types'
 import { formatDate } from './formatDate'
 import { getFilename } from './getFilename'
 import { getMarkdownContent } from './getMarkdownContent'
-import { BLOG_PATH } from '@/constants'
-import { Post } from '@/types'
 
 export const getPost = (fullpath: string): Post => {
   const { data, content } = getMarkdownContent(fullpath)

@@ -1,5 +1,5 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
 import type { FlexProps } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { Link } from '@/components'
 import { SOCIAL_LINKS } from '@/constants'
 

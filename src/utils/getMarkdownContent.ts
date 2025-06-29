@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import matter from 'gray-matter'
 
 export const getMarkdownContent = (filepath: string) => {

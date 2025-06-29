@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import { BLOG_CONTENTS_DIR_PATH } from '@/constants'
 import { getPost } from '@/utils'
 
@@ -11,7 +11,7 @@ export const getAllPostTags = (): string[] => {
         const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, filename)
         const { metadatum } = getPost(fullpath)
         return metadatum.tags
-      }),
+      })
     ),
   ]
   return tags

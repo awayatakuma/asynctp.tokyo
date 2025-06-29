@@ -1,7 +1,7 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import { BLOG_CONTENTS_DIR_PATH } from '@/constants'
-import { PostMetadatum } from '@/types'
+import type { PostMetadatum } from '@/types'
 import { getPost } from '@/utils'
 
 export const getPostMetadataFromTag = (tag: string): PostMetadatum[] => {

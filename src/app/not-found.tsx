@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/react'
-import { Section, Link } from '@/components'
+import { Link, Section } from '@/components'
 
 export default function NotFound() {
   return (

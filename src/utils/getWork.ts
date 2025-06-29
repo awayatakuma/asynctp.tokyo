@@ -1,8 +1,8 @@
+import { WORKS_PATH } from '@/constants'
+import type { Work } from '@/types'
 import { formatDate } from './formatDate'
 import { getFilename } from './getFilename'
 import { getMarkdownContent } from './getMarkdownContent'
-import { WORKS_PATH } from '@/constants'
-import { Work } from '@/types'
 
 export const getWork = (fullpath: string): Work => {
   const { data, content } = getMarkdownContent(fullpath)
