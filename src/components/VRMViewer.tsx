@@ -34,6 +34,8 @@ export const VRMViewer = ({
             minDistance={1}
             maxDistance={5}
             target={[0, 1, 0]}
+            autoRotate={true}
+            autoRotateSpeed={-0.5}
           />
           {/* environment */}
           <Environment preset="sunset" />
