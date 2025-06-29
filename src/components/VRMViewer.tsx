@@ -7,20 +7,27 @@ import { VRMModel } from '@/components'
 
 interface VRMViewerProps {
   vrmUrl: string
+  vrmaUrl: string
   width?: string | number
   height?: string | number
 }
 
 export const VRMViewer = ({
   vrmUrl,
+  vrmaUrl,
   width = '100%',
   height = '500px',
 }: VRMViewerProps) => {
   return (
     <div style={{ width, height }}>
-      <Canvas camera={{ position: [0, 1, 2], fov: 30 }}>
+      <Canvas
+        camera={{
+          position: [-2, 1.5, -3],
+          fov: 30,
+        }}
+      >
         <Suspense fallback={null}>
-          <VRMModel url={vrmUrl} />
+          <VRMModel url={vrmUrl} animationUrl={vrmaUrl} />
           <OrbitControls
             enablePan={false}
             enableZoom={true}
@@ -30,16 +37,16 @@ export const VRMViewer = ({
           />
           {/* environment */}
           <Environment preset="sunset" />
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={1} />
           <directionalLight
             position={[0, 2, 3]}
-            intensity={3.5}
+            intensity={1}
             color="#ffedd5"
           />
-          <pointLight position={[2, 2, 0]} intensity={1.5} color="#ffd700" />
+          <pointLight position={[2, 2, 0]} intensity={2} color="#ffd700" />
           <directionalLight
             position={[0, 1, 4]}
-            intensity={1.2}
+            intensity={2}
             color="#fff8f0"
           />
         </Suspense>
