@@ -1,5 +1,5 @@
 import { Flex, Heading } from '@chakra-ui/react'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { BlogCard } from '@/components'
 import { getAllPosts } from '@/utils'
 

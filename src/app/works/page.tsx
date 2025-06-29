@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { MDXArticle } from '@/components'
 import { getAllWorks } from '@/utils/getAllWorks'
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default async function Works() {
   const works = await getAllWorks()
   works.sort(
-    (a, b) => +new Date(b.metadatum.date) - +new Date(a.metadatum.date),
+    (a, b) => +new Date(b.metadatum.date) - +new Date(a.metadatum.date)
   )
   return (
     <>

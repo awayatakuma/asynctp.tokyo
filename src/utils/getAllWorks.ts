@@ -1,8 +1,8 @@
-import fs from 'fs'
-import path from 'path'
-import { getWork } from './getWork'
+import fs from 'node:fs'
+import path from 'node:path'
 import { WORKS_CONTENTS_DIR_PATH } from '@/constants'
-import { Work } from '@/types'
+import type { Work } from '@/types'
+import { getWork } from './getWork'
 
 export const getAllWorks = (): Work[] => {
   return fs

@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { Hero, MDXArticle } from '@/components'
 import { ABOUT_CONTENTS_PATH } from '@/constants'
 import { getMarkdownContent } from '@/utils'

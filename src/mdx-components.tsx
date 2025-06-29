@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Divider, Heading, Image, Text, Code } from '@chakra-ui/react'
+import { Code, Divider, Heading, Image, Text } from '@chakra-ui/react'
 import type { MDXComponents } from 'mdx/types'
 import { Link } from './components'
 
 export function useMDXComponents(
-  components: MDXComponents = {},
+  components: MDXComponents = {}
 ): MDXComponents {
   return {
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     p: ({ children }: any) => (
       <Text
         fontSize="md"
@@ -17,11 +17,13 @@ export function useMDXComponents(
         {children}
       </Text>
     ),
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     a: ({ children, href }: any) => (
       <Link textStyle="link" color="secondary" href={href}>
         {children}
       </Link>
     ),
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     h2: ({ children, id }: any) => (
       <Heading
         py={4}
@@ -41,6 +43,7 @@ export function useMDXComponents(
         {children}
       </Heading>
     ),
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     h3: ({ children, id }: any) => (
       <Heading
         py={2}
@@ -56,6 +59,7 @@ export function useMDXComponents(
         {children}
       </Heading>
     ),
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     h4: ({ children, id }: any) => (
       <Heading
         py={2}
@@ -71,6 +75,7 @@ export function useMDXComponents(
         {children}
       </Heading>
     ),
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     h5: ({ children }: any) => (
       <Heading
         py={1}
@@ -85,6 +90,7 @@ export function useMDXComponents(
         {children}
       </Heading>
     ),
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     h6: ({ children }: any) => (
       <Heading
         py={1}
@@ -99,12 +105,15 @@ export function useMDXComponents(
         {children}
       </Heading>
     ),
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     img: (img: any) => {
       return <Image display="block" mx="auto" src={img.src} alt={img.alt} />
     },
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     hr: ({ children }: any) => {
       return <Divider my={6}>{children}</Divider>
     },
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     code: ({ children }: any) => {
       if (typeof children === 'string') {
         return <Code color="#f7768e">{children}</Code>

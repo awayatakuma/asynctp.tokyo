@@ -1,6 +1,6 @@
-import { Flex, Text, Link } from '@chakra-ui/react'
+import { Flex, Link, Text } from '@chakra-ui/react'
 import { BLOG_TAG_PATH } from '@/constants'
-import { PostMetadatum } from '@/types'
+import type { PostMetadatum } from '@/types'
 
 export interface MDXFrontmatterProps {
   metadatum: PostMetadatum
@@ -35,8 +35,8 @@ export const MDXFrontmatter = ({ metadatum }: MDXFrontmatterProps) => {
       <Text color="primary"> {metadatum.date}</Text>
       <Flex wrap="wrap">
         {metadatum.tags.map((tag) => (
-          // eslint-disable-next-line react/jsx-key
           <Link
+            key={tag}
             href={BLOG_TAG_PATH + tag}
             textDecoration="none"
             data-group

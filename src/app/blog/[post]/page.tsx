@@ -1,6 +1,6 @@
-import fs from 'fs'
-import path from 'path'
-import { Metadata } from 'next'
+import fs from 'node:fs'
+import path from 'node:path'
+import type { Metadata } from 'next'
 import NotFound from '@/app/not-found'
 import { MDXArticle, MDXFrontmatter } from '@/components'
 import {
@@ -21,13 +21,13 @@ interface PageProps {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, params.post + '.mdx')
+  const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, `${params.post}.mdx`)
 
   if (!fs.existsSync(fullpath)) {
     return {}
   }
 
-  const { metadatum: metadatum } = getPost(fullpath)
+  const { metadatum } = getPost(fullpath)
   return {
     title: metadatum.title,
     description: metadatum.description,
@@ -66,14 +66,10 @@ export default async function PostPage({
 }: {
   params: { post: string }
 }) {
-  const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, params.post + '.mdx')
+  const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, `${params.post}.mdx`)
 
   if (!fs.existsSync(fullpath)) {
-    return (
-      <>
-        <NotFound />
-      </>
-    )
+    return <NotFound />
   }
 
   const { metadatum: metadata, content } = getPost(fullpath)

@@ -1,6 +1,5 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
-import { Metadata } from 'next'
-import { Providers } from './providers'
+import type { Metadata } from 'next'
 import { Footer, Header } from '@/components'
 import {
   AUTHOR,
@@ -8,16 +7,17 @@ import {
   FAVICON_IMAGE_PATH,
   GA_ID,
   GITHUB_URL,
+  OG_IMAGE_PATH,
   SITE_ORIGIN,
   SITE_TITLE,
   TWITTER_HANDLE,
-  OG_IMAGE_PATH,
 } from '@/constants'
+import { Providers } from './providers'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: {
-    template: '%s | ' + SITE_TITLE,
+    template: `%s | ${SITE_TITLE}`,
     default: SITE_TITLE,
   },
   description: DESCRIPTION,
