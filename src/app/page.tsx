@@ -1,15 +1,47 @@
-import { Flex } from '@chakra-ui/react'
+'use client'
+
+import { Box, Image } from '@chakra-ui/react'
 import { VRMViewer } from '@/components'
 
-export default async function Top() {
+export default function Top() {
   return (
-    <Flex direction="column">
-      <VRMViewer
-        vrmUrl="/assets/asynct.vrm"
+    <Box position="relative" width="100%" height="80vh">
+      {/* 背景画像 */}
+      <Image
+        src="/assets/asynct_logo.png"
+        alt="logo"
+        position="absolute"
+        top="0"
+        left="0"
         width="100%"
-        height="80vh"
-        vrmaUrl="/assets/peace.vrma"
+        height="100%"
+        objectFit="contain"
+        zIndex="1"
       />
-    </Flex>
+
+      {/* 前面のVRMViewer - ゆっくりフェードイン */}
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        width="100%"
+        height="100%"
+        zIndex="10"
+        animation="delayedFadeIn 3s ease-in-out 1s both"
+        sx={{
+          '@keyframes delayedFadeIn': {
+            '0%': { opacity: 0 },
+            '100%': { opacity: 1 },
+          },
+        }}
+      >
+        <VRMViewer
+          vrmUrl="/assets/asynct_low.vrm"
+          width="100%"
+          height="100%"
+          vrmaUrl="/assets/peace.vrma"
+        />
+      </Box>
+    </Box>
   )
 }
