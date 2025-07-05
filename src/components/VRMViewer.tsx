@@ -38,7 +38,7 @@ export const VRMViewer = ({
             autoRotateSpeed={-0.5}
           />
           {/* environment */}
-          <Environment preset="sunset" />
+          <Environment preset="park" />
           <ambientLight intensity={1} />
           <directionalLight
             position={[0, 2, 3]}
@@ -46,11 +46,6 @@ export const VRMViewer = ({
             color="#ffedd5"
           />
           <pointLight position={[2, 2, 0]} intensity={2} color="#ffd700" />
-          <directionalLight
-            position={[0, 1, 4]}
-            intensity={2}
-            color="#fff8f0"
-          />
         </Suspense>
       </Canvas>
     </div>
