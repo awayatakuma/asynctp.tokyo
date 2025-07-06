@@ -45,3 +45,5 @@ sitemap*.xml
 /.vscode
 
 deno.lock
+
+/.works
