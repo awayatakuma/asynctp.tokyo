@@ -32,11 +32,12 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   const blinkInterval = 3000 // 3秒間隔
   const blinkDuration = 150 // 150ms
 
-  // 表情固定用の状態
-  const isSmileSetRef = useRef(false)
+  // マウス追従用の状態
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isHovering, setIsHovering] = useState(false)
 
   // カメラ情報を取得
-  const { camera } = useThree()
+  const { camera, gl } = useThree()
 
   // VRMモデルを読み込み
   const gltf = useLoader(GLTFLoader, url, (loader) => {
@@ -73,27 +74,34 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
     }
   }, [vrm, vrmaGltf, animationUrl])
 
-  // カメラを見る機能
-  const lookAtCamera = (vrm: VRM) => {
+  // マウス追従機能
+  const lookAtMouse = (vrm: VRM) => {
     if (!vrm.lookAt) return
 
-    // カメラの位置を取得
-    const cameraPosition = camera.position.clone()
+    // マウスの正規化座標からワールド座標を計算
+    const vector = new THREE.Vector3(mousePosition.x, mousePosition.y, 0.5)
+    vector.unproject(camera)
 
-    // VRMの位置からカメラへのベクトルを計算
+    // VRMの位置からマウス方向へのベクトルを計算
     const vrmPosition = vrm.scene.position
-    const lookDirection = cameraPosition.sub(vrmPosition).normalize()
+    const lookDirection = vector.sub(vrmPosition).normalize()
 
-    // 視線をカメラに向ける
+    // 視線をマウス方向に向ける
     vrm.lookAt.lookAt(lookDirection)
   }
 
-  // 微笑み表情を設定
-  const _setSmileExpression = (vrm: VRM) => {
-    if (!vrm.expressionManager || isSmileSetRef.current) return
+  // ホバー時の表情変更
+  const updateExpression = (vrm: VRM) => {
+    if (!vrm.expressionManager) return
 
-    vrm.expressionManager.setValue(VRMExpressionPresetName.Relaxed, 1)
-    isSmileSetRef.current = true
+    if (isHovering) {
+      vrm.expressionManager.resetValues()
+      vrm.expressionManager.setValue(VRMExpressionPresetName.Angry, 1.0)
+      vrm.expressionManager.setValue(VRMExpressionPresetName.Aa, 0.5)
+    } else {
+      vrm.expressionManager.resetValues()
+      vrm.expressionManager.setValue(VRMExpressionPresetName.Relaxed, 1.0)
+    }
   }
 
   // 瞬き処理
@@ -121,14 +129,14 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
       const currentTime = Date.now()
       setAnimationTime((prev) => prev + delta)
 
-      // 微笑み表情を設定（一度だけ）
-      _setSmileExpression(vrmRef.current)
-
       // 瞬き処理
       updateBlinking(vrmRef.current, currentTime)
 
-      // カメラを見る
-      lookAtCamera(vrmRef.current)
+      // マウス追従
+      lookAtMouse(vrmRef.current)
+
+      // ホバー時の表情変更
+      updateExpression(vrmRef.current)
 
       if (mixerRef.current && animationAction && animationUrl) {
         // アニメーションミキサーを更新
@@ -138,6 +146,31 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
       vrmRef.current.update(delta)
     }
   })
+
+  // マウスイベントリスナーの設定
+  useEffect(() => {
+    const canvas = gl.domElement
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect()
+      const x = ((event.clientX - rect.left) / rect.width) * 2 - 1
+      const y = -((event.clientY - rect.top) / rect.height) * 2 + 1
+      setMousePosition({ x, y })
+    }
+
+    const handleMouseEnter = () => setIsHovering(true)
+    const handleMouseLeave = () => setIsHovering(false)
+
+    canvas.addEventListener('mousemove', handleMouseMove)
+    canvas.addEventListener('mouseenter', handleMouseEnter)
+    canvas.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      canvas.removeEventListener('mousemove', handleMouseMove)
+      canvas.removeEventListener('mouseenter', handleMouseEnter)
+      canvas.removeEventListener('mouseleave', handleMouseLeave)
+    }
+  }, [gl])
 
   return <primitive object={vrm.scene} />
 }
