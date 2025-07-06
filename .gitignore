@@ -42,4 +42,6 @@ public/robots.txt
 sitemap*.xml
 
 .env*
-/.vscode/
+/.vscode
+
+deno.lock

@@ -4,10 +4,7 @@ import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 import { getHighlighter } from 'shiki'
 import { useMDXComponents } from '@/mdx-components'
-
-export interface MDXArticleProps {
-  content: string
-}
+import type { MDXArticleProps } from '@/types/components'
 
 export const MDXArticle = async ({ content }: MDXArticleProps) => {
   const components = useMDXComponents()
