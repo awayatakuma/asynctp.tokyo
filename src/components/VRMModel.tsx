@@ -32,12 +32,8 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   const blinkInterval = 3000 // 3秒間隔
   const blinkDuration = 150 // 150ms
 
-  // 表情変化用の状態
-  const lastExpressionChangeRef = useRef(0)
-  const expressionChangeInterval = 5000 // 5秒間隔
-  const currentExpressionRef = useRef('joy')
-  const availableExpressionsRef = useRef<string[]>([])
-  const isExpressionsInitializedRef = useRef(false)
+  // 表情固定用の状態
+  const isSmileSetRef = useRef(false)
 
   // カメラ情報を取得
   const { camera } = useThree()
@@ -70,8 +66,7 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
       const clip = createVRMAnimationClip(vrmAnimation, vrm)
 
       const action = mixer.clipAction(clip)
-      action.setLoop(THREE.LoopOnce, 1)
-      action.clampWhenFinished = true
+      action.setLoop(THREE.LoopRepeat, Infinity)
       action.play()
 
       setAnimationAction(action)
@@ -93,32 +88,12 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
     vrm.lookAt.lookAt(lookDirection)
   }
 
-  // 利用可能な表情を初期化
-  const initializeExpressions = (vrm: VRM) => {
-    if (!vrm.expressionManager || isExpressionsInitializedRef.current) return
+  // 微笑み表情を設定
+  const _setSmileExpression = (vrm: VRM) => {
+    if (!vrm.expressionManager || isSmileSetRef.current) return
 
-    const availableExpressions: string[] = []
-    const standardExpressions = [
-      VRMExpressionPresetName.Happy,
-      VRMExpressionPresetName.Angry,
-      VRMExpressionPresetName.Sad,
-      VRMExpressionPresetName.Relaxed,
-      VRMExpressionPresetName.Neutral,
-    ]
-
-    // 実際に存在する表情のみを追加
-    for (const expr of standardExpressions) {
-      try {
-        vrm.expressionManager.setValue(expr, 0)
-        availableExpressions.push(expr)
-      } catch {
-        // 存在しない表情は無視
-      }
-    }
-
-    availableExpressionsRef.current = availableExpressions
-    isExpressionsInitializedRef.current = true
-    console.log('Available expressions:', availableExpressions)
+    vrm.expressionManager.setValue(VRMExpressionPresetName.Relaxed, 1)
+    isSmileSetRef.current = true
   }
 
   // 瞬き処理
@@ -141,52 +116,13 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
     }
   }
 
-  // 表情変化処理
-  const updateExpressions = (vrm: VRM, currentTime: number) => {
-    if (!vrm.expressionManager || availableExpressionsRef.current.length === 0)
-      return
-
-    // 表情変化のタイミングをチェック
-    if (
-      currentTime - lastExpressionChangeRef.current >
-      expressionChangeInterval
-    ) {
-      // 現在の表情をリセット
-      if (currentExpressionRef.current !== 'neutral') {
-        vrm.expressionManager.setValue(currentExpressionRef.current, 0)
-      }
-
-      // 新しい表情をランダム選択（70%の確率で表情変化）
-      if (Math.random() > 0.3) {
-        const randomIndex = Math.floor(
-          Math.random() * availableExpressionsRef.current.length
-        )
-        const newExpression = availableExpressionsRef.current[randomIndex]
-        const intensity = 0.4 + Math.random() * 0.5 // 0.4-0.9の強度
-
-        currentExpressionRef.current = newExpression
-        vrm.expressionManager.setValue(newExpression, intensity)
-        console.log(
-          `Setting expression: ${newExpression} with intensity: ${intensity}`
-        )
-      } else {
-        currentExpressionRef.current = 'neutral'
-      }
-
-      lastExpressionChangeRef.current = currentTime
-    }
-  }
-
   useFrame((_state, delta) => {
     if (vrmRef.current) {
       const currentTime = Date.now()
       setAnimationTime((prev) => prev + delta)
 
-      // 表情を初期化（一度だけ）
-      initializeExpressions(vrmRef.current)
-
-      // 表情変化処理
-      updateExpressions(vrmRef.current, currentTime)
+      // 微笑み表情を設定（一度だけ）
+      _setSmileExpression(vrmRef.current)
 
       // 瞬き処理
       updateBlinking(vrmRef.current, currentTime)

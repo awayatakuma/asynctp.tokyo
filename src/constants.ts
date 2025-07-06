@@ -22,6 +22,7 @@ export const DESCRIPTION = 'Tech blog of asynctp' as const
 
 // contents path
 export const ABOUT_CONTENTS_PATH = 'src/contents/about/about.mdx'
+export const TERMS_CONTENTS_PATH = 'src/contents/terms.mdx'
 export const BLOG_CONTENTS_DIR_PATH = 'src/contents/blog/'
 export const WORKS_CONTENTS_DIR_PATH = 'src/contents/works/'
 

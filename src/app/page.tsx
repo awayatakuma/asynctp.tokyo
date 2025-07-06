@@ -39,7 +39,7 @@ export default function Top() {
           vrmUrl="/assets/asynct_low.vrm"
           width="100%"
           height="100%"
-          vrmaUrl="/assets/peace.vrma"
+          vrmaUrl="/assets/greeting.vrma"
         />
       </Box>
     </Box>
