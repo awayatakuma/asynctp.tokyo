@@ -16,7 +16,7 @@ export const VRMViewer = ({
     <div style={{ width, height }}>
       <Canvas
         camera={{
-          position: [-2, 1.5, -3],
+          position: [2, 2, -3],
           fov: 30,
         }}
       >
