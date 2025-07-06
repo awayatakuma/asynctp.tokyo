@@ -1,6 +1,10 @@
 'use client'
 
-import { type VRM, VRMLoaderPlugin } from '@pixiv/three-vrm'
+import {
+  type VRM,
+  VRMExpressionPresetName,
+  VRMLoaderPlugin,
+} from '@pixiv/three-vrm'
 import {
   createVRMAnimationClip,
   type VRMAnimation,
@@ -22,6 +26,18 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   const [_animationTime, setAnimationTime] = useState(0)
   const [animationAction, setAnimationAction] =
     useState<THREE.AnimationAction | null>(null)
+
+  // 瞬き用の状態
+  const lastBlinkTimeRef = useRef(0)
+  const blinkInterval = 3000 // 3秒間隔
+  const blinkDuration = 150 // 150ms
+
+  // 表情変化用の状態
+  const lastExpressionChangeRef = useRef(0)
+  const expressionChangeInterval = 5000 // 5秒間隔
+  const currentExpressionRef = useRef('joy')
+  const availableExpressionsRef = useRef<string[]>([])
+  const isExpressionsInitializedRef = useRef(false)
 
   // カメラ情報を取得
   const { camera } = useThree()
@@ -77,20 +93,103 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
     vrm.lookAt.lookAt(lookDirection)
   }
 
-  // 表情設定
-  const setFacialExpression = (vrm: VRM) => {
+  // 利用可能な表情を初期化
+  const initializeExpressions = (vrm: VRM) => {
+    if (!vrm.expressionManager || isExpressionsInitializedRef.current) return
+
+    const availableExpressions: string[] = []
+    const standardExpressions = [
+      VRMExpressionPresetName.Happy,
+      VRMExpressionPresetName.Angry,
+      VRMExpressionPresetName.Sad,
+      VRMExpressionPresetName.Relaxed,
+      VRMExpressionPresetName.Neutral,
+    ]
+
+    // 実際に存在する表情のみを追加
+    for (const expr of standardExpressions) {
+      try {
+        vrm.expressionManager.setValue(expr, 0)
+        availableExpressions.push(expr)
+      } catch {
+        // 存在しない表情は無視
+      }
+    }
+
+    availableExpressionsRef.current = availableExpressions
+    isExpressionsInitializedRef.current = true
+    console.log('Available expressions:', availableExpressions)
+  }
+
+  // 瞬き処理
+  const updateBlinking = (vrm: VRM, currentTime: number) => {
     if (!vrm.expressionManager) return
 
-    // 笑顔を設定
-    vrm.expressionManager.setValue('joy', 0.7) // 0-1の値で強さを調整
+    // まばたきのタイミングをチェック
+    if (currentTime - lastBlinkTimeRef.current > blinkInterval) {
+      lastBlinkTimeRef.current = currentTime
+    }
+
+    // まばたきアニメーション
+    const timeSinceBlink = currentTime - lastBlinkTimeRef.current
+    if (timeSinceBlink < blinkDuration) {
+      const blinkProgress = timeSinceBlink / blinkDuration
+      const blinkValue = Math.sin(blinkProgress * Math.PI)
+      vrm.expressionManager.setValue('blink', blinkValue)
+    } else {
+      vrm.expressionManager.setValue('blink', 0)
+    }
+  }
+
+  // 表情変化処理
+  const updateExpressions = (vrm: VRM, currentTime: number) => {
+    if (!vrm.expressionManager || availableExpressionsRef.current.length === 0)
+      return
+
+    // 表情変化のタイミングをチェック
+    if (
+      currentTime - lastExpressionChangeRef.current >
+      expressionChangeInterval
+    ) {
+      // 現在の表情をリセット
+      if (currentExpressionRef.current !== 'neutral') {
+        vrm.expressionManager.setValue(currentExpressionRef.current, 0)
+      }
+
+      // 新しい表情をランダム選択（70%の確率で表情変化）
+      if (Math.random() > 0.3) {
+        const randomIndex = Math.floor(
+          Math.random() * availableExpressionsRef.current.length
+        )
+        const newExpression = availableExpressionsRef.current[randomIndex]
+        const intensity = 0.4 + Math.random() * 0.5 // 0.4-0.9の強度
+
+        currentExpressionRef.current = newExpression
+        vrm.expressionManager.setValue(newExpression, intensity)
+        console.log(
+          `Setting expression: ${newExpression} with intensity: ${intensity}`
+        )
+      } else {
+        currentExpressionRef.current = 'neutral'
+      }
+
+      lastExpressionChangeRef.current = currentTime
+    }
   }
 
   useFrame((_state, delta) => {
     if (vrmRef.current) {
+      const currentTime = Date.now()
       setAnimationTime((prev) => prev + delta)
 
-      // 常に笑顔を設定
-      setFacialExpression(vrmRef.current)
+      // 表情を初期化（一度だけ）
+      initializeExpressions(vrmRef.current)
+
+      // 表情変化処理
+      updateExpressions(vrmRef.current, currentTime)
+
+      // 瞬き処理
+      updateBlinking(vrmRef.current, currentTime)
 
       // カメラを見る
       lookAtCamera(vrmRef.current)
