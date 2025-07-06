@@ -3,8 +3,8 @@
 import { Environment, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
-import { VRMModel } from '@/components'
 import type { VRMViewerProps } from '@/types/components'
+import { VRMModel } from './VRMModel'
 
 export const VRMViewer = ({
   vrmUrl,

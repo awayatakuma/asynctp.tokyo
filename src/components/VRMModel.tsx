@@ -18,9 +18,10 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 interface VRMModelProps {
   url: string
   animationUrl?: string
+  onVRMLoad?: (vrm: VRM) => void
 }
 
-export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
+export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
   const vrmRef = useRef<VRM | null>(null)
   const mixerRef = useRef<THREE.AnimationMixer | null>(null)
   const [_animationTime, setAnimationTime] = useState(0)
@@ -55,6 +56,13 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
 
   const vrm = gltf.userData.vrm as VRM
   vrmRef.current = vrm
+
+  // Callback when VRM is loaded
+  useEffect(() => {
+    if (vrm && onVRMLoad) {
+      onVRMLoad(vrm)
+    }
+  }, [vrm, onVRMLoad])
 
   // アニメーションを設定
   useEffect(() => {

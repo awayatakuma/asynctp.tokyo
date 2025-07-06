@@ -59,7 +59,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          <main>{children}</main>
+          <main style={{ paddingTop: '80px' }}>{children}</main>
           <Footer />
         </Providers>
         <GoogleAnalytics gaId={GA_ID} />

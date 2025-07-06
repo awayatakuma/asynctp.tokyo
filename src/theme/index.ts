@@ -4,20 +4,28 @@ import { textStyles } from './textStyles'
 const overrides = {
   colors: {
     purple: {
+      200: '#C4B5FD', // 追加 - ダークモード用
       300: '#9F94E8',
+      400: '#A78BFA', // 追加 - ダークモード用
       500: '#5554D9',
       600: '#672AC8',
       900: '#2B247C',
     },
     blue: {
       200: '#AEC0F1',
+      300: '#93C5FD', // 追加 - ダークモード用
       900: '#110C4E',
     },
     gray: {
       50: '#FAF8FF',
+      100: '#F7FAFC', // 追加 - ダークモード用テキスト
       200: '#E6E3EC',
+      600: '#718096', // 追加 - ダークモード用ボーダー
+      800: '#2D3748', // 追加 - ダークモード用背景
+      900: '#1A202C', // 追加 - ダークモード用背景
     },
-    while: {
+    white: {
+      // 修正: "while" → "white"
       0: '#FFFFFF',
     },
     black: {
@@ -81,25 +89,29 @@ const overrides = {
         },
       },
       td: {
-        border: '1px solid #999',
+        border: '1px solid',
+        borderColor: { _light: '#999', _dark: 'gray.600' },
         boxSizing: 'border-box',
         textAlign: 'center',
+        padding: '8px',
       },
       th: {
-        border: '1px solid #999',
+        border: '1px solid',
+        borderColor: { _light: '#999', _dark: 'gray.600' },
         boxSizing: 'border-box',
         textAlign: 'center',
-        backgroundColor: '#eee',
+        padding: '8px',
+        backgroundColor: { _light: '#eee', _dark: 'gray.700' },
       },
       blockquote: {
         margin: '20px 0',
         padding: '20px',
-        backgroundColor: '#f1f3f5',
         borderRadius: '10px',
         boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
         fontStyle: 'italic',
-        color: '#495057',
         position: 'relative',
+        backgroundColor: { _light: '#f1f3f5', _dark: 'gray.800' },
+        color: { _light: '#495057', _dark: 'gray.300' },
         p: {
           margin: 0,
           lineHeight: 1.6,
@@ -109,14 +121,14 @@ const overrides = {
           display: 'block',
           width: '50px',
           height: '2px',
-          backgroundColor: '#6610f2',
+          backgroundColor: 'primary',
           marginTop: '15px',
         },
         cite: {
           display: 'block',
           marginTop: '10px',
           fontSize: '0.9em',
-          color: '#868e96',
+          color: { _light: '#868e96', _dark: 'gray.400' },
           fontStyle: 'normal',
         },
       },
@@ -125,14 +137,15 @@ const overrides = {
   textStyles,
   semanticTokens: {
     colors: {
-      a: { _light: 'black.900', _dark: 'white.0' }, // text
-      b: { _light: 'purple.600', _dark: 'blue.200' },
-      c: { _light: 'purple.500', _dark: 'purple.300' },
-      d: { _light: 'purple.300', _dark: 'purple.500' },
-      e: { _light: 'blue.200', _dark: 'purple.600' },
-      f: { _light: 'gray.200', _dark: 'purple.900' }, // background
-      g: { _light: 'gray.50', _dark: 'purple.900' }, // background
-      mode: { _light: 'gray.50', _dark: 'blue.900' },
+      // ダークモードでの可読性を大幅改善
+      a: { _light: 'black.900', _dark: 'gray.100' }, // text - より明るく
+      b: { _light: 'purple.600', _dark: 'purple.200' }, // secondary - より明るく
+      c: { _light: 'purple.500', _dark: 'purple.300' }, // primary - コントラスト改善
+      d: { _light: 'purple.300', _dark: 'purple.400' }, // highlight
+      e: { _light: 'blue.200', _dark: 'blue.300' },
+      f: { _light: 'gray.200', _dark: 'gray.800' }, // background - 真っ黒すぎない
+      g: { _light: 'gray.50', _dark: 'gray.900' }, // background
+      mode: { _light: 'gray.50', _dark: 'gray.800' },
 
       text: 'a',
       secondary: 'b',
@@ -140,7 +153,7 @@ const overrides = {
       highlight: 'd',
       bg: 'g',
 
-      border: 'a',
+      border: { _light: 'gray.200', _dark: 'gray.600' }, // ボーダーも調整
       header: 'c',
       error: { _light: 'red.500', _dark: 'red.300' },
     },
