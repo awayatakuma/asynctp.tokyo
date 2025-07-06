@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { BLOG_CONTENTS_DIR_PATH } from '@/constants'
 import type { PostMetadatum } from '@/types'
-import { getPost } from '@/utils'
+import { getPost } from './getPost'
 
 export const getPostMetadataFromTag = (tag: string): PostMetadatum[] => {
   const files = fs.readdirSync(BLOG_CONTENTS_DIR_PATH)

@@ -7,7 +7,7 @@ import {
   SITE_NAME,
   SITE_ORIGIN,
 } from '@/constants'
-import { getAllPosts } from '@/utils'
+import { getAllPosts } from '@/utils/getAllPosts'
 
 // generate feed
 export const generateFeed = async () => {
