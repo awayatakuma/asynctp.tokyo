@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import type { SocialLink } from '@/types'
 
 // Mock the entire SocialLinks component to avoid import issues
 jest.mock('../SocialLinks', () => ({

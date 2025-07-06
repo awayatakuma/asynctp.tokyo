@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { MDXFrontmatter } from '../MDXFrontmatter'
 import type { PostMetadatum } from '@/types'
+import { MDXFrontmatter } from '../MDXFrontmatter'
 
 const mockMetadatum: PostMetadatum = {
   title: 'Test Article',

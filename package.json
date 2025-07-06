@@ -7,11 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check src/",
+    "lint:fix": "biome check src/ --write",
     "format": "biome format --write src/",
+    "format:check": "biome format src/",
+    "type-check": "tsc --noEmit",
     "test": "jest --passWithNoTests",
     "test:ci": "jest --ci --coverage --passWithNoTests",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "pre-commit": "lint-staged",
+    "prepare": "husky",
+    "quality": "npm run format && npm run lint:fix && npm run type-check && npm run test",
+    "quality:check": "npm run format:check && npm run lint && npm run type-check && npm run test",
     "info": "next info",
     "postbuild": "next-sitemap"
   },
@@ -51,8 +58,17 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^20.17.9",
     "@types/react": "^18.3.12",
+    "husky": "^9.1.7",
     "jest": "^30.0.4",
     "jest-environment-jsdom": "^30.0.4",
+    "lint-staged": "^16.1.2",
     "typescript": "^5.8.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "biome format --write",
+      "biome check --write",
+      "git add"
+    ]
   }
 }

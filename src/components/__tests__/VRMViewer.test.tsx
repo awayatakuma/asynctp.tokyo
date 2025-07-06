@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import type { VRMViewerProps, VRMModelProps } from '@/types/components'
+import type { VRMModelProps, VRMViewerProps } from '@/types/components'
 
 // Mock all dependencies
 jest.mock('@react-three/fiber', () => ({
