@@ -8,7 +8,7 @@ describe('Section', () => {
         <div>Test Content</div>
       </Section>
     )
-    
+
     expect(screen.getByText('Test Content')).toBeInTheDocument()
   })
 
@@ -18,7 +18,7 @@ describe('Section', () => {
         <div>Test Content</div>
       </Section>
     )
-    
+
     const section = screen.getByTestId('section-component')
     expect(section).toBeInTheDocument()
     expect(section.tagName).toBe('SECTION')
@@ -30,14 +30,14 @@ describe('Section', () => {
         <div>Test Content</div>
       </Section>
     )
-    
+
     const section = screen.getByTestId('custom-section')
     expect(section).toBeInTheDocument()
   })
 
   it('renders without children', () => {
     render(<Section data-testid="empty-section" />)
-    
+
     const section = screen.getByTestId('empty-section')
     expect(section).toBeInTheDocument()
   })

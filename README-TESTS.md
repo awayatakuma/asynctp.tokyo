@@ -42,7 +42,13 @@ npm run test:coverage
 
 1. **本番環境への影響なし**: すべてのテストは`--passWithNoTests`フラグで実行され、失敗しても本番環境のビルドプロセスには影響しません。
 
-2. **型安全性**: Jest DOMマッチャーの型定義を`src/types/jest-dom.d.ts`に追加し、TypeScriptエラーを解決しました。
+2. **型安全性**: 
+   - Next.jsベストプラクティスに基づく型構造を採用
+   - `src/types/index.ts` - コンテンツ関連型（`PostMetadatum`、`NavLink`、`SocialLink`等）
+   - `src/types/components.ts` - コンポーネントProps型（`VRMModelProps`、`VRMViewerProps`等）
+   - `src/types/testing.d.ts` - Jest DOMマッチャー型定義
+   - `src/types/global.d.ts` - グローバル型宣言
+   - すべてのpropsとモックで適切な型注釈を実装
 
 3. **モック設定**: 共通のモック設定は`jest.setup.js`に集約されています。MDX関連のライブラリ（rehype-pretty-code、shiki等）も適切にモック化済み。
 

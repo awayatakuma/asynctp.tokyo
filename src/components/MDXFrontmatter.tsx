@@ -1,10 +1,6 @@
 import { Flex, Link, Text } from '@chakra-ui/react'
 import { BLOG_TAG_PATH } from '@/constants'
-import type { PostMetadatum } from '@/types'
-
-export interface MDXFrontmatterProps {
-  metadatum: PostMetadatum
-}
+import type { MDXFrontmatterProps } from '@/types/components'
 
 export const MDXFrontmatter = ({ metadatum }: MDXFrontmatterProps) => {
   return (

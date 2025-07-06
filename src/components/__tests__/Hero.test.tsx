@@ -25,7 +25,7 @@ jest.mock('../Hero', () => ({
   ),
 }))
 
-const { Hero } = require('../Hero')
+import { Hero } from '../Hero'
 
 describe('Hero', () => {
   it('renders hero section with greeting text', () => {

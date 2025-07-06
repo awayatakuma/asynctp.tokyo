@@ -8,7 +8,7 @@ describe('Fonts', () => {
 
   it('applies global font styles', () => {
     render(<Fonts />)
-    
+
     // Check if the component renders (Global component from emotion doesn't create visible DOM)
     expect(document.head.querySelector('style')).toBeTruthy()
   })

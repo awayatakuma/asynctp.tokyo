@@ -1,5 +1,6 @@
 import type { IconType } from 'react-icons'
 
+// Content-related types
 export type NavLink = {
   name: string
   href: string

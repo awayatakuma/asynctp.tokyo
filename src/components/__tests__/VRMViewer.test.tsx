@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import type { VRMViewerProps, VRMModelProps } from '@/types/components'
 
 // Mock all dependencies
 jest.mock('@react-three/fiber', () => ({
@@ -13,8 +14,12 @@ jest.mock('@react-three/drei', () => ({
 }))
 
 jest.mock('../VRMModel', () => ({
-  VRMModel: ({ url, animationUrl }: { url: string; animationUrl?: string }) => (
-    <div data-testid="vrm-model" data-url={url} data-animation-url={animationUrl}>
+  VRMModel: ({ url, animationUrl }: VRMModelProps) => (
+    <div
+      data-testid="vrm-model"
+      data-url={url}
+      data-animation-url={animationUrl}
+    >
       VRM Model
     </div>
   ),
@@ -22,46 +27,45 @@ jest.mock('../VRMModel', () => ({
 
 // Mock the VRMViewer component
 jest.mock('../VRMViewer', () => ({
-  VRMViewer: ({ 
-    vrmUrl, 
-    vrmaUrl, 
-    width = '100%', 
-    height = '500px' 
-  }: { 
-    vrmUrl: string; 
-    vrmaUrl?: string; 
-    width?: string | number; 
-    height?: string | number; 
-  }) => (
+  VRMViewer: ({
+    vrmUrl,
+    vrmaUrl,
+    width = '100%',
+    height = '500px',
+  }: VRMViewerProps) => (
     <div style={{ width, height }} data-testid="vrm-viewer">
       <div data-testid="canvas">
-        <div data-testid="vrm-model" data-url={vrmUrl} data-animation-url={vrmaUrl}>
+        <div
+          data-testid="vrm-model"
+          data-url={vrmUrl}
+          data-animation-url={vrmaUrl}
+        >
           VRM Model
         </div>
         <div data-testid="orbit-controls">OrbitControls</div>
         <div data-testid="environment">Environment</div>
       </div>
     </div>
-  )
+  ),
 }))
 
-const { VRMViewer } = require('../VRMViewer')
+import { VRMViewer } from '../VRMViewer'
 
 describe('VRMViewer', () => {
-  const mockProps = {
+  const mockProps: VRMViewerProps = {
     vrmUrl: '/test-model.vrm',
     vrmaUrl: '/test-animation.vrma',
   }
 
   it('renders VRM viewer with canvas', () => {
     render(<VRMViewer {...mockProps} />)
-    
+
     expect(screen.getByTestId('canvas')).toBeInTheDocument()
   })
 
   it('renders VRM model with correct props', () => {
     render(<VRMViewer {...mockProps} />)
-    
+
     expect(screen.getByTestId('vrm-model')).toBeInTheDocument()
   })
 
@@ -69,7 +73,7 @@ describe('VRMViewer', () => {
     const { container } = render(
       <VRMViewer {...mockProps} width="600px" height="400px" />
     )
-    
+
     const wrapper = container.firstChild as HTMLElement
     expect(wrapper.style.width).toBe('600px')
     expect(wrapper.style.height).toBe('400px')
@@ -77,7 +81,7 @@ describe('VRMViewer', () => {
 
   it('renders orbit controls and environment', () => {
     render(<VRMViewer {...mockProps} />)
-    
+
     expect(screen.getByTestId('orbit-controls')).toBeInTheDocument()
     expect(screen.getByTestId('environment')).toBeInTheDocument()
   })

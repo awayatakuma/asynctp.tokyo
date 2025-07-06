@@ -1,11 +1,7 @@
-import type { FlexProps } from '@chakra-ui/react'
 import { Avatar, Flex, Image, Text } from '@chakra-ui/react'
 import { Section } from '@/components'
 import { HERO_ICON } from '@/constants'
-
-interface HeroProps extends FlexProps {
-  stargazersCount?: number
-}
+import type { HeroProps } from '@/types/components'
 export const Hero: React.FC<HeroProps> = ({ ...props }) => (
   <Section
     pt={{ base: 15, md: 15 }}

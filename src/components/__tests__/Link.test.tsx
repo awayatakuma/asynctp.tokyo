@@ -3,7 +3,13 @@ import { Link } from '../Link'
 
 // Mock Next.js Link to avoid nested anchor issues
 jest.mock('next/link', () => {
-  return function MockedNextLink({ children, href }: { children: React.ReactNode; href: string }) {
+  return function MockedNextLink({
+    children,
+    href,
+  }: {
+    children: React.ReactNode
+    href: string
+  }) {
     return <span data-href={href}>{children}</span>
   }
 })
@@ -11,7 +17,7 @@ jest.mock('next/link', () => {
 describe('Link', () => {
   it('renders link with correct href', () => {
     render(<Link href="/test">Test Link</Link>)
-    
+
     expect(screen.getByText('Test Link')).toBeInTheDocument()
   })
 
@@ -21,7 +27,7 @@ describe('Link', () => {
         Test Link
       </Link>
     )
-    
+
     const link = screen.getByTestId('custom-link')
     expect(link).toBeInTheDocument()
   })
