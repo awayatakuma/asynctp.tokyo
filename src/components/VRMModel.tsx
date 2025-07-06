@@ -23,6 +23,11 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   const [animationAction, setAnimationAction] =
     useState<THREE.AnimationAction | null>(null)
 
+  // 瞬き用の状態
+  const lastBlinkTimeRef = useRef(0)
+  const blinkInterval = 3000 // 3秒間隔
+  const blinkDuration = 150 // 150ms
+
   // カメラ情報を取得
   const { camera } = useThree()
 
@@ -85,12 +90,36 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
     vrm.expressionManager.setValue('joy', 0.7) // 0-1の値で強さを調整
   }
 
+  // 瞬き処理
+  const updateBlinking = (vrm: VRM, currentTime: number) => {
+    if (!vrm.expressionManager) return
+
+    // まばたきのタイミングをチェック
+    if (currentTime - lastBlinkTimeRef.current > blinkInterval) {
+      lastBlinkTimeRef.current = currentTime
+    }
+
+    // まばたきアニメーション
+    const timeSinceBlink = currentTime - lastBlinkTimeRef.current
+    if (timeSinceBlink < blinkDuration) {
+      const blinkProgress = timeSinceBlink / blinkDuration
+      const blinkValue = Math.sin(blinkProgress * Math.PI)
+      vrm.expressionManager.setValue('blink', blinkValue)
+    } else {
+      vrm.expressionManager.setValue('blink', 0)
+    }
+  }
+
   useFrame((_state, delta) => {
     if (vrmRef.current) {
+      const currentTime = Date.now()
       setAnimationTime((prev) => prev + delta)
 
       // 常に笑顔を設定
       setFacialExpression(vrmRef.current)
+
+      // 瞬き処理
+      updateBlinking(vrmRef.current, currentTime)
 
       // カメラを見る
       lookAtCamera(vrmRef.current)
