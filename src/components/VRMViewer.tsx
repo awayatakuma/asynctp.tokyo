@@ -4,6 +4,7 @@ import { Environment, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import type { VRMViewerProps } from '@/types/components'
+import { FloatingGeometry } from './FloatingGeometry'
 import { VRMModel } from './VRMModel'
 
 export const VRMViewer: React.FC<VRMViewerProps> = ({
@@ -27,7 +28,13 @@ export const VRMViewer: React.FC<VRMViewerProps> = ({
         }
       >
         <Suspense fallback={null}>
+          {/* VRMモデル */}
           <VRMModel url={vrmUrl} animationUrl={vrmaUrl} />
+
+          {/* 幾何学的パーティクル */}
+          <FloatingGeometry count={6} speed={0.8} spread={2.5} />
+
+          {/* カメラ・環境・ライティング */}
           <OrbitControls
             enablePan={false}
             enableZoom={false}
