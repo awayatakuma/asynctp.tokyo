@@ -17,7 +17,6 @@ export const generateFeed = async () => {
     link: SITE_ORIGIN,
   }
   const date = new Date()
-  console.log(date)
   const feed = new Feed({
     title: SITE_NAME,
     description: DESCRIPTION,

@@ -6,32 +6,35 @@ import { Suspense } from 'react'
 import type { VRMViewerProps } from '@/types/components'
 import { VRMModel } from './VRMModel'
 
-export const VRMViewer = ({
+export const VRMViewer: React.FC<VRMViewerProps> = ({
   vrmUrl,
   vrmaUrl,
   width = '100%',
   height = '500px',
-}: VRMViewerProps) => {
+}) => {
   return (
-    <div style={{ width, height }}>
+    <div style={{ width, height, position: 'relative' }}>
       <Canvas
+        style={{ width: '100%', height: '100%' }}
         camera={{
-          position: [2, 2, -3],
-          fov: 30,
+          position: [0, 1, -2.5],
+          fov: 35,
         }}
+        dpr={
+          typeof window !== 'undefined'
+            ? Math.min(window.devicePixelRatio, 2)
+            : 1
+        }
       >
         <Suspense fallback={null}>
           <VRMModel url={vrmUrl} animationUrl={vrmaUrl} />
           <OrbitControls
             enablePan={false}
-            enableZoom={true}
-            minDistance={1}
-            maxDistance={5}
+            enableZoom={false}
+            enableRotate={true}
             target={[0, 1, 0]}
-            autoRotate={true}
-            autoRotateSpeed={-0.5}
+            autoRotate={false}
           />
-          {/* environment */}
           <Environment preset="park" />
           <ambientLight intensity={1} />
           <directionalLight

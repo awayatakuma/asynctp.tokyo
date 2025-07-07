@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import type { Metadata } from 'next'
 import { Footer, Header } from '@/components'
@@ -59,7 +60,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          <main style={{ paddingTop: '80px' }}>{children}</main>
+          <Box as="main" pt={{ base: '60px', md: '80px' }}>
+            {children}
+          </Box>
           <Footer />
         </Providers>
         <GoogleAnalytics gaId={GA_ID} />

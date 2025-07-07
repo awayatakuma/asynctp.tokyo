@@ -10,9 +10,9 @@ export interface VRMModelProps {
 
 export interface VRMViewerProps {
   vrmUrl: string
-  vrmaUrl: string
-  width?: string | number
-  height?: string | number
+  vrmaUrl?: string
+  width?: string
+  height?: string
 }
 
 // MDX related components

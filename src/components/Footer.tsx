@@ -21,11 +21,7 @@ export const Footer: React.FC = () => (
       direction={{ base: 'column', md: 'row' }}
     >
       <Spacer />
-      <Flex
-        direction={{ base: 'column', md: 'row' }}
-        alignItems="center"
-        gap={4}
-      >
+      <Flex alignItems="center" gap={4}>
         <Text as="span" fontSize="sm">
           ©asynctp
         </Text>
