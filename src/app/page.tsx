@@ -135,12 +135,12 @@ export default function Top() {
                 </HStack>
               </MotionVStack>
 
-              {/* VRM Character - Mobile Only */}
+              {/* VRM Character - Mobile & Tablet */}
               <MotionBox
                 display={{ base: 'block', lg: 'none' }}
                 w="100%"
-                maxW="400px"
-                h="400px"
+                maxW={{ base: '400px', md: '500px' }}
+                h={{ base: '400px', md: '500px' }}
                 position="relative"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}

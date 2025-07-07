@@ -106,11 +106,14 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
       if (!vrm.expressionManager) return
 
       if (isHovering) {
-        vrm.expressionManager.resetValues()
+        // 瞬き以外をリセット
+        vrm.expressionManager.setValue(VRMExpressionPresetName.Relaxed, 0)
         vrm.expressionManager.setValue(VRMExpressionPresetName.Angry, 1.0)
         vrm.expressionManager.setValue(VRMExpressionPresetName.Aa, 0.5)
       } else {
-        vrm.expressionManager.resetValues()
+        // 瞬き以外をリセット
+        vrm.expressionManager.setValue(VRMExpressionPresetName.Angry, 0)
+        vrm.expressionManager.setValue(VRMExpressionPresetName.Aa, 0)
         vrm.expressionManager.setValue(VRMExpressionPresetName.Relaxed, 1.0)
       }
     },
@@ -192,5 +195,5 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
     }
   }, [gl])
 
-  return <primitive object={vrm.scene} />
+  return <primitive object={vrm.scene} scale={1.1} />
 }

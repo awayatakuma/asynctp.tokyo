@@ -13,19 +13,25 @@ export const VRMViewer: React.FC<VRMViewerProps> = ({
   width = '100%',
   height = '500px',
 }) => {
+  // シンプルに文字列値のみ対応
+  const resolvedWidth = typeof width === 'string' ? width : '100%'
+  const resolvedHeight = typeof height === 'string' ? height : '500px'
+
   return (
-    <div style={{ width, height, position: 'relative' }}>
+    <div
+      style={{
+        width: resolvedWidth,
+        height: resolvedHeight,
+        position: 'relative',
+      }}
+    >
       <Canvas
         style={{ width: '100%', height: '100%' }}
         camera={{
-          position: [0, 1, -2.5],
-          fov: 35,
+          position: [0, 1.4, -2.2],
+          fov: 50,
         }}
-        dpr={
-          typeof window !== 'undefined'
-            ? Math.min(window.devicePixelRatio, 2)
-            : 1
-        }
+        dpr={1}
       >
         <Suspense fallback={null}>
           {/* VRMモデル */}
