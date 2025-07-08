@@ -2,7 +2,6 @@
 
 import {
   Box,
-  Button,
   Container,
   Flex,
   Heading,
@@ -14,9 +13,8 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { FaBlog, FaMapMarkerAlt, FaRocket } from 'react-icons/fa'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 import { VRMViewer } from '@/components'
 
 const MotionBox = motion.create(Box)
@@ -183,56 +181,10 @@ export default function Top() {
                   maxW="xl"
                   lineHeight="1.8"
                 >
-                  Passionate about modern web technologies, cloud architecture,
-                  and robotics. Building scalable solutions and sharing
-                  knowledge through technical writing.
+                  I love abstract principles and compelling ideas. I'm eager to
+                  find those mystical moments where universal patterns
+                  surface—whether in technologies, art, music, or fashion.
                 </Text>
-              </MotionBox>
-
-              {/* Action Buttons */}
-              <MotionBox
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1.2 }}
-              >
-                <HStack
-                  spacing={4}
-                  flexWrap="wrap"
-                  justify={{ base: 'center', lg: 'flex-start' }}
-                >
-                  <Button
-                    as={Link}
-                    href="/blog"
-                    size="lg"
-                    colorScheme="purple"
-                    variant="solid"
-                    leftIcon={<FaBlog />}
-                    _hover={{
-                      transform: 'translateY(-2px)',
-                      boxShadow: 'xl',
-                    }}
-                    transition="all 0.2s"
-                  >
-                    Read My Blog
-                  </Button>
-                  <Button
-                    as={Link}
-                    href="/works"
-                    size="lg"
-                    variant="outline"
-                    color={textColor}
-                    borderColor={accentColor}
-                    leftIcon={<FaRocket />}
-                    _hover={{
-                      bg: accentColor,
-                      color: 'white',
-                      transform: 'translateY(-2px)',
-                    }}
-                    transition="all 0.2s"
-                  >
-                    View Projects
-                  </Button>
-                </HStack>
               </MotionBox>
             </VStack>
 
