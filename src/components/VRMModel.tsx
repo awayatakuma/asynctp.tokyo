@@ -18,10 +18,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 interface VRMModelProps {
   url: string
   animationUrl?: string
-  onVRMLoad?: (vrm: VRM) => void
 }
 
-export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
+export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   const vrmRef = useRef<VRM | null>(null)
   const mixerRef = useRef<THREE.AnimationMixer | null>(null)
   const [animationAction, setAnimationAction] =
@@ -34,7 +33,6 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
 
   // マウス追従用の状態
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
 
   // カメラ情報を取得
   const { camera, gl } = useThree()
@@ -55,13 +53,6 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
 
   const vrm = gltf.userData.vrm as VRM
   vrmRef.current = vrm
-
-  // Callback when VRM is loaded
-  useEffect(() => {
-    if (vrm && onVRMLoad) {
-      onVRMLoad(vrm)
-    }
-  }, [vrm, onVRMLoad])
 
   // アニメーションを設定
   useEffect(() => {
@@ -100,25 +91,12 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
     [mousePosition, camera]
   )
 
-  // ホバー時の表情変更
-  const updateExpression = useCallback(
-    (vrm: VRM) => {
-      if (!vrm.expressionManager) return
-
-      if (isHovering) {
-        // 瞬き以外をリセット
-        vrm.expressionManager.setValue(VRMExpressionPresetName.Relaxed, 0)
-        vrm.expressionManager.setValue(VRMExpressionPresetName.Angry, 1.0)
-        vrm.expressionManager.setValue(VRMExpressionPresetName.Aa, 0.5)
-      } else {
-        // 瞬き以外をリセット
-        vrm.expressionManager.setValue(VRMExpressionPresetName.Angry, 0)
-        vrm.expressionManager.setValue(VRMExpressionPresetName.Aa, 0)
-        vrm.expressionManager.setValue(VRMExpressionPresetName.Relaxed, 1.0)
-      }
-    },
-    [isHovering]
-  )
+  // Relaxed表情を一度だけ設定
+  useEffect(() => {
+    if (vrm?.expressionManager) {
+      vrm.expressionManager.setValue(VRMExpressionPresetName.Relaxed, 1.0)
+    }
+  }, [vrm])
 
   // 瞬き処理
   const updateBlinking = useCallback((vrm: VRM, currentTime: number) => {
@@ -150,9 +128,6 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
       // マウス追従
       lookAtMouse(vrmRef.current)
 
-      // ホバー時の表情変更
-      updateExpression(vrmRef.current)
-
       if (mixerRef.current && animationAction && animationUrl) {
         // アニメーションミキサーを更新
         mixerRef.current.update(delta)
@@ -181,17 +156,10 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
       setMousePosition({ x, y })
     }
 
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
-
     canvas.addEventListener('mousemove', handleMouseMove)
-    canvas.addEventListener('mouseenter', handleMouseEnter)
-    canvas.addEventListener('mouseleave', handleMouseLeave)
 
     return () => {
       canvas.removeEventListener('mousemove', handleMouseMove)
-      canvas.removeEventListener('mouseenter', handleMouseEnter)
-      canvas.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [gl])
 

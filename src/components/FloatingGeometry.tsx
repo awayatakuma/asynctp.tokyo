@@ -2,7 +2,7 @@
 
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
-import type * as THREE from 'three'
+import * as THREE from 'three'
 
 interface FloatingGeometryProps {
   count?: number
@@ -20,20 +20,21 @@ export const FloatingGeometry: React.FC<FloatingGeometryProps> = ({
   // 幾何学的図形の設定
   const geometries = useMemo(() => {
     return Array.from({ length: count }, (_, i) => {
-      // VRMから離れた位置に配置するための角度ベースの位置計算
-      const angle = (i / count) * Math.PI * 2
-      const distance = 0.8 + Math.random() * 0.7 // VRMから0.8-1.5の距離
-      const x = Math.cos(angle) * distance
-      const z = Math.sin(angle) * distance
+      // 3次元的に配置するための球面座標（まんべんなく分布）
+      const phi = Math.acos(1 - (2 * (i + 0.5)) / count) // 緯度角度
+      const theta = Math.PI * (1 + Math.sqrt(5)) * i // 経度角度（黄金角）
+      const radius = 0.8 + Math.random() * 0.5 // VRMから0.8-1.3の距離
+
+      // 球面座標から直交座標に変換
+      const x = radius * Math.sin(phi) * Math.cos(theta)
+      const y = radius * Math.cos(phi) * 0.8 + 1.2 // Y軸を少し上に調整
+      const z = radius * Math.sin(phi) * Math.sin(theta)
 
       return {
         id: i,
         type: ['box', 'sphere', 'octahedron', 'tetrahedron'][i % 4],
-        position: [
-          x + (Math.random() - 0.5) * 0.5, // 少しランダムさを追加
-          Math.random() * 2 + 0.5,
-          z + (Math.random() - 0.5) * 0.5,
-        ] as [number, number, number],
+        initialPosition: [x, y, z] as [number, number, number],
+        position: [x, y, z] as [number, number, number],
         rotation: [
           Math.random() * Math.PI,
           Math.random() * Math.PI,
@@ -44,7 +45,8 @@ export const FloatingGeometry: React.FC<FloatingGeometryProps> = ({
           (Math.random() - 0.5) * 0.02,
           (Math.random() - 0.5) * 0.02,
         ] as [number, number, number],
-        floatSpeed: 0.5 + Math.random() * 0.5,
+        orbitSpeed: 0.1 + Math.random() * 1, // 公転速度
+        floatSpeed: 0.3 + Math.random() * 0.3,
         scale: 0.08 + Math.random() * 0.12,
         color: `hsl(${(i * 45) % 360}, 70%, 60%)`,
         opacity: 0.3 + Math.random() * 0.4,
@@ -60,13 +62,21 @@ export const FloatingGeometry: React.FC<FloatingGeometryProps> = ({
     groupRef.current.children.forEach((child, index) => {
       const config = geometries[index]
 
-      // 浮遊運動
-      child.position.y =
-        config.position[1] + Math.sin(time * config.floatSpeed + index) * 0.3
-      child.position.x = config.position[0] + Math.cos(time * 0.3 + index) * 0.2
-      child.position.z = config.position[2] + Math.sin(time * 0.4 + index) * 0.2
+      // VRMを中心とした公転運動
+      const orbitAngle = time * config.orbitSpeed
+      const rotationMatrix = new THREE.Matrix4().makeRotationY(orbitAngle)
+      const initialPos = new THREE.Vector3(...config.initialPosition)
+      initialPos.applyMatrix4(rotationMatrix)
 
-      // 回転
+      // 微細な浮遊運動を追加
+      child.position.x =
+        initialPos.x + Math.sin(time * config.floatSpeed + index) * 0.1
+      child.position.y =
+        initialPos.y + Math.cos(time * config.floatSpeed + index * 0.7) * 0.1
+      child.position.z =
+        initialPos.z + Math.cos(time * config.floatSpeed + index * 0.3) * 0.1
+
+      // 自転
       child.rotation.x += config.rotationSpeed[0] * speed
       child.rotation.y += config.rotationSpeed[1] * speed
       child.rotation.z += config.rotationSpeed[2] * speed
