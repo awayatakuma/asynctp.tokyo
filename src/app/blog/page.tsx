@@ -18,7 +18,7 @@ export default async function BlogPage() {
         textStyle="h1"
         fontSize="4xl"
         color="primary"
-        pt={{ base: 15, md: 15 }}
+        pt={{ base: 15, md: 20 }}
         pb={[15, null, null, 15]}
       >
         {'Blog posts'}

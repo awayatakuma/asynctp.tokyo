@@ -1,4 +1,5 @@
 export * from './BlogCard'
+export * from './FloatingGeometry'
 export * from './Fonts'
 export * from './Footer'
 export * from './Header'

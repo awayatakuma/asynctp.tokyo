@@ -11,20 +11,18 @@ import {
   VRMAnimationLoaderPlugin,
 } from '@pixiv/three-vrm-animation'
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 interface VRMModelProps {
   url: string
   animationUrl?: string
-  onVRMLoad?: (vrm: VRM) => void
 }
 
-export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
+export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   const vrmRef = useRef<VRM | null>(null)
   const mixerRef = useRef<THREE.AnimationMixer | null>(null)
-  const [_animationTime, setAnimationTime] = useState(0)
   const [animationAction, setAnimationAction] =
     useState<THREE.AnimationAction | null>(null)
 
@@ -35,7 +33,6 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
 
   // マウス追従用の状態
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
 
   // カメラ情報を取得
   const { camera, gl } = useThree()
@@ -57,13 +54,6 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
   const vrm = gltf.userData.vrm as VRM
   vrmRef.current = vrm
 
-  // Callback when VRM is loaded
-  useEffect(() => {
-    if (vrm && onVRMLoad) {
-      onVRMLoad(vrm)
-    }
-  }, [vrm, onVRMLoad])
-
   // アニメーションを設定
   useEffect(() => {
     if (vrm && animationUrl && vrmaGltf?.userData.vrmAnimations) {
@@ -83,37 +73,33 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
   }, [vrm, vrmaGltf, animationUrl])
 
   // マウス追従機能
-  const lookAtMouse = (vrm: VRM) => {
-    if (!vrm.lookAt) return
+  const lookAtMouse = useCallback(
+    (vrm: VRM) => {
+      if (!vrm.lookAt) return
 
-    // マウスの正規化座標からワールド座標を計算
-    const vector = new THREE.Vector3(mousePosition.x, mousePosition.y, 0.5)
-    vector.unproject(camera)
+      // マウスの正規化座標からワールド座標を計算
+      const vector = new THREE.Vector3(mousePosition.x, mousePosition.y, 0.5)
+      vector.unproject(camera)
 
-    // VRMの位置からマウス方向へのベクトルを計算
-    const vrmPosition = vrm.scene.position
-    const lookDirection = vector.sub(vrmPosition).normalize()
+      // VRMの位置からマウス方向へのベクトルを計算
+      const vrmPosition = vrm.scene.position
+      const lookDirection = vector.sub(vrmPosition).normalize()
 
-    // 視線をマウス方向に向ける
-    vrm.lookAt.lookAt(lookDirection)
-  }
+      // 視線をマウス方向に向ける
+      vrm.lookAt.lookAt(lookDirection)
+    },
+    [mousePosition, camera]
+  )
 
-  // ホバー時の表情変更
-  const updateExpression = (vrm: VRM) => {
-    if (!vrm.expressionManager) return
-
-    if (isHovering) {
-      vrm.expressionManager.resetValues()
-      vrm.expressionManager.setValue(VRMExpressionPresetName.Angry, 1.0)
-      vrm.expressionManager.setValue(VRMExpressionPresetName.Aa, 0.5)
-    } else {
-      vrm.expressionManager.resetValues()
+  // Relaxed表情を一度だけ設定
+  useEffect(() => {
+    if (vrm?.expressionManager) {
       vrm.expressionManager.setValue(VRMExpressionPresetName.Relaxed, 1.0)
     }
-  }
+  }, [vrm])
 
   // 瞬き処理
-  const updateBlinking = (vrm: VRM, currentTime: number) => {
+  const updateBlinking = useCallback((vrm: VRM, currentTime: number) => {
     if (!vrm.expressionManager) return
 
     // まばたきのタイミングをチェック
@@ -130,21 +116,17 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
     } else {
       vrm.expressionManager.setValue('blink', 0)
     }
-  }
+  }, [])
 
   useFrame((_state, delta) => {
     if (vrmRef.current) {
       const currentTime = Date.now()
-      setAnimationTime((prev) => prev + delta)
 
       // 瞬き処理
       updateBlinking(vrmRef.current, currentTime)
 
       // マウス追従
       lookAtMouse(vrmRef.current)
-
-      // ホバー時の表情変更
-      updateExpression(vrmRef.current)
 
       if (mixerRef.current && animationAction && animationUrl) {
         // アニメーションミキサーを更新
@@ -155,8 +137,16 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
     }
   })
 
-  // マウスイベントリスナーの設定
+  // マウスイベントリスナーの設定（デスクトップのみ）
   useEffect(() => {
+    // モバイルデバイスでは無効化
+    if (
+      typeof window !== 'undefined' &&
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+    ) {
+      return
+    }
+
     const canvas = gl.domElement
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -166,19 +156,12 @@ export const VRMModel = ({ url, animationUrl, onVRMLoad }: VRMModelProps) => {
       setMousePosition({ x, y })
     }
 
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
-
     canvas.addEventListener('mousemove', handleMouseMove)
-    canvas.addEventListener('mouseenter', handleMouseEnter)
-    canvas.addEventListener('mouseleave', handleMouseLeave)
 
     return () => {
       canvas.removeEventListener('mousemove', handleMouseMove)
-      canvas.removeEventListener('mouseenter', handleMouseEnter)
-      canvas.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [gl])
 
-  return <primitive object={vrm.scene} />
+  return <primitive object={vrm.scene} scale={1.1} />
 }

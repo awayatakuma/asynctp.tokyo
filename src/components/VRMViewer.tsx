@@ -4,34 +4,50 @@ import { Environment, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import type { VRMViewerProps } from '@/types/components'
+import { FloatingGeometry } from './FloatingGeometry'
 import { VRMModel } from './VRMModel'
 
-export const VRMViewer = ({
+export const VRMViewer: React.FC<VRMViewerProps> = ({
   vrmUrl,
   vrmaUrl,
   width = '100%',
   height = '500px',
-}: VRMViewerProps) => {
+}) => {
+  // シンプルに文字列値のみ対応
+  const resolvedWidth = typeof width === 'string' ? width : '100%'
+  const resolvedHeight = typeof height === 'string' ? height : '500px'
+
   return (
-    <div style={{ width, height }}>
+    <div
+      style={{
+        width: resolvedWidth,
+        height: resolvedHeight,
+        position: 'relative',
+      }}
+    >
       <Canvas
+        style={{ width: '100%', height: '100%' }}
         camera={{
-          position: [2, 2, -3],
-          fov: 30,
+          position: [0, 1.4, -2.2],
+          fov: 50,
         }}
+        dpr={1}
       >
         <Suspense fallback={null}>
+          {/* VRMモデル */}
           <VRMModel url={vrmUrl} animationUrl={vrmaUrl} />
+
+          {/* 幾何学的パーティクル */}
+          <FloatingGeometry count={6} speed={0.8} spread={2.5} />
+
+          {/* カメラ・環境・ライティング */}
           <OrbitControls
             enablePan={false}
-            enableZoom={true}
-            minDistance={1}
-            maxDistance={5}
+            enableZoom={false}
+            enableRotate={true}
             target={[0, 1, 0]}
-            autoRotate={true}
-            autoRotateSpeed={-0.5}
+            autoRotate={false}
           />
-          {/* environment */}
           <Environment preset="park" />
           <ambientLight intensity={1} />
           <directionalLight
