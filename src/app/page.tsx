@@ -43,22 +43,30 @@ export default function Top() {
   if (!mounted) return null
 
   return (
-    <Box position="relative" overflow="hidden">
+    <Box position="relative">
       {/* Hero Section */}
-      <Box position="relative" minH="70vh">
+      <Box
+        position="relative"
+        h={{ base: 'auto', md: 'calc(100vh - 60px - 120px)' }}
+        minH={{ base: '100vh', md: 'auto' }}
+        pt={{ base: 10, md: 0 }}
+        overflow={{ base: 'visible', md: 'hidden' }}
+      >
         <Container
           maxW="container.xl"
-          minH="70vh"
+          h={{ base: 'calc(100vh - 5rem)', md: '100%' }}
           position="relative"
           zIndex="2"
+          p={0}
+          px={{ base: 4, md: 8 }}
         >
           <MotionFlex
             direction={{ base: 'column', lg: 'row' }}
             align="center"
             justify={{ base: 'center', lg: 'space-between' }}
-            minH="70vh"
-            py={{ base: 10, lg: 8 }}
-            gap={{ base: 8, lg: 12 }}
+            h="100%"
+            py={0}
+            gap={{ base: 4, lg: 6 }}
           >
             {/* Left Side - Hero Content */}
             <VStack
