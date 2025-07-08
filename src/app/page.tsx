@@ -17,6 +17,27 @@ import { useEffect, useState } from 'react'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { VRMViewer } from '@/components'
 
+// Layout constants
+const LAYOUT = {
+  HEADER_HEIGHT: '60px',
+  FOOTER_HEIGHT: '120px',
+  MOBILE_PADDING_TOP: 10,
+  VRM_SIZES: {
+    MOBILE: '400px',
+    TABLET: '500px',
+    DESKTOP: '500px',
+  },
+} as const
+
+// Animation delays
+const ANIMATION_DELAYS = {
+  HEADING: 0.4,
+  SUBTITLE: 0.6,
+  VRM_MOBILE: 0.8,
+  DESCRIPTION: 1.0,
+  VRM_DESKTOP: 1.2,
+} as const
+
 const MotionBox = motion.create(Box)
 const MotionFlex = motion.create(Flex)
 const MotionVStack = motion.create(VStack)
@@ -47,14 +68,21 @@ export default function Top() {
       {/* Hero Section */}
       <Box
         position="relative"
-        h={{ base: 'auto', md: 'calc(100vh - 60px - 120px)' }}
+        h={{
+          base: 'auto',
+          md: `calc(100vh - ${LAYOUT.HEADER_HEIGHT} - ${LAYOUT.FOOTER_HEIGHT})`,
+        }}
         minH={{ base: '100vh', md: 'auto' }}
-        pt={{ base: 10, md: 0 }}
+        pt={{ base: 4, md: 0 }}
         overflow={{ base: 'visible', md: 'hidden' }}
       >
         <Container
           maxW="container.xl"
-          h={{ base: 'calc(100vh - 5rem)', md: '100%' }}
+          h={{ base: 'auto', md: '100%' }}
+          minH={{
+            base: `calc(100vh - ${LAYOUT.HEADER_HEIGHT} - 1rem)`,
+            md: 'auto',
+          }}
           position="relative"
           zIndex="2"
           p={0}
@@ -86,7 +114,7 @@ export default function Top() {
                 lineHeight="1.1"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: ANIMATION_DELAYS.HEADING }}
               >
                 <Image
                   src="/assets/512.webp"
@@ -114,7 +142,7 @@ export default function Top() {
                         '50%': { opacity: 1 },
                       },
                     },
-                    animation: 'blink-cursor 1.25s step-end infinite',
+                    animation: `blink-cursor ${ANIMATION_DELAYS.HEADING * 3}s step-end infinite`,
                   }}
                 >
                   asynct
@@ -126,7 +154,7 @@ export default function Top() {
                 align={{ base: 'center', lg: 'flex-start' }}
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: ANIMATION_DELAYS.SUBTITLE }}
               >
                 <Text
                   fontSize={{ base: 'xl', md: '2xl' }}
@@ -145,12 +173,21 @@ export default function Top() {
               <MotionBox
                 display={{ base: 'block', lg: 'none' }}
                 w="100%"
-                maxW={{ base: '400px', md: '500px' }}
-                h={{ base: '400px', md: '500px' }}
+                maxW={{
+                  base: LAYOUT.VRM_SIZES.MOBILE,
+                  md: LAYOUT.VRM_SIZES.TABLET,
+                }}
+                h={{
+                  base: LAYOUT.VRM_SIZES.MOBILE,
+                  md: LAYOUT.VRM_SIZES.TABLET,
+                }}
                 position="relative"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
+                transition={{
+                  delay: ANIMATION_DELAYS.VRM_MOBILE,
+                  duration: ANIMATION_DELAYS.VRM_MOBILE,
+                }}
               >
                 {/* Decorative Background */}
                 <Box
@@ -172,7 +209,7 @@ export default function Top() {
                   <VRMViewer
                     vrmUrl="/assets/asynct_low.vrm"
                     width="100%"
-                    height="400px"
+                    height={LAYOUT.VRM_SIZES.MOBILE}
                     vrmaUrl="/assets/greeting.vrma"
                   />
                 </Box>
@@ -181,7 +218,7 @@ export default function Top() {
               <MotionBox
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1.0 }}
+                transition={{ delay: ANIMATION_DELAYS.DESCRIPTION }}
               >
                 <Text
                   fontSize={{ base: 'md', md: 'lg' }}
@@ -202,13 +239,16 @@ export default function Top() {
               flex="1"
               maxW="40%"
               w="full"
-              h="500px"
-              minH="500px"
+              h={LAYOUT.VRM_SIZES.DESKTOP}
+              minH={LAYOUT.VRM_SIZES.DESKTOP}
               position="relative"
               order={{ base: 2, lg: 1 }}
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
+              transition={{
+                delay: ANIMATION_DELAYS.VRM_DESKTOP,
+                duration: ANIMATION_DELAYS.VRM_MOBILE,
+              }}
             >
               {/* Decorative Background */}
               <Box
@@ -230,7 +270,7 @@ export default function Top() {
                 <VRMViewer
                   vrmUrl="/assets/asynct_low.vrm"
                   width="100%"
-                  height="500px"
+                  height={LAYOUT.VRM_SIZES.DESKTOP}
                   vrmaUrl="/assets/greeting.vrma"
                 />
               </Box>

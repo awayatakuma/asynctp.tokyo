@@ -1,3 +1,4 @@
+import { Heading } from '@chakra-ui/react'
 import type { Metadata } from 'next'
 import { MDXArticle } from '@/components'
 import { getAllWorks } from '@/utils/getAllWorks'
@@ -14,6 +15,16 @@ export default async function Works() {
   )
   return (
     <>
+      <Heading
+        as="h1"
+        textStyle="h1"
+        fontSize="4xl"
+        color="primary"
+        pt={{ base: 15, md: 20 }}
+        pb={[15, null, null, 15]}
+      >
+        {'Works'}
+      </Heading>
       {works.map((work) => (
         <MDXArticle key={work.metadatum.date} content={work.content} />
       ))}
