@@ -125,28 +125,31 @@ export default function Top() {
                   verticalAlign="middle"
                   mr="2"
                 />
-                Hello I'm{' '}
-                <Text
-                  as="span"
-                  color={accentColor}
-                  position="relative"
-                  _after={{
-                    content: '"_"',
-                    display: 'inline-block',
-                    width: 0,
-                    overflowX: 'visible',
-                    color: accentColor,
-                    sx: {
-                      '@keyframes blink-cursor': {
-                        'from, to': { opacity: 0 },
-                        '50%': { opacity: 1 },
+                Hello{' '}
+                <Box as="span" display={{ base: 'block', lg: 'inline' }}>
+                  I'm{' '}
+                  <Text
+                    as="span"
+                    color={accentColor}
+                    position="relative"
+                    _after={{
+                      content: '"_"',
+                      display: 'inline-block',
+                      width: 0,
+                      overflowX: 'visible',
+                      color: accentColor,
+                      sx: {
+                        '@keyframes blink-cursor': {
+                          'from, to': { opacity: 0 },
+                          '50%': { opacity: 1 },
+                        },
                       },
-                    },
-                    animation: `blink-cursor ${ANIMATION_DELAYS.HEADING * 3}s step-end infinite`,
-                  }}
-                >
-                  asynct
-                </Text>
+                      animation: `blink-cursor ${ANIMATION_DELAYS.HEADING * 3}s step-end infinite`,
+                    }}
+                  >
+                    asynct
+                  </Text>
+                </Box>
               </MotionHeading>
 
               <VStack spacing={3} align={{ base: 'center', lg: 'flex-start' }}>
