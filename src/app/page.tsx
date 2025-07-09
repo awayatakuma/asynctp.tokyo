@@ -222,7 +222,7 @@ export default function Top() {
                 >
                   I love abstract principles and compelling ideas. I'm eager to
                   find those mystical moments where universal patterns
-                  surface—whether in technologies, art, music, or fashion.
+                  surface—whether in technologies, humanity or art.
                 </Text>
               </Box>
             </VStack>
