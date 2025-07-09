@@ -72,7 +72,7 @@ export default function Top() {
           base: 'auto',
           md: `calc(100vh - ${LAYOUT.HEADER_HEIGHT} - ${LAYOUT.FOOTER_HEIGHT})`,
         }}
-        minH={{ base: '100vh', md: 'auto' }}
+        minH={{ base: 'auto', md: 'auto' }}
         pt={{ base: 4, md: 0 }}
         overflow={{ base: 'visible', md: 'hidden' }}
       >
@@ -80,7 +80,7 @@ export default function Top() {
           maxW="container.xl"
           h={{ base: 'auto', md: '100%' }}
           minH={{
-            base: `calc(100svh - ${LAYOUT.HEADER_HEIGHT} - 1rem)`,
+            base: 'auto',
             md: 'auto',
           }}
           position="relative"
