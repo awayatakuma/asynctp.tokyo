@@ -22,11 +22,9 @@ export const VRMViewer: React.FC<VRMViewerProps> = ({
       style={{
         width: resolvedWidth,
         height: resolvedHeight,
-        position: 'relative',
       }}
     >
       <Canvas
-        style={{ width: '100%', height: '100%' }}
         camera={{
           position: [0, 1.4, -2.2],
           fov: 50,
