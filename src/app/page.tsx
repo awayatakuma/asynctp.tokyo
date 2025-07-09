@@ -38,9 +38,9 @@ const ANIMATION_DELAYS = {
   VRM_DESKTOP: 1.2,
 } as const
 
-const MotionBox = motion.create(Box)
+const _MotionBox = motion.create(Box)
 const MotionFlex = motion.create(Flex)
-const MotionVStack = motion.create(VStack)
+const _MotionVStack = motion.create(VStack)
 const MotionHeading = motion.create(Heading)
 
 export default function Top() {
@@ -80,7 +80,7 @@ export default function Top() {
           maxW="container.xl"
           h={{ base: 'auto', md: '100%' }}
           minH={{
-            base: `calc(100vh - ${LAYOUT.HEADER_HEIGHT} - 1rem)`,
+            base: `calc(100svh - ${LAYOUT.HEADER_HEIGHT} - 1rem)`,
             md: 'auto',
           }}
           position="relative"
@@ -149,13 +149,7 @@ export default function Top() {
                 </Text>
               </MotionHeading>
 
-              <MotionVStack
-                spacing={3}
-                align={{ base: 'center', lg: 'flex-start' }}
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: ANIMATION_DELAYS.SUBTITLE }}
-              >
+              <VStack spacing={3} align={{ base: 'center', lg: 'flex-start' }}>
                 <Text
                   fontSize={{ base: 'xl', md: '2xl' }}
                   color={subtitleColor}
@@ -167,10 +161,10 @@ export default function Top() {
                   <Icon as={FaMapMarkerAlt} />
                   <Text fontSize="lg">ap-northeast-1, Tokyo, Japan</Text>
                 </HStack>
-              </MotionVStack>
+              </VStack>
 
               {/* VRM Character - Mobile & Tablet */}
-              <MotionBox
+              <Box
                 display={{ base: 'block', lg: 'none' }}
                 w="100%"
                 maxW={{
@@ -182,11 +176,12 @@ export default function Top() {
                   md: LAYOUT.VRM_SIZES.TABLET,
                 }}
                 position="relative"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{
-                  delay: ANIMATION_DELAYS.VRM_MOBILE,
-                  duration: ANIMATION_DELAYS.VRM_MOBILE,
+                // モバイルでビューポート高さ調整
+                sx={{
+                  '@media (max-width: 768px)': {
+                    height: '400px !important',
+                    width: '400px !important',
+                  },
                 }}
               >
                 {/* Decorative Background */}
@@ -195,7 +190,7 @@ export default function Top() {
                   top="50%"
                   left="50%"
                   transform="translate(-50%, -50%)"
-                  w="90%"
+                  w="80%"
                   h="90%"
                   bg={cardBg}
                   backdropFilter="blur(20px)"
@@ -213,13 +208,9 @@ export default function Top() {
                     vrmaUrl="/assets/greeting.vrma"
                   />
                 </Box>
-              </MotionBox>
+              </Box>
 
-              <MotionBox
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: ANIMATION_DELAYS.DESCRIPTION }}
-              >
+              <Box>
                 <Text
                   fontSize={{ base: 'md', md: 'lg' }}
                   color={descriptionColor}
@@ -230,11 +221,11 @@ export default function Top() {
                   find those mystical moments where universal patterns
                   surface—whether in technologies, art, music, or fashion.
                 </Text>
-              </MotionBox>
+              </Box>
             </VStack>
 
             {/* Right Side - VRM Character - Desktop Only */}
-            <MotionBox
+            <Box
               display={{ base: 'none', lg: 'block' }}
               flex="1"
               maxW="40%"
@@ -243,12 +234,6 @@ export default function Top() {
               minH={LAYOUT.VRM_SIZES.DESKTOP}
               position="relative"
               order={{ base: 2, lg: 1 }}
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{
-                delay: ANIMATION_DELAYS.VRM_DESKTOP,
-                duration: ANIMATION_DELAYS.VRM_MOBILE,
-              }}
             >
               {/* Decorative Background */}
               <Box
@@ -274,7 +259,7 @@ export default function Top() {
                   vrmaUrl="/assets/greeting.vrma"
                 />
               </Box>
-            </MotionBox>
+            </Box>
           </MotionFlex>
         </Container>
       </Box>

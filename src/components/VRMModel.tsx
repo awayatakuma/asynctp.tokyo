@@ -32,10 +32,10 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   const blinkDuration = 150 // 150ms
 
   // マウス追従用の状態
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [mousePosition, _setMousePosition] = useState({ x: 0, y: 0 })
 
   // カメラ情報を取得
-  const { camera, gl } = useThree()
+  const { camera } = useThree()
 
   // VRMモデルを読み込み
   const gltf = useLoader(GLTFLoader, url, (loader) => {
@@ -136,32 +136,6 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
       vrmRef.current.update(delta)
     }
   })
-
-  // マウスイベントリスナーの設定（デスクトップのみ）
-  useEffect(() => {
-    // モバイルデバイスでは無効化
-    if (
-      typeof window !== 'undefined' &&
-      ('ontouchstart' in window || navigator.maxTouchPoints > 0)
-    ) {
-      return
-    }
-
-    const canvas = gl.domElement
-
-    const handleMouseMove = (event: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect()
-      const x = ((event.clientX - rect.left) / rect.width) * 2 - 1
-      const y = -((event.clientY - rect.top) / rect.height) * 2 + 1
-      setMousePosition({ x, y })
-    }
-
-    canvas.addEventListener('mousemove', handleMouseMove)
-
-    return () => {
-      canvas.removeEventListener('mousemove', handleMouseMove)
-    }
-  }, [gl])
 
   return <primitive object={vrm.scene} scale={1.1} />
 }
