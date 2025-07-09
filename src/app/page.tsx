@@ -72,7 +72,7 @@ export default function Top() {
           base: 'auto',
           md: `calc(100vh - ${LAYOUT.HEADER_HEIGHT} - ${LAYOUT.FOOTER_HEIGHT})`,
         }}
-        minH={{ base: '100vh', md: 'auto' }}
+        minH={{ base: 'auto', md: 'auto' }}
         pt={{ base: 4, md: 0 }}
         overflow={{ base: 'visible', md: 'hidden' }}
       >
@@ -80,7 +80,7 @@ export default function Top() {
           maxW="container.xl"
           h={{ base: 'auto', md: '100%' }}
           minH={{
-            base: `calc(100svh - ${LAYOUT.HEADER_HEIGHT} - 1rem)`,
+            base: 'auto',
             md: 'auto',
           }}
           position="relative"
@@ -125,28 +125,31 @@ export default function Top() {
                   verticalAlign="middle"
                   mr="2"
                 />
-                Hello I'm{' '}
-                <Text
-                  as="span"
-                  color={accentColor}
-                  position="relative"
-                  _after={{
-                    content: '"_"',
-                    display: 'inline-block',
-                    width: 0,
-                    overflowX: 'visible',
-                    color: accentColor,
-                    sx: {
-                      '@keyframes blink-cursor': {
-                        'from, to': { opacity: 0 },
-                        '50%': { opacity: 1 },
+                Hello{' '}
+                <Box as="span" display={{ base: 'block', lg: 'inline' }}>
+                  I'm{' '}
+                  <Text
+                    as="span"
+                    color={accentColor}
+                    position="relative"
+                    _after={{
+                      content: '"_"',
+                      display: 'inline-block',
+                      width: 0,
+                      overflowX: 'visible',
+                      color: accentColor,
+                      sx: {
+                        '@keyframes blink-cursor': {
+                          'from, to': { opacity: 0 },
+                          '50%': { opacity: 1 },
+                        },
                       },
-                    },
-                    animation: `blink-cursor ${ANIMATION_DELAYS.HEADING * 3}s step-end infinite`,
-                  }}
-                >
-                  asynct
-                </Text>
+                      animation: `blink-cursor ${ANIMATION_DELAYS.HEADING * 3}s step-end infinite`,
+                    }}
+                  >
+                    asynct
+                  </Text>
+                </Box>
               </MotionHeading>
 
               <VStack spacing={3} align={{ base: 'center', lg: 'flex-start' }}>
@@ -219,7 +222,7 @@ export default function Top() {
                 >
                   I love abstract principles and compelling ideas. I'm eager to
                   find those mystical moments where universal patterns
-                  surface—whether in technologies, art, music, or fashion.
+                  surface—whether in technologies, humanity or art.
                 </Text>
               </Box>
             </VStack>

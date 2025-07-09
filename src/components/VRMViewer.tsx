@@ -27,7 +27,7 @@ export const VRMViewer: React.FC<VRMViewerProps> = ({
       <Canvas
         camera={{
           position: [0, 1.4, -2.2],
-          fov: 50,
+          fov: 55,
         }}
         dpr={1}
       >

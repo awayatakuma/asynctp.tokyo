@@ -57,8 +57,8 @@ export const Header: React.FC = () => {
       left={0}
       right={0}
       zIndex={1000}
-      px={{ base: 2, md: 8 }}
-      py={{ base: 2, md: 4 }}
+      px={{ base: 2, lg: 8 }}
+      py={{ base: 2, lg: 4 }}
       bg={scrolled ? scrolledBg : headerBg}
       backdropFilter="blur(20px) saturate(180%)"
       borderBottom="1px solid"
@@ -81,7 +81,7 @@ export const Header: React.FC = () => {
           >
             <Text
               as="h2"
-              fontSize={{ base: 'lg', md: '2xl' }}
+              fontSize={{ base: 'lg', lg: '2xl' }}
               fontWeight="black"
               bgGradient="linear(to-r, purple.400, blue.400)"
               bgClip="text"
@@ -95,7 +95,7 @@ export const Header: React.FC = () => {
         <Spacer />
 
         {/* Navigation Links */}
-        <HStack spacing={{ base: 3, md: 8 }}>
+        <HStack spacing={{ base: 3, lg: 8 }}>
           {NAV_LINKS.map(({ name, href }, index) => (
             <MotionBox
               key={name}
@@ -106,7 +106,7 @@ export const Header: React.FC = () => {
             >
               <Link
                 href={href}
-                fontSize={{ base: 'sm', md: 'md' }}
+                fontSize={{ base: 'sm', lg: 'md' }}
                 fontWeight="medium"
                 textDecoration="none"
                 color={linkColor}
@@ -141,9 +141,9 @@ export const Header: React.FC = () => {
             icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
             onClick={toggleColorMode}
             variant="ghost"
-            size={{ base: 'xs', md: 'sm' }}
+            size={{ base: 'xs', lg: 'sm' }}
             color={iconColor}
-            minW={{ base: '32px', md: 'auto' }}
+            minW={{ base: '32px', lg: 'auto' }}
             _hover={{
               bg: colorMode === 'light' ? 'purple.50' : 'purple.900',
               color: 'purple.400',
