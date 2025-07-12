@@ -5,9 +5,23 @@ date: '2025-05-11'
 
 ## [sabidb](https://github.com/awayatakuma/sabidb)
 
-This is my implementation of RDBMS in Rust.
-
-This system can accept not only queries but also index, table creation. You can query the database with predication, outer join and so on.
-This database system is also embedded basic transaction system and intake some advanced optimization such as multibuffers and heuristic query plans.
-
 ![sabidb_cropped.gif](./contents/sabidb_cropped.gif 'sabidb_cropped.gif')
+
+https://github.com/awayatakuma/sabidb
+
+A fully-featured relational database management system (RDBMS) implemented from scratch in Rust, showcasing modern database architecture and optimization techniques.
+
+**Core Features:**
+- **SQL Query Engine** - Complete SELECT, INSERT, UPDATE, DELETE operations
+- **DDL Support** - Dynamic table and index creation/management
+- **Advanced Joins** - Inner joins, outer joins with predicate filtering
+- **Transaction System** - ACID compliance with basic concurrency control
+- **Query Optimization** - Heuristic-based query plan generation
+- **Storage Engine** - Multi-buffer pool management for efficient I/O
+- **Indexing** - B-tree index structures for fast data retrieval
+
+**Tech Stack:**
+- **Rust** - Systems programming language for memory safety and performance
+- **Custom Storage Layer** - Hand-built page management and buffer pool
+- **SQL Parser** - Recursive descent parser for SQL statement processing
+
