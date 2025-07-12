@@ -60,7 +60,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          <Box as="main" pt={{ base: '60px' }}>
+          <Box as="main" pt={{ base: 20, md: 20 }}>
             {children}
           </Box>
           <Footer />
