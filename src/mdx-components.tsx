@@ -1,6 +1,6 @@
 import { Code, Divider, Heading, Image, Text } from '@chakra-ui/react'
 import type { MDXComponents } from 'mdx/types'
-import { Link } from './components'
+import { StaticLinkCardWrapper } from './components'
 
 export function useMDXComponents(
   components: MDXComponents = {}
@@ -18,11 +18,11 @@ export function useMDXComponents(
       </Text>
     ),
     // biome-ignore lint/suspicious/noExplicitAny: MDX component props
-    a: ({ children, href }: any) => (
-      <Link textStyle="link" color="secondary" href={href}>
-        {children}
-      </Link>
-    ),
+    a: ({ children, href }: any) => {
+      return (
+        <StaticLinkCardWrapper href={href}>{children}</StaticLinkCardWrapper>
+      )
+    },
     // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     h2: ({ children, id }: any) => (
       <Heading

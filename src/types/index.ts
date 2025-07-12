@@ -36,3 +36,13 @@ export type Work = {
   metadatum: WorkMetadatum
   content: string
 }
+
+export interface LinkMetadata {
+  url: string
+  title: string
+  description: string
+  image: string
+  siteName: string
+  favicon: string
+  fetchedAt: string
+}
