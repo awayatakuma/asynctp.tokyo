@@ -13,9 +13,29 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { FaMapMarkerAlt } from 'react-icons/fa'
-import { VRMViewer } from '@/components'
+
+const VRMViewer = dynamic(
+  () => import('@/components').then((mod) => ({ default: mod.VRMViewer })),
+  {
+    ssr: false,
+    loading: () => (
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        w="100%"
+        h="100%"
+        bg="gray.100"
+        borderRadius="xl"
+      >
+        <Text color="gray.500">Loading 3D Model...</Text>
+      </Box>
+    ),
+  }
+)
 
 // Layout constants
 const LAYOUT = {

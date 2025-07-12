@@ -12,7 +12,12 @@ import {
 } from '@pixiv/three-vrm-animation'
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import * as THREE from 'three'
+import {
+  type AnimationAction,
+  AnimationMixer,
+  LoopRepeat,
+  Vector3,
+} from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 interface VRMModelProps {
@@ -22,9 +27,9 @@ interface VRMModelProps {
 
 export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   const vrmRef = useRef<VRM | null>(null)
-  const mixerRef = useRef<THREE.AnimationMixer | null>(null)
+  const mixerRef = useRef<AnimationMixer | null>(null)
   const [animationAction, setAnimationAction] =
-    useState<THREE.AnimationAction | null>(null)
+    useState<AnimationAction | null>(null)
 
   // 瞬き用の状態
   const lastBlinkTimeRef = useRef(0)
@@ -59,13 +64,13 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
     if (vrm && animationUrl && vrmaGltf?.userData.vrmAnimations) {
       const vrmAnimation = vrmaGltf.userData.vrmAnimations[0] as VRMAnimation
 
-      const mixer = new THREE.AnimationMixer(vrm.scene)
+      const mixer = new AnimationMixer(vrm.scene)
       mixerRef.current = mixer
 
       const clip = createVRMAnimationClip(vrmAnimation, vrm)
 
       const action = mixer.clipAction(clip)
-      action.setLoop(THREE.LoopRepeat, Infinity)
+      action.setLoop(LoopRepeat, Infinity)
       action.play()
 
       setAnimationAction(action)
@@ -78,7 +83,7 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
       if (!vrm.lookAt) return
 
       // マウスの正規化座標からワールド座標を計算
-      const vector = new THREE.Vector3(mousePosition.x, mousePosition.y, 0.5)
+      const vector = new Vector3(mousePosition.x, mousePosition.y, 0.5)
       vector.unproject(camera)
 
       // VRMの位置からマウス方向へのベクトルを計算
