@@ -35,7 +35,6 @@ export default async function TagPage({ params }: PageProps) {
         textStyle="h1"
         fontSize="4xl"
         color="primary"
-        pt={{ base: 15, md: 15 }}
         pb={[15, null, null, 15]}
         _before={{ content: '"#"', fontWeight: 'bold' }}
       >

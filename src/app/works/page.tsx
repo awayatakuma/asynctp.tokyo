@@ -20,7 +20,6 @@ export default async function Works() {
         textStyle="h1"
         fontSize="4xl"
         color="primary"
-        pt={{ base: 15, md: 20 }}
         pb={[15, null, null, 15]}
       >
         {'Works'}

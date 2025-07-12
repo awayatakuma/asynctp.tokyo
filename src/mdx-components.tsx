@@ -1,5 +1,6 @@
-import { Code, Divider, Heading, Image, Text } from '@chakra-ui/react'
+import { Box, Code, Divider, Heading, Image, Text } from '@chakra-ui/react'
 import type { MDXComponents } from 'mdx/types'
+import React from 'react'
 import { StaticLinkCardWrapper } from './components'
 
 export function useMDXComponents(
@@ -7,16 +8,43 @@ export function useMDXComponents(
 ): MDXComponents {
   return {
     // biome-ignore lint/suspicious/noExplicitAny: MDX component props
-    p: ({ children }: any) => (
-      <Text
-        fontSize="md"
-        lineHeight="150%"
-        mb={{ base: 2 }}
-        // display="inline"
-      >
-        {children}
-      </Text>
-    ),
+    p: ({ children }: any) => {
+      // 子要素を配列に変換して検査
+      const childrenArray = React.Children.toArray(children)
+
+      // 単一のURL文字列のみの段落かチェック
+      const isSingleUrl =
+        childrenArray.length === 1 &&
+        typeof childrenArray[0] === 'string' &&
+        (childrenArray[0].startsWith('http://') ||
+          childrenArray[0].startsWith('https://'))
+
+      // リンクカードが含まれているかチェック（より確実な方法）
+      const hasLinkCard = childrenArray.some(
+        // biome-ignore lint/suspicious/noExplicitAny: MDX child type checking
+        (child: any) => {
+          // StaticLinkCardWrapperの検出
+          return (
+            child?.props?.href &&
+            typeof child?.props?.children === 'string' &&
+            child?.props?.children === child?.props?.href &&
+            (child?.props?.href?.startsWith('http://') ||
+              child?.props?.href?.startsWith('https://'))
+          )
+        }
+      )
+
+      // URLのみの段落またはリンクカードを含む段落は、div要素として処理
+      if (isSingleUrl || hasLinkCard) {
+        return <Box mb={2}>{children}</Box>
+      }
+
+      return (
+        <Text fontSize="md" lineHeight="150%" mb={{ base: 2 }}>
+          {children}
+        </Text>
+      )
+    },
     // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     a: ({ children, href }: any) => {
       return (

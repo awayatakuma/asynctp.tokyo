@@ -4,7 +4,6 @@ import { HERO_ICON } from '@/constants'
 import type { HeroProps } from '@/types/components'
 export const Hero: React.FC<HeroProps> = ({ ...props }) => (
   <Section
-    pt={{ base: 15, md: 15 }}
     pb={[15, null, null, 15]}
     gap={8}
     alignItems="left"

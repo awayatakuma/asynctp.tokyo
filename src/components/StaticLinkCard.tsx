@@ -10,11 +10,8 @@ import {
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
 import { FaExternalLinkAlt, FaGlobe } from 'react-icons/fa'
 import type { LinkMetadata } from '@/types'
-
-const MotionBox = motion.create(Box)
 
 interface StaticLinkCardProps {
   metadata: LinkMetadata
@@ -30,25 +27,22 @@ export const StaticLinkCard: React.FC<StaticLinkCardProps> = ({ metadata }) => {
   const accentColor = useColorModeValue('blue.500', 'blue.300')
 
   return (
-    <MotionBox
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      whileHover={{ y: -2 }}
+    <Box
+      as="div"
+      display="inline-block"
+      width="100%"
       bg={bg}
       border="1px solid"
       borderColor={borderColor}
       borderRadius="xl"
       overflow="hidden"
-      my={4}
-      maxW="full"
+      my={2}
       cursor="pointer"
-      sx={{
-        transition: 'all 0.2s',
-      }}
+      transition="all 0.2s"
       _hover={{
         borderColor: hoverBorderColor,
         boxShadow: 'lg',
+        transform: 'translateY(-2px)',
       }}
     >
       <Link
@@ -58,36 +52,6 @@ export const StaticLinkCard: React.FC<StaticLinkCardProps> = ({ metadata }) => {
         _hover={{ textDecoration: 'none' }}
       >
         <HStack spacing={0} align="stretch">
-          {/* 画像部分 */}
-          {metadata.image && (
-            <Box
-              width="120px"
-              flexShrink={0}
-              position="relative"
-              overflow="hidden"
-            >
-              <Image
-                src={metadata.image}
-                alt={metadata.title}
-                width="100%"
-                height="100%"
-                objectFit="cover"
-                fallback={
-                  <Box
-                    width="100%"
-                    height="100%"
-                    bg={bg}
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    <Icon as={FaGlobe} color={mutedColor} boxSize={6} />
-                  </Box>
-                }
-              />
-            </Box>
-          )}
-
           {/* コンテンツ部分 */}
           <VStack
             align="start"
@@ -144,9 +108,39 @@ export const StaticLinkCard: React.FC<StaticLinkCardProps> = ({ metadata }) => {
               <Icon as={FaExternalLinkAlt} color={mutedColor} boxSize={3} />
             </HStack>
           </VStack>
+
+          {/* 画像部分（右側） */}
+          {metadata.image && (
+            <Box
+              width={{ base: '120px', md: '160px' }}
+              flexShrink={0}
+              position="relative"
+              overflow="hidden"
+            >
+              <Image
+                src={metadata.image}
+                alt={metadata.title}
+                width="100%"
+                height="100%"
+                objectFit="cover"
+                fallback={
+                  <Box
+                    width="100%"
+                    height="100%"
+                    bg={bg}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Icon as={FaGlobe} color={mutedColor} boxSize={6} />
+                  </Box>
+                }
+              />
+            </Box>
+          )}
         </HStack>
       </Link>
-    </MotionBox>
+    </Box>
   )
 }
 
@@ -161,17 +155,16 @@ export const FallbackLinkCard: React.FC<{
   const accentColor = useColorModeValue('blue.500', 'blue.300')
 
   return (
-    <MotionBox
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
+    <Box
+      as="span"
+      display="inline-block"
+      width="100%"
       bg={bg}
       border="1px solid"
       borderColor={borderColor}
       borderRadius="xl"
       p={4}
-      my={4}
-      maxW="full"
+      my={2}
     >
       <Link
         href={url}
@@ -198,6 +191,6 @@ export const FallbackLinkCard: React.FC<{
           <Icon as={FaExternalLinkAlt} color={mutedColor} boxSize={3} />
         </HStack>
       </Link>
-    </MotionBox>
+    </Box>
   )
 }
