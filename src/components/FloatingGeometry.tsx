@@ -13,12 +13,25 @@ interface FloatingGeometryProps {
 export const FloatingGeometry: React.FC<FloatingGeometryProps> = ({
   count = 8,
   speed = 1,
-  spread = 3,
 }) => {
   const groupRef = useRef<THREE.Group>(null)
 
+  interface GeometryConfig {
+    id: number
+    type: string
+    initialPosition: [number, number, number]
+    position: [number, number, number]
+    rotation: [number, number, number]
+    rotationSpeed: [number, number, number]
+    orbitSpeed: number
+    floatSpeed: number
+    scale: number
+    color: string
+    opacity: number
+  }
+
   // 幾何学的図形の設定
-  const geometries = useMemo(() => {
+  const geometries: GeometryConfig[] = useMemo(() => {
     return Array.from({ length: count }, (_, i) => {
       // 3次元的に配置するための球面座標（まんべんなく分布）
       const phi = Math.acos(1 - (2 * (i + 0.5)) / count) // 緯度角度
@@ -83,7 +96,7 @@ export const FloatingGeometry: React.FC<FloatingGeometryProps> = ({
     })
   })
 
-  const renderGeometry = (type: string, config: any) => {
+  const renderGeometry = (type: string, config: GeometryConfig) => {
     switch (type) {
       case 'box':
         return <boxGeometry args={[config.scale, config.scale, config.scale]} />
