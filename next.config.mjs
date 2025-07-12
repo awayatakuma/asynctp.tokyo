@@ -25,10 +25,6 @@ const nextConfig = {
       ...config.resolve.alias,
       'three/examples/jsm': 'three/examples/jsm',
     }
-    
-    // Tree-shaking改善
-    config.optimization.usedExports = true
-    config.optimization.sideEffects = false
 
     return config
   },
