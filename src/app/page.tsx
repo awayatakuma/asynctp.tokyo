@@ -13,9 +13,29 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { FaMapMarkerAlt } from 'react-icons/fa'
-import { VRMViewer } from '@/components'
+
+const VRMViewer = dynamic(
+  () => import('@/components').then((mod) => ({ default: mod.VRMViewer })),
+  {
+    ssr: false,
+    loading: () => (
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        w="100%"
+        h="100%"
+        bg="gray.100"
+        borderRadius="xl"
+      >
+        <Text color="gray.500">Loading 3D Model...</Text>
+      </Box>
+    ),
+  }
+)
 
 // Layout constants
 const LAYOUT = {
@@ -31,11 +51,11 @@ const LAYOUT = {
 
 // Animation delays
 const ANIMATION_DELAYS = {
-  HEADING: 0.4,
-  SUBTITLE: 0.6,
-  VRM_MOBILE: 0.8,
-  DESCRIPTION: 1.0,
-  VRM_DESKTOP: 1.2,
+  HEADING: 0.8,
+  SUBTITLE: 1.2,
+  VRM_MOBILE: 1.6,
+  DESCRIPTION: 2.0,
+  VRM_DESKTOP: 2.4,
 } as const
 
 const _MotionBox = motion.create(Box)
@@ -114,7 +134,11 @@ export default function Top() {
                 lineHeight="1.1"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: ANIMATION_DELAYS.HEADING }}
+                transition={{
+                  delay: ANIMATION_DELAYS.HEADING,
+                  duration: 0.8,
+                  ease: 'easeOut',
+                }}
               >
                 <Image
                   src="/assets/512.webp"
@@ -144,7 +168,7 @@ export default function Top() {
                           '50%': { opacity: 1 },
                         },
                       },
-                      animation: `blink-cursor ${ANIMATION_DELAYS.HEADING * 3}s step-end infinite`,
+                      animation: `blink-cursor 1.5s step-end infinite`,
                     }}
                   >
                     asynct

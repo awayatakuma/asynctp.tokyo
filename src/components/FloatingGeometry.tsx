@@ -2,7 +2,7 @@
 
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
-import * as THREE from 'three'
+import { type Group, Matrix4, Vector3 } from 'three'
 
 interface FloatingGeometryProps {
   count?: number
@@ -14,7 +14,7 @@ export const FloatingGeometry: React.FC<FloatingGeometryProps> = ({
   count = 8,
   speed = 1,
 }) => {
-  const groupRef = useRef<THREE.Group>(null)
+  const groupRef = useRef<Group>(null)
 
   interface GeometryConfig {
     id: number
@@ -72,13 +72,13 @@ export const FloatingGeometry: React.FC<FloatingGeometryProps> = ({
 
     const time = state.clock.elapsedTime
 
-    groupRef.current.children.forEach((child, index) => {
+    groupRef.current.children.forEach((child, index: number) => {
       const config = geometries[index]
 
       // VRMを中心とした公転運動
       const orbitAngle = time * config.orbitSpeed
-      const rotationMatrix = new THREE.Matrix4().makeRotationY(orbitAngle)
-      const initialPos = new THREE.Vector3(...config.initialPosition)
+      const rotationMatrix = new Matrix4().makeRotationY(orbitAngle)
+      const initialPos = new Vector3(...config.initialPosition)
       initialPos.applyMatrix4(rotationMatrix)
 
       // 微細な浮遊運動を追加
