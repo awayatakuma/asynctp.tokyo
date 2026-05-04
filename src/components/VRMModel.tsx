@@ -31,10 +31,10 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   const [animationAction, setAnimationAction] =
     useState<AnimationAction | null>(null)
 
-  // 瞬き用の状態
+  // 瞬き用の状態 (秒単位)
   const lastBlinkTimeRef = useRef(0)
-  const blinkInterval = 3000 // 3秒間隔
-  const blinkDuration = 150 // 150ms
+  const blinkInterval = 3 // 3秒間隔
+  const blinkDuration = 0.15 // 150ms
 
   // マウス追従用の状態
   const [mousePosition, _setMousePosition] = useState({ x: 0, y: 0 })
@@ -57,7 +57,13 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   })
 
   const vrm = gltf.userData.vrm as VRM
-  vrmRef.current = vrm
+
+  // VRMの参照を安全に保持
+  useEffect(() => {
+    if (vrm) {
+      vrmRef.current = vrm
+    }
+  }, [vrm])
 
   // アニメーションを設定
   useEffect(() => {
@@ -74,6 +80,13 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
       action.play()
 
       setAnimationAction(action)
+
+      // クリーンアップ
+      return () => {
+        action.stop()
+        mixer.stopAllAction()
+        mixerRef.current = null
+      }
     }
   }, [vrm, vrmaGltf, animationUrl])
 
@@ -88,7 +101,7 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
 
       // VRMの位置からマウス方向へのベクトルを計算
       const vrmPosition = vrm.scene.position
-      const lookDirection = vector.sub(vrmPosition).normalize()
+      const lookDirection = vector.clone().sub(vrmPosition).normalize()
 
       // 視線をマウス方向に向ける
       vrm.lookAt.lookAt(lookDirection)
@@ -104,31 +117,34 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   }, [vrm])
 
   // 瞬き処理
-  const updateBlinking = useCallback((vrm: VRM, currentTime: number) => {
-    if (!vrm.expressionManager) return
+  const updateBlinking = useCallback(
+    (vrm: VRM, elapsedTime: number) => {
+      if (!vrm.expressionManager) return
 
-    // まばたきのタイミングをチェック
-    if (currentTime - lastBlinkTimeRef.current > blinkInterval) {
-      lastBlinkTimeRef.current = currentTime
-    }
+      // まばたきのタイミングをチェック
+      if (elapsedTime - lastBlinkTimeRef.current > blinkInterval) {
+        lastBlinkTimeRef.current = elapsedTime
+      }
 
-    // まばたきアニメーション
-    const timeSinceBlink = currentTime - lastBlinkTimeRef.current
-    if (timeSinceBlink < blinkDuration) {
-      const blinkProgress = timeSinceBlink / blinkDuration
-      const blinkValue = Math.sin(blinkProgress * Math.PI)
-      vrm.expressionManager.setValue('blink', blinkValue)
-    } else {
-      vrm.expressionManager.setValue('blink', 0)
-    }
-  }, [])
+      // まばたきアニメーション
+      const timeSinceBlink = elapsedTime - lastBlinkTimeRef.current
+      if (timeSinceBlink < blinkDuration) {
+        const blinkProgress = timeSinceBlink / blinkDuration
+        const blinkValue = Math.sin(blinkProgress * Math.PI)
+        vrm.expressionManager.setValue('blink', blinkValue)
+      } else {
+        vrm.expressionManager.setValue('blink', 0)
+      }
+    },
+    [blinkInterval, blinkDuration]
+  )
 
-  useFrame((_state, delta) => {
+  useFrame((state, delta) => {
     if (vrmRef.current) {
-      const currentTime = Date.now()
+      const elapsedTime = state.clock.getElapsedTime()
 
       // 瞬き処理
-      updateBlinking(vrmRef.current, currentTime)
+      updateBlinking(vrmRef.current, elapsedTime)
 
       // マウス追従
       lookAtMouse(vrmRef.current)
