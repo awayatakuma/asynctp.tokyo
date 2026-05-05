@@ -9,6 +9,7 @@ import {
   createVRMAnimationClip,
   type VRMAnimation,
   VRMAnimationLoaderPlugin,
+  VRMLookAtQuaternionProxy,
 } from '@pixiv/three-vrm-animation'
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -57,11 +58,19 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
   })
 
   const vrm = gltf.userData.vrm as VRM
+  vrmRef.current = vrm
 
-  // VRMの参照を安全に保持
+  // VRMLookAtQuaternionProxyを手動で作成して警告を抑制
   useEffect(() => {
-    if (vrm) {
-      vrmRef.current = vrm
+    if (vrm?.lookAt) {
+      const alreadyHasProxy = vrm.scene.children.some(
+        (child) => child instanceof VRMLookAtQuaternionProxy
+      )
+      if (!alreadyHasProxy) {
+        const proxy = new VRMLookAtQuaternionProxy(vrm.lookAt)
+        proxy.name = 'VRMLookAtQuaternionProxy'
+        vrm.scene.add(proxy)
+      }
     }
   }, [vrm])
 
