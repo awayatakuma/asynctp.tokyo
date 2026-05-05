@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import type { Metadata } from 'next'
-import NotFound from '@/app/not-found'
+import { notFound } from 'next/navigation'
 import { MDXArticle, MDXFrontmatter } from '@/components'
 import {
   BLOG_CONTENTS_DIR_PATH,
@@ -69,7 +69,7 @@ export default async function PostPage({
   const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, `${params.post}.mdx`)
 
   if (!fs.existsSync(fullpath)) {
-    return <NotFound />
+    notFound()
   }
 
   const { metadatum: metadata, content } = getPost(fullpath)

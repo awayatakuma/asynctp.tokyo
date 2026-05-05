@@ -1,10 +1,18 @@
+import { cache } from 'react'
 import { WORKS_PATH } from '@/constants'
 import type { Work } from '@/types'
 import { formatDate } from './formatDate'
 import { getFilename } from './getFilename'
 import { getMarkdownContent } from './getMarkdownContent'
 
-export const getWork = (fullpath: string): Work => {
+const cachePolyfill = <T extends (...args: any[]) => any>(fn: T): T => {
+  if (typeof cache === 'function') {
+    return cache(fn)
+  }
+  return fn
+}
+
+export const getWork = cachePolyfill((fullpath: string): Work => {
   const { data, content } = getMarkdownContent(fullpath)
   const ret: Work = {
     metadatum: {
@@ -15,4 +23,4 @@ export const getWork = (fullpath: string): Work => {
     content: content,
   }
   return ret
-}
+})
