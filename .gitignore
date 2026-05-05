@@ -40,7 +40,8 @@ next-env.d.ts
 #others
 public/robots.txt
 sitemap*.xml
-link-metadata-cache.json
+# metadata cache (keep this for stable builds)
+# link-metadata-cache.json
 
 .env*
 /.vscode

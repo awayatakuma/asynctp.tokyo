@@ -9,6 +9,7 @@ import {
   Icon,
   Image,
   Text,
+  useBreakpointValue,
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react'
@@ -65,6 +66,7 @@ const MotionHeading = motion.create(Heading)
 
 export default function Top() {
   const [mounted, setMounted] = useState(false)
+  const isLargeScreen = useBreakpointValue({ base: false, lg: true })
 
   // Theme colors
   const cardBg = useColorModeValue(
@@ -228,12 +230,13 @@ export default function Top() {
                 />
 
                 <Box position="relative" zIndex="1" w="full" h="full">
-                  <VRMViewer
-                    vrmUrl="/assets/asynct_low.vrm"
-                    width="100%"
-                    height={LAYOUT.VRM_SIZES.MOBILE}
-                    vrmaUrl="/assets/greeting.vrma"
-                  />
+                  {!isLargeScreen && (
+                    <VRMViewer
+                      vrmUrl="/assets/asynct_low.vrm"
+                      width="100%"
+                      height={LAYOUT.VRM_SIZES.MOBILE}
+                    />
+                  )}
                 </Box>
               </Box>
 
@@ -279,12 +282,13 @@ export default function Top() {
               />
 
               <Box position="relative" zIndex="1" w="full" h="full">
-                <VRMViewer
-                  vrmUrl="/assets/asynct_low.vrm"
-                  width="100%"
-                  height={LAYOUT.VRM_SIZES.DESKTOP}
-                  vrmaUrl="/assets/greeting.vrma"
-                />
+                {isLargeScreen && (
+                  <VRMViewer
+                    vrmUrl="/assets/asynct_low.vrm"
+                    width="100%"
+                    height={LAYOUT.VRM_SIZES.DESKTOP}
+                  />
+                )}
               </Box>
             </Box>
           </MotionFlex>

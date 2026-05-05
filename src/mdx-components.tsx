@@ -1,12 +1,13 @@
 import { Box, Code, Divider, Heading, Image, Text } from '@chakra-ui/react'
 import type { MDXComponents } from 'mdx/types'
 import React from 'react'
-import { StaticLinkCardWrapper } from './components'
+import { AmazonCard, StaticLinkCardWrapper } from './components'
 
 export function useMDXComponents(
   components: MDXComponents = {}
 ): MDXComponents {
   return {
+    AmazonCard,
     // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     p: ({ children }: any) => {
       // 子要素を配列に変換して検査

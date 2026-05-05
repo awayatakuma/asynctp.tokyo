@@ -144,6 +144,37 @@ export const StaticLinkCard: React.FC<StaticLinkCardProps> = ({ metadata }) => {
   )
 }
 
+interface AmazonCardProps {
+  url: string
+  title: string
+  description?: string
+  image?: string
+}
+
+export const AmazonCard: React.FC<AmazonCardProps> = ({
+  url,
+  title,
+  description = 'Amazon.co.jp で詳細を見る',
+  image,
+}) => {
+  // 文字列の切り詰め処理
+  const truncatedDescription =
+    description.length > 200 ? `${description.slice(0, 200)}...` : description
+
+  // StaticLinkCard と同じインターフェースの擬似メタデータを作成
+  const pseudoMetadata: LinkMetadata = {
+    url,
+    title,
+    description: truncatedDescription,
+    image: image || '',
+    siteName: 'Amazon.co.jp',
+    favicon: 'https://www.amazon.co.jp/favicon.ico',
+    fetchedAt: new Date().toISOString(),
+  }
+
+  return <StaticLinkCard metadata={pseudoMetadata} />
+}
+
 // フォールバック用のシンプルなリンクカード
 export const FallbackLinkCard: React.FC<{
   url: string
