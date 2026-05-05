@@ -30,6 +30,10 @@ export const VRMViewer: React.FC<VRMViewerProps> = ({
           fov: 55,
         }}
         dpr={[1, 2]}
+        gl={{
+          antialias: true,
+          powerPreference: 'high-performance',
+        }}
       >
         <Suspense fallback={null}>
           {/* VRMモデル */}
