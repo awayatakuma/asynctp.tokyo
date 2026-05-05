@@ -1,0 +1,119 @@
+{
+  "https://nextjs.org/": {
+    "url": "https://nextjs.org/",
+    "title": "Next.js by Vercel - The React Framework",
+    "description": "Next.js by Vercel is the full-stack React framework for the web.",
+    "image": "https://h8dxkfmaphn8o0p3.public.blob.vercel-storage.com/nextjs/twitter-card.png",
+    "siteName": "@vercel",
+    "favicon": "https://nextjs.org/favicon.ico?favicon.117ezoe8m31dk.ico",
+    "fetchedAt": "2026-05-04T23:09:07.012Z"
+  },
+  "https://docs.aws.amazon.com/streams/latest/dev/kcl2-standard-consumer-python-example.html": {
+    "url": "https://docs.aws.amazon.com/streams/latest/dev/kcl2-standard-consumer-python-example.html",
+    "title": "Develop a Kinesis Client Library consumer in Python - Amazon Kinesis Data StreamsDevelop a Kinesis C",
+    "description": "You can use the Kinesis Client Library (KCL) to build applications that process data from your Kinesis data streams. The Kinesis Client Library is available in multiple languages. This topic discusses",
+    "image": "",
+    "siteName": "docs.aws.amazon.com",
+    "favicon": "https://docs.aws.amazon.com/assets/images/favicon.ico",
+    "fetchedAt": "2026-05-04T23:09:07.043Z"
+  },
+  "https://mdxjs.com/docs/troubleshooting-mdx": {
+    "url": "https://mdxjs.com/docs/troubleshooting-mdx",
+    "title": "Troubleshooting MDX | MDX",
+    "description": "This article goes through several common problems and errors that might occur when using MDX.",
+    "image": "https://mdxjs.com/docs/troubleshooting-mdx/index.png",
+    "siteName": "MDX",
+    "favicon": "https://mdxjs.com/favicon.ico",
+    "fetchedAt": "2026-05-04T23:09:07.590Z"
+  },
+  "https://github.com/awayatakuma/message-queue-go-linkage": {
+    "url": "https://github.com/awayatakuma/message-queue-go-linkage",
+    "title": "GitHub - awayatakuma/message-queue-go-linkage",
+    "description": "Contribute to awayatakuma/message-queue-go-linkage development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/8c3a96e02f03a2596278041cee3e049436376cbd0045e05b56f4e70936a8c8a5/awayatakuma/message-queue-go-linkage",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-04T23:09:07.622Z"
+  },
+  "https://github.com/awayatakuma/asynctp.tokyo": {
+    "url": "https://github.com/awayatakuma/asynctp.tokyo",
+    "title": "GitHub - awayatakuma/asynctp.tokyo",
+    "description": "Contribute to awayatakuma/asynctp.tokyo development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/c584de623a88937482e5288c6265c6b7eb8a422f9f8db4349ff4ddf1a1180a4f/awayatakuma/asynctp.tokyo",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-04T23:09:07.647Z"
+  },
+  "https://github.com/awayatakuma/sabidb": {
+    "url": "https://github.com/awayatakuma/sabidb",
+    "title": "GitHub - awayatakuma/sabidb",
+    "description": "Contribute to awayatakuma/sabidb development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/be6cecec08e335448f862f0d9c41c383409b7d5a759c620d30d1d109e77d721b/awayatakuma/sabidb",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-04T23:09:07.668Z"
+  },
+  "https://github.com/awayatakuma/cdk-sqs-kinesis-performance-check": {
+    "url": "https://github.com/awayatakuma/cdk-sqs-kinesis-performance-check",
+    "title": "GitHub - awayatakuma/cdk-sqs-kinesis-performance-check",
+    "description": "Contribute to awayatakuma/cdk-sqs-kinesis-performance-check development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/3335ed57f4f1e723fd931928e2f239397b5f3d291329d3ea1ba034fe3838204d/awayatakuma/cdk-sqs-kinesis-performance-check",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-04T23:09:07.712Z"
+  },
+  "https://github.com/hashicorp/next-mdx-remote": {
+    "url": "https://github.com/hashicorp/next-mdx-remote",
+    "title": "GitHub - hashicorp/next-mdx-remote: Load MDX content from anywhere",
+    "description": "Load MDX content from anywhere. Contribute to hashicorp/next-mdx-remote development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/68fde0451d09dc01c5875d1fe6a2c351174f13915daa8e5fb5885df9bcc5e2ff/hashicorp/next-mdx-remote",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-04T23:09:07.761Z"
+  },
+  "https://github.com/awayatakuma/dotfiles": {
+    "url": "https://github.com/awayatakuma/dotfiles",
+    "title": "GitHub - awayatakuma/dotfiles",
+    "description": "Contribute to awayatakuma/dotfiles development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/1f17b73581798b72dd636fe9e92145ba4ce1612260ebaf512ec7754788fc5df9/awayatakuma/dotfiles",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-04T23:09:07.813Z"
+  },
+  "https://nextjs.org/docs/pages/building-your-application/configuring/mdx": {
+    "url": "https://nextjs.org/docs/pages/building-your-application/configuring/mdx",
+    "title": "Guides: MDX | Next.js",
+    "description": "Learn how to configure MDX to write JSX in your markdown files.",
+    "image": "https://nextjs.org/api/docs-og?title=Guides:%20MDX&sig=f34a3ce66e18a5eb",
+    "siteName": "nextjs.org",
+    "favicon": "https://nextjs.org/favicon.ico?favicon.117ezoe8m31dk.ico?dpl=dpl_9RS3Saz18nhdzinakdxSzi1hQMLb",
+    "fetchedAt": "2026-05-04T23:09:07.905Z"
+  },
+  "https://nextjs.org/docs/pages/building-your-application/configuring/mdx#remote-mdx": {
+    "url": "https://nextjs.org/docs/pages/building-your-application/configuring/mdx#remote-mdx",
+    "title": "Guides: MDX | Next.js",
+    "description": "Learn how to configure MDX to write JSX in your markdown files.",
+    "image": "https://nextjs.org/api/docs-og?title=Guides:%20MDX&sig=f34a3ce66e18a5eb",
+    "siteName": "nextjs.org",
+    "favicon": "https://nextjs.org/favicon.ico?favicon.117ezoe8m31dk.ico?dpl=dpl_9RS3Saz18nhdzinakdxSzi1hQMLb",
+    "fetchedAt": "2026-05-04T23:09:08.055Z"
+  },
+  "https://www.amazon.co.jp/LLM%E3%81%AE%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0-%E2%80%95GitHub-Copilot%E3%82%92%E7%94%9F%E3%82%93%E3%81%A0%E9%96%8B%E7%99%BA%E8%80%85%E3%81%8C%E6%95%99%E3%81%88%E3%82%8B%E7%94%9F%E6%88%90AI%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E9%96%8B%E7%99%BA-John-Berryman/dp/4814401132?&linkCode=ll1&tag=acasune-22&linkId=bf24681bda73172d3ee0c7bf7b5c57cc&language=ja_JP&ref_=as_li_ss_tl": {
+    "url": "https://www.amazon.co.jp/LLM%E3%81%AE%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0-%E2%80%95GitHub-Copilot%E3%82%92%E7%94%9F%E3%82%93%E3%81%A0%E9%96%8B%E7%99%BA%E8%80%85%E3%81%8C%E6%95%99%E3%81%88%E3%82%8B%E7%94%9F%E6%88%90AI%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E9%96%8B%E7%99%BA-John-Berryman/dp/4814401132?&linkCode=ll1&tag=acasune-22&linkId=bf24681bda73172d3ee0c7bf7b5c57cc&language=ja_JP&ref_=as_li_ss_tl",
+    "title": "Amazon.co.jp: LLMのプロンプトエンジニアリング ―GitHub Copilotを生んだ開発者が教える生成AIアプリケーション開発 : John Berryman, Albert Zie",
+    "description": "Amazon.co.jp: LLMのプロンプトエンジニアリング ―GitHub Copilotを生んだ開発者が教える生成AIアプリケーション開発 : John Berryman, Albert Ziegler, 服部 佑樹（翻訳）, 佐藤 直生（翻訳）: 本",
+    "image": "",
+    "siteName": "www.amazon.co.jp",
+    "favicon": "https://www.amazon.co.jp/favicon.ico",
+    "fetchedAt": "2026-05-04T23:09:08.886Z"
+  },
+  "https://docs.anthropic.com/ja/docs/build-with-claude/prompt-engineering/claude-4-best-practices": {
+    "url": "https://docs.anthropic.com/ja/docs/build-with-claude/prompt-engineering/claude-4-best-practices",
+    "title": "プロンプトのベストプラクティス",
+    "description": "Claude の最新モデルを使用したプロンプトエンジニアリング技術の包括的ガイド。明確性、例、XML 構造化、思考、およびエージェントシステムをカバーしています。",
+    "image": "https://platform.claude.com/docs/og?locale=ja&path=build-with-claude/prompt-engineering/claude-prompting-best-practices",
+    "siteName": "Claude API Docs",
+    "favicon": "https://docs.anthropic.com/favicon.ico",
+    "fetchedAt": "2026-05-04T23:09:09.240Z"
+  }
+}

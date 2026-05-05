@@ -61,7 +61,8 @@ class LinkMetadataCache {
       })
 
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`)
+        console.warn(`⚠️ HTTP ${response.status} for ${url}. Keeping existing metadata if available.`)
+        return this.cache[url] || null
       }
 
       const html = await response.text()
@@ -131,8 +132,8 @@ class LinkMetadataCache {
 
       return metadata
     } catch (error) {
-      console.error(`Failed to fetch metadata for ${url}:`, error)
-      return null
+      console.warn(`⚠️ Failed to fetch metadata for ${url}:`, error.message)
+      return this.cache[url] || null
     }
   }
 }
