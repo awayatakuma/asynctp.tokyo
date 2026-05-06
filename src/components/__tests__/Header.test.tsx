@@ -21,7 +21,7 @@ jest.mock('@/constants', () => ({
 // Mock the Header component
 jest.mock('../Header', () => ({
   Header: () => (
-    <header role="banner">
+    <header>
       <nav>
         <a href="/">asynctp</a>
         <a href="/about">About</a>

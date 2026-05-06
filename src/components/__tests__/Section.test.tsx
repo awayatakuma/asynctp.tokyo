@@ -43,4 +43,3 @@ describe('Section', () => {
   })
 })
 // Test comment
-

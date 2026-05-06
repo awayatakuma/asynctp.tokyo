@@ -1,6 +1,5 @@
-import { Box, Code, Divider, Heading, Image, Text } from '@chakra-ui/react'
+import { Box, Code, Divider, Heading, Image } from '@chakra-ui/react'
 import type { MDXComponents } from 'mdx/types'
-import React from 'react'
 import { AmazonCard, StaticLinkCardWrapper } from './components'
 
 export function useMDXComponents(

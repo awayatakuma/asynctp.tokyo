@@ -223,25 +223,22 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
     []
   )
 
-  const updateBlinking = useCallback(
-    (vrm: VRM, elapsedTime: number) => {
-      if (!vrm.expressionManager) return
+  const updateBlinking = useCallback((vrm: VRM, elapsedTime: number) => {
+    if (!vrm.expressionManager) return
 
-      if (elapsedTime - lastBlinkTimeRef.current > blinkInterval) {
-        lastBlinkTimeRef.current = elapsedTime
-      }
+    if (elapsedTime - lastBlinkTimeRef.current > blinkInterval) {
+      lastBlinkTimeRef.current = elapsedTime
+    }
 
-      const timeSinceBlink = elapsedTime - lastBlinkTimeRef.current
-      if (timeSinceBlink < blinkDuration) {
-        const blinkProgress = timeSinceBlink / blinkDuration
-        const blinkValue = Math.sin(blinkProgress * Math.PI)
-        vrm.expressionManager.setValue('blink', blinkValue)
-      } else {
-        vrm.expressionManager.setValue('blink', 0)
-      }
-    },
-    [blinkInterval, blinkDuration]
-  )
+    const timeSinceBlink = elapsedTime - lastBlinkTimeRef.current
+    if (timeSinceBlink < blinkDuration) {
+      const blinkProgress = timeSinceBlink / blinkDuration
+      const blinkValue = Math.sin(blinkProgress * Math.PI)
+      vrm.expressionManager.setValue('blink', blinkValue)
+    } else {
+      vrm.expressionManager.setValue('blink', 0)
+    }
+  }, [])
 
   useFrame((state, delta) => {
     if (vrmRef.current) {
