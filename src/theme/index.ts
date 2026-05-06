@@ -49,6 +49,11 @@ const overrides = {
   shadows: {},
   styles: {
     global: () => ({
+      'html, body': {
+        overflowX: 'hidden',
+        width: '100%',
+        position: 'relative',
+      },
       '*': {
         boxSizing: 'border-box',
         scrollBehavior: 'smooth',
@@ -66,14 +71,14 @@ const overrides = {
         paddingRight: '1rem',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        maxWidth: '48rem',
+        maxWidth: 'container.xl',
         minHeight: '100vh',
       },
       pre: {
         borderRadius: '8px',
         padding: '12px',
         marginBottom: '12px',
-        overflowX: 'scroll',
+        overflowX: 'auto',
       },
       ol: {
         listStyleType: 'decimal',
@@ -90,18 +95,18 @@ const overrides = {
       },
       td: {
         border: '1px solid',
-        borderColor: { _light: '#999', _dark: 'gray.600' },
+        borderColor: 'border',
         boxSizing: 'border-box',
         textAlign: 'center',
         padding: '8px',
       },
       th: {
         border: '1px solid',
-        borderColor: { _light: '#999', _dark: 'gray.600' },
+        borderColor: 'border',
         boxSizing: 'border-box',
         textAlign: 'center',
         padding: '8px',
-        backgroundColor: { _light: '#eee', _dark: 'gray.700' },
+        backgroundColor: 'tableHeaderBg',
       },
       blockquote: {
         margin: '20px 0',
@@ -110,8 +115,8 @@ const overrides = {
         boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
         fontStyle: 'italic',
         position: 'relative',
-        backgroundColor: { _light: '#f1f3f5', _dark: 'gray.800' },
-        color: { _light: '#495057', _dark: 'gray.300' },
+        backgroundColor: 'blockquoteBg',
+        color: 'blockquoteText',
         p: {
           margin: 0,
           lineHeight: 1.6,
@@ -128,7 +133,7 @@ const overrides = {
           display: 'block',
           marginTop: '10px',
           fontSize: '0.9em',
-          color: { _light: '#868e96', _dark: 'gray.400' },
+          color: 'blockquoteCite',
           fontStyle: 'normal',
         },
       },
@@ -156,6 +161,10 @@ const overrides = {
       border: { _light: 'gray.200', _dark: 'gray.600' }, // ボーダーも調整
       header: 'c',
       error: { _light: 'red.500', _dark: 'red.300' },
+      tableHeaderBg: { _light: 'gray.100', _dark: 'gray.700' },
+      blockquoteBg: { _light: 'gray.50', _dark: 'gray.800' },
+      blockquoteText: { _light: 'gray.700', _dark: 'gray.300' },
+      blockquoteCite: { _light: 'gray.500', _dark: 'gray.400' },
     },
   },
 }
