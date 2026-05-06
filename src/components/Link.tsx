@@ -1,7 +1,9 @@
-import { Link as ChakraLink, type LinkProps } from '@chakra-ui/react'
-import NextLink from 'next/link'
+import { Link as ChakraNextLink } from '@chakra-ui/next-js'
+import type { LinkProps } from '@chakra-ui/react'
+
 export const Link: React.FC<LinkProps> = ({ href, ...props }) => {
   if (!href) throw new Error('Link component requires href prop')
+  
   const linkStyes = {
     textDecoration: 'underline',
     w: 'fit-content',
@@ -10,11 +12,11 @@ export const Link: React.FC<LinkProps> = ({ href, ...props }) => {
     },
   }
 
-  const path: string = href
   return (
-    <NextLink href={path} passHref legacyBehavior>
-      {/** biome-ignore lint/suspicious/noExplicitAny: verup**/}
-      <ChakraLink {...(linkStyes as any)} {...props} />
-    </NextLink>
+    <ChakraNextLink 
+      href={href} 
+      {...linkStyes} 
+      {...props} 
+    />
   )
 }

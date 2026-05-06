@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 // Mock components to avoid dependency issues
 jest.mock('../Section', () => ({
@@ -29,23 +29,23 @@ import { Hero } from '../Hero'
 
 describe('Hero', () => {
   it('renders hero section with greeting text', () => {
-    render(<Hero />)
+    const { getByText } = render(<Hero />)
 
-    expect(screen.getByText('Hello,')).toBeInTheDocument()
-    expect(screen.getByText("I'm asynct")).toBeInTheDocument()
+    expect(getByText('Hello,')).toBeInTheDocument()
+    expect(getByText("I'm asynct")).toBeInTheDocument()
   })
 
   it('renders hero avatar', () => {
-    render(<Hero />)
+    const { getByRole } = render(<Hero />)
 
-    const avatar = screen.getByRole('img', { name: 'hero-icon' })
+    const avatar = getByRole('img', { name: 'hero-icon' })
     expect(avatar).toBeInTheDocument()
   })
 
   it('renders waving hand image', () => {
-    render(<Hero />)
+    const { getByAltText } = render(<Hero />)
 
-    const handImage = screen.getByAltText('hand waving')
+    const handImage = getByAltText('hand waving')
     expect(handImage).toBeInTheDocument()
   })
 })

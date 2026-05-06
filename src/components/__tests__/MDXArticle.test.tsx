@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import type { MDXArticleProps } from '@/types/components'
 
 // Mock the MDXArticle component to avoid ESM issues
@@ -14,17 +14,17 @@ describe('MDXArticle', () => {
   it('renders MDX content', () => {
     const content = '# Test Heading\n\nThis is a test paragraph.'
 
-    render(<MDXArticle content={content} />)
+    const { getByTestId, getByText } = render(<MDXArticle content={content} />)
 
-    expect(screen.getByTestId('mdx-content')).toBeInTheDocument()
-    expect(screen.getByText(/Test Heading/)).toBeInTheDocument()
+    expect(getByTestId('mdx-content')).toBeInTheDocument()
+    expect(getByText(/Test Heading/)).toBeInTheDocument()
   })
 
   it('handles empty content', () => {
     const content = ''
 
-    render(<MDXArticle content={content} />)
+    const { getByTestId } = render(<MDXArticle content={content} />)
 
-    expect(screen.getByTestId('mdx-content')).toBeInTheDocument()
+    expect(getByTestId('mdx-content')).toBeInTheDocument()
   })
 })

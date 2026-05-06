@@ -3,10 +3,11 @@ import type { Metadata } from 'next'
 import { BlogCard } from '@/components'
 import { getAllPostTags, getPostMetadataFromTag } from '@/utils'
 
-interface PageProps {
-  params: {
+type PageProps = {
+  params: Promise<{
     tag: string
-  }
+  }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateStaticParams() {
@@ -16,17 +17,19 @@ export async function generateStaticParams() {
   })
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps
+): Promise<Metadata> {
+  const { tag } = await props.params
   return {
-    title: `Posts tagged '${params.tag}'`,
-    description: `Posts tagged '${params.tag}'`,
+    title: `Posts tagged '${tag}'`,
+    description: `Posts tagged '${tag}'`,
   }
 }
 
-export default async function TagPage({ params }: PageProps) {
-  const metadata = getPostMetadataFromTag(params.tag)
+export default async function TagPage(props: PageProps) {
+  const { tag } = await props.params
+  const metadata = getPostMetadataFromTag(tag)
 
   return (
     <>
@@ -38,7 +41,7 @@ export default async function TagPage({ params }: PageProps) {
         pb={[15, null, null, 15]}
         _before={{ content: '"#"', fontWeight: 'bold' }}
       >
-        {params.tag}
+        {tag}
       </Heading>
       <Flex as="section" direction="column">
         {' '}

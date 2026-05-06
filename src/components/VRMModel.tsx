@@ -245,6 +245,8 @@ export const VRMModel = ({ url, animationUrl }: VRMModelProps) => {
 
   useFrame((state, delta) => {
     if (vrmRef.current) {
+      // delta is already provided by useFrame, which is the time since last frame.
+      // state.clock is deprecated in latest Three.js but Fiber provides delta.
       const elapsedTime = state.clock.getElapsedTime()
 
       if (mixerRef.current && animationAction && animationUrl) {
