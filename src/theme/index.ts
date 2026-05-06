@@ -71,7 +71,7 @@ const overrides = {
         paddingRight: '1rem',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        maxWidth: 'container.xl',
+        maxWidth: '48rem',
         minHeight: '100vh',
       },
       pre: {
