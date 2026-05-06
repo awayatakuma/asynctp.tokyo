@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import type { VRMModelProps, VRMViewerProps } from '@/types/components'
 
 // Mock all dependencies
@@ -58,15 +58,15 @@ describe('VRMViewer', () => {
   }
 
   it('renders VRM viewer with canvas', () => {
-    render(<VRMViewer {...mockProps} />)
+    const { getByTestId } = render(<VRMViewer {...mockProps} />)
 
-    expect(screen.getByTestId('canvas')).toBeInTheDocument()
+    expect(getByTestId('canvas')).toBeInTheDocument()
   })
 
   it('renders VRM model with correct props', () => {
-    render(<VRMViewer {...mockProps} />)
+    const { getByTestId } = render(<VRMViewer {...mockProps} />)
 
-    expect(screen.getByTestId('vrm-model')).toBeInTheDocument()
+    expect(getByTestId('vrm-model')).toBeInTheDocument()
   })
 
   it('renders with custom dimensions', () => {
@@ -80,9 +80,9 @@ describe('VRMViewer', () => {
   })
 
   it('renders orbit controls and environment', () => {
-    render(<VRMViewer {...mockProps} />)
+    const { getByTestId } = render(<VRMViewer {...mockProps} />)
 
-    expect(screen.getByTestId('orbit-controls')).toBeInTheDocument()
-    expect(screen.getByTestId('environment')).toBeInTheDocument()
+    expect(getByTestId('orbit-controls')).toBeInTheDocument()
+    expect(getByTestId('environment')).toBeInTheDocument()
   })
 })
