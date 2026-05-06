@@ -96,8 +96,8 @@ export default function Top() {
           md: `calc(100vh - ${LAYOUT.HEADER_HEIGHT} - ${LAYOUT.FOOTER_HEIGHT})`,
         }}
         minH={{ base: 'auto', md: 'auto' }}
-        pt={{ base: 5, md: 0 }}
-        pb={{ base: 10, md: 0 }}
+        pt={0}
+        pb={0}
         overflow={{ base: 'visible', md: 'hidden' }}
       >
         <Container
@@ -136,7 +136,7 @@ export default function Top() {
                 fontWeight="black"
                 color={headingColor}
                 lineHeight="1.1"
-                initial={{ y: 20, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{
                   delay: ANIMATION_DELAYS.HEADING,
