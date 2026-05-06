@@ -13,6 +13,7 @@ export default async function Works() {
   works.sort(
     (a, b) => +new Date(b.metadatum.date) - +new Date(a.metadatum.date)
   )
+
   return (
     <>
       <Heading
