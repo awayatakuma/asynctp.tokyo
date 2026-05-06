@@ -75,12 +75,10 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": [
-      "biome format --write",
-      "biome check --write"
+      "biome check --write --no-errors-on-unmatched"
     ],
     "lib/**/!(linkMetadata).{ts,tsx,js,jsx}": [
-      "biome format --write",
-      "biome check --write"
+      "biome check --write --no-errors-on-unmatched"
     ]
   }
 }
