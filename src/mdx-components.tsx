@@ -11,9 +11,9 @@ export function useMDXComponents(
     // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     p: ({ children }: any) => {
       return (
-        <Text as="p" fontSize="md" lineHeight="150%" mb={{ base: 4 }}>
+        <Box fontSize="md" lineHeight="150%" mb={{ base: 4 }}>
           {children}
-        </Text>
+        </Box>
       )
     },
     // biome-ignore lint/suspicious/noExplicitAny: MDX component props

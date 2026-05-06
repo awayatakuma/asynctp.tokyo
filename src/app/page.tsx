@@ -86,7 +86,7 @@ export default function Top() {
   if (!mounted) return null
 
   return (
-    <Box position="relative">
+    <Box position="relative" overflowX="hidden">
       {/* Hero Section */}
       <Box
         position="relative"
@@ -96,7 +96,7 @@ export default function Top() {
         }}
         minH={{ base: 'auto', md: 'auto' }}
         pt={{ base: 4, md: 0 }}
-        overflow={{ base: 'visible', md: 'hidden' }}
+        overflow="hidden"
       >
         <Container
           maxW="container.xl"

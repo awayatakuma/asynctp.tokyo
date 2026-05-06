@@ -60,6 +60,7 @@ export const StaticLinkCard: React.FC<StaticLinkCardProps> = ({ metadata }) => {
             flex={1}
             justify="space-between"
             minH="100px"
+            minW={0}
           >
             <VStack align="start" spacing={2} flex={1}>
               <Text
@@ -205,11 +206,17 @@ export const FallbackLinkCard: React.FC<{
       >
         <HStack spacing={3} align="center">
           <Icon as={FaGlobe} color={mutedColor} boxSize={5} />
-          <VStack align="start" spacing={1} flex={1}>
-            <Text fontSize="sm" color={accentColor} fontWeight="medium">
+          <VStack align="start" spacing={1} flex={1} minW={0}>
+            <Text
+              fontSize="sm"
+              color={accentColor}
+              fontWeight="medium"
+              noOfLines={1}
+              wordBreak="break-all"
+            >
               {fallbackText || url}
             </Text>
-            <Text fontSize="xs" color={mutedColor}>
+            <Text fontSize="xs" color={mutedColor} noOfLines={1}>
               {(() => {
                 try {
                   return new URL(url).hostname
