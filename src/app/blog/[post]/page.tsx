@@ -12,15 +12,15 @@ import {
 } from '@/constants'
 import { getPost } from '@/utils'
 
-interface PageProps {
+type PageProps = {
   params: {
     post: string
   }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const params = props.params
   const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, `${params.post}.mdx`)
 
   if (!fs.existsSync(fullpath)) {
@@ -61,11 +61,8 @@ export async function generateStaticParams() {
     })
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: { post: string }
-}) {
+export default async function PostPage(props: PageProps) {
+  const params = props.params
   const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, `${params.post}.mdx`)
 
   if (!fs.existsSync(fullpath)) {

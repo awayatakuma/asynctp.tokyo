@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import type { NavLink } from '@/types'
 
 // Mock components and constants
@@ -36,23 +36,23 @@ import { Header } from '../Header'
 
 describe('Header', () => {
   it('renders header with site name', () => {
-    render(<Header />)
+    const { getByText } = render(<Header />)
 
-    expect(screen.getByText('asynctp')).toBeInTheDocument()
+    expect(getByText('asynctp')).toBeInTheDocument()
   })
 
   it('renders navigation links', () => {
-    render(<Header />)
+    const { getByText } = render(<Header />)
 
-    expect(screen.getByText('About')).toBeInTheDocument()
-    expect(screen.getByText('Blog')).toBeInTheDocument()
-    expect(screen.getByText('Works')).toBeInTheDocument()
+    expect(getByText('About')).toBeInTheDocument()
+    expect(getByText('Blog')).toBeInTheDocument()
+    expect(getByText('Works')).toBeInTheDocument()
   })
 
   it('renders as header element', () => {
-    render(<Header />)
+    const { getByRole } = render(<Header />)
 
-    const header = screen.getByRole('banner')
+    const header = getByRole('banner')
     expect(header).toBeInTheDocument()
   })
 })

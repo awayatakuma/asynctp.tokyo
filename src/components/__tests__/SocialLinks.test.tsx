@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 // Mock the entire SocialLinks component to avoid import issues
 jest.mock('../SocialLinks', () => ({
@@ -14,21 +14,23 @@ import { SocialLinks } from '../SocialLinks'
 
 describe('SocialLinks', () => {
   it('renders social links component', () => {
-    render(<SocialLinks />)
+    const { getByText } = render(<SocialLinks />)
 
-    expect(screen.getByText('GitHub')).toBeInTheDocument()
+    expect(getByText('GitHub')).toBeInTheDocument()
   })
 
   it('renders social link icons', () => {
-    render(<SocialLinks />)
+    const { getByTestId } = render(<SocialLinks />)
 
-    expect(screen.getByTestId('github-icon')).toBeInTheDocument()
+    expect(getByTestId('github-icon')).toBeInTheDocument()
   })
 
   it('accepts additional props', () => {
-    render(<SocialLinks data-testid="social-links-component" />)
+    const { getByTestId } = render(
+      <SocialLinks data-testid="social-links-component" />
+    )
 
-    const socialLinks = screen.getByTestId('social-links-component')
+    const socialLinks = getByTestId('social-links-component')
     expect(socialLinks).toBeInTheDocument()
   })
 })

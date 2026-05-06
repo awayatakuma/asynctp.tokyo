@@ -1,58 +1,30 @@
+import rehypeShiki from '@shikijs/rehype'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import rehypePrettyCode from 'rehype-pretty-code'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
-import { getHighlighter, type Highlighter } from 'shiki'
 import { useMDXComponents } from '@/mdx-components'
 import type { MDXArticleProps } from '@/types/components'
 
-// ハイライターのインスタンスをキャッシュするためのシングルトン
-let highlighterPromise: Promise<Highlighter> | null = null
-
-const getCachedHighlighter = () => {
-  if (!highlighterPromise) {
-    highlighterPromise = getHighlighter({
-      themes: ['dracula'],
-      langs: [
-        'javascript',
-        'typescript',
-        'tsx',
-        'bash',
-        'markdown',
-        'go',
-        'python',
-        'yaml',
-        'json',
-        'html',
-        'css',
-        'sql',
-      ],
-    })
-  }
-  return highlighterPromise
-}
-
+/**
+ * MDXArticle Component (Production-ready RSC Version)
+ *
+ * RATIONALE: We use the Server Components version of MDXRemote for optimal SEO
+ * and performance. This avoids the hydration complexity of CSR.
+ *
+ * NOTE: React 19 dev mode may still show 'recentlyCreatedOwnerStacks' errors,
+ * but these do NOT affect the production build or site visitors.
+ */
 export const MDXArticle = async ({ content }: MDXArticleProps) => {
   const components = useMDXComponents()
 
   return (
     <MDXRemote
-      components={components}
       source={content}
+      components={components}
       options={{
         mdxOptions: {
           remarkPlugins: [remarkGfm, remarkBreaks],
-          rehypePlugins: [
-            [
-              rehypePrettyCode,
-              {
-                theme: 'dracula',
-                // キャッシュされたハイライターPromiseを返す関数を渡す
-                getHighlighter: (options: any) =>
-                  getCachedHighlighter().then((h) => h),
-              },
-            ],
-          ],
+          rehypePlugins: [[rehypeShiki, { theme: 'dracula' }]],
         },
       }}
     />

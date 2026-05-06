@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 // Mock the SocialLinks component
 jest.mock('../SocialLinks', () => ({
@@ -19,21 +19,21 @@ import { Footer } from '../Footer'
 
 describe('Footer', () => {
   it('renders footer with copyright text', () => {
-    render(<Footer />)
+    const { getByText } = render(<Footer />)
 
-    expect(screen.getByText('©asynctp')).toBeInTheDocument()
+    expect(getByText('©asynctp')).toBeInTheDocument()
   })
 
   it('renders footer as footer element', () => {
-    render(<Footer />)
+    const { getByRole } = render(<Footer />)
 
-    const footer = screen.getByRole('contentinfo')
+    const footer = getByRole('contentinfo')
     expect(footer).toBeInTheDocument()
   })
 
   it('renders SocialLinks component', () => {
-    render(<Footer />)
+    const { getByTestId } = render(<Footer />)
 
-    expect(screen.getByTestId('social-links')).toBeInTheDocument()
+    expect(getByTestId('social-links')).toBeInTheDocument()
   })
 })

@@ -86,16 +86,18 @@ export default function Top() {
   if (!mounted) return null
 
   return (
-    <Box position="relative">
+    <Box position="relative" overflowX="hidden" w="100%">
       {/* Hero Section */}
       <Box
+        as="section"
         position="relative"
         h={{
           base: 'auto',
           md: `calc(100vh - ${LAYOUT.HEADER_HEIGHT} - ${LAYOUT.FOOTER_HEIGHT})`,
         }}
         minH={{ base: 'auto', md: 'auto' }}
-        pt={{ base: 4, md: 0 }}
+        pt={0}
+        pb={0}
         overflow={{ base: 'visible', md: 'hidden' }}
       >
         <Container
@@ -114,9 +116,9 @@ export default function Top() {
             direction={{ base: 'column', lg: 'row' }}
             align="center"
             justify={{ base: 'center', lg: 'space-between' }}
-            h="100%"
+            h={{ base: 'auto', md: '100%' }}
             py={0}
-            gap={{ base: 4, lg: 6 }}
+            gap={{ base: 8, lg: 6 }}
           >
             {/* Left Side - Hero Content */}
             <VStack
@@ -134,7 +136,7 @@ export default function Top() {
                 fontWeight="black"
                 color={headingColor}
                 lineHeight="1.1"
-                initial={{ y: 50, opacity: 0 }}
+                initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{
                   delay: ANIMATION_DELAYS.HEADING,
@@ -164,13 +166,13 @@ export default function Top() {
                       width: 0,
                       overflowX: 'visible',
                       color: accentColor,
-                      sx: {
-                        '@keyframes blink-cursor': {
-                          'from, to': { opacity: 0 },
-                          '50%': { opacity: 1 },
-                        },
-                      },
                       animation: `blink-cursor 1.5s step-end infinite`,
+                    }}
+                    sx={{
+                      '@keyframes blink-cursor': {
+                        'from, to': { opacity: 0 },
+                        '50%': { opacity: 1 },
+                      },
                     }}
                   >
                     asynct
