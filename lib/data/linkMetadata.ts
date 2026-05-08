@@ -118,5 +118,77 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "siteName": "Claude API Docs",
     "favicon": "https://docs.anthropic.com/favicon.ico",
     "fetchedAt": "2026-05-04T23:09:09.240Z"
+  },
+  "https://github.com/awayatakuma/sabidb/commit/edf3d64": {
+    "url": "https://github.com/awayatakuma/sabidb/commit/edf3d64",
+    "title": "docs: add gratitude to SamehadaDB author in roadmap · awayatakuma/sabidb@edf3d64",
+    "description": "Contribute to awayatakuma/sabidb development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/a671ff55d4eaecdcd7cfa02b672d0e6940c8124e27259f0d30584489cc545be1/awayatakuma/sabidb/commit/edf3d64dd791f38444954e9d9fb0380a4d9a1b5f",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-08T16:01:35.412Z"
+  },
+  "https://github.com/awayatakuma/sabidb/commit/362cdff": {
+    "url": "https://github.com/awayatakuma/sabidb/commit/362cdff",
+    "title": "docs: enhance README with badges, emojis, and visual restructuring · awayatakuma/sabidb@362cdff",
+    "description": "Contribute to awayatakuma/sabidb development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/6c41d4f198ccde401106fe9d4ede08b73ff58fd92cf3e3decc7e36663807e04f/awayatakuma/sabidb/commit/362cdff136590d6a3410cfa1049c038950b39175",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-08T16:01:35.525Z"
+  },
+  "https://www.postgresql.org/docs/current/explicit-locking.html": {
+    "url": "https://www.postgresql.org/docs/current/explicit-locking.html",
+    "title": "13.3. Explicit Locking",
+    "description": "13.3.&nbsp;Explicit Locking # 13.3.1. Table-Level Locks 13.3.2. Row-Level Locks 13.3.3. Page-Level Locks 13.3.4. Deadlocks 13.3.5. Advisory Locks PostgreSQL provides various …",
+    "image": "https://www.postgresql.org/media/img/about/press/elephant.png",
+    "siteName": "PostgreSQL Documentation",
+    "favicon": "https://www.postgresql.org/favicon.ico",
+    "fetchedAt": "2026-05-08T16:01:35.823Z"
+  },
+  "https://github.com/storybookjs/storybook/issues/32095": {
+    "url": "https://github.com/storybookjs/storybook/issues/32095",
+    "title": "[Bug]: Error on manager-bundles when upgraded to React 19 · Issue #32095 · storybookjs/storybook",
+    "description": "Describe the bug On Storybook 9, React 18 my project runs great. But when upgrading to React 19, a few of my custom addons no longer show up. This error shows up in the console when running locally...",
+    "image": "https://opengraph.githubassets.com/ef958302de726d4910293b42071715578e9bbcddf11482c915df4c6532139357/storybookjs/storybook/issues/32095",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-08T16:01:36.083Z"
+  },
+  "https://scrapbox.io/awayatakuma-biz-notes/": {
+    "url": "https://scrapbox.io/awayatakuma-biz-notes/",
+    "title": "asynctp-biz-notes",
+    "description": "なぜ、あなたの仕事は終わらないのか スピードは最強の武器である / 読みたいことを、書けばいい。 人生が変わるシンプルな文章術 / 【新版】日本語の作文技術 / 科学哲学への招待 / 野家 啓一 / dotfiles / 改訂新版 内部構造から学ぶPostgreSQL 設計・運用計画の鉄則 / Explain EXPLAIN EXPLAINを使ったPostgreSQLのクエリ最適化の基本と実践 /",
+    "image": "https://scrapbox.io/files/6829921270c35dee1936f672.png?type=thumbnail",
+    "siteName": "asynctp-biz-notes",
+    "favicon": "https://scrapbox.io/assets/img/favicon/favicon.ico",
+    "fetchedAt": "2026-05-08T16:19:04.043Z"
+  },
+  "https://scrapbox.io/asynctp-favs/": {
+    "url": "https://scrapbox.io/asynctp-favs/",
+    "title": "asynctp-favs",
+    "description": "asynctp / BLUE GIANT / 石塚真一 / バンダラ ランカ （BANDARA LANKA） / ハイパーインフレーション / 住吉九 / Mani Mani / 電音部 / 天 天和通りの快男児 / 福本伸行 / 衛府の七忍 / 山口貴由 / Biryani Tokyo / 蜜柑 / 芥川 竜之介 / ロビンズインドキッチン / 三燈舎 （SANTOSHAM） / ULTRAPA",
+    "image": "https://scrapbox.io/files/664992fd670e1e001c3909e2.png?type=thumbnail",
+    "siteName": "asynctp-favs",
+    "favicon": "https://scrapbox.io/assets/img/favicon/favicon.ico",
+    "fetchedAt": "2026-05-08T16:19:04.133Z"
+  },
+  "https://note.com/asynctp/": {
+    "url": "https://note.com/asynctp/",
+    "title": "asynctp｜note",
+    "description": "文系エンジニア。来世は宝石商か調香師になりたいです。\n発言は個人の見解に基づくものであり、所属組織を代表するものではありません。",
+    "image": "https://assets.st-note.com/production/uploads/images/196331089/profile_c70b7343a5b64f6ae2e23a149f15f74a.png?fit=bounds&format=jpeg&quality=85&width=330",
+    "siteName": "note（ノート）",
+    "favicon": "https://assets.st-note.com/poc-image/manual/note-common-images/production/svg/production.ico",
+    "fetchedAt": "2026-05-08T16:19:04.263Z"
+  },
+  "https://github.com/awayatakuma/sabidb/commit/4582a5b": {
+    "url": "https://github.com/awayatakuma/sabidb/commit/4582a5b",
+    "title": "feat: implement SQL IN operator and update roadmap · awayatakuma/sabidb@4582a5b",
+    "description": "Contribute to awayatakuma/sabidb development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/cebaa701756456a825a21e5db6eb255b0efc3571a7fe320c5bf1af9f677960a9/awayatakuma/sabidb/commit/4582a5bbe8d7cee56377bef916e32555aec80d8c",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-08T16:19:04.644Z"
   }
 }
