@@ -151,5 +151,41 @@
     "siteName": "GitHub",
     "favicon": "https://github.githubassets.com/favicons/favicon.svg",
     "fetchedAt": "2026-05-08T16:01:36.083Z"
+  },
+  "https://scrapbox.io/awayatakuma-biz-notes/": {
+    "url": "https://scrapbox.io/awayatakuma-biz-notes/",
+    "title": "asynctp-biz-notes",
+    "description": "なぜ、あなたの仕事は終わらないのか スピードは最強の武器である / 読みたいことを、書けばいい。 人生が変わるシンプルな文章術 / 【新版】日本語の作文技術 / 科学哲学への招待 / 野家 啓一 / dotfiles / 改訂新版 内部構造から学ぶPostgreSQL 設計・運用計画の鉄則 / Explain EXPLAIN EXPLAINを使ったPostgreSQLのクエリ最適化の基本と実践 /",
+    "image": "https://scrapbox.io/files/6829921270c35dee1936f672.png?type=thumbnail",
+    "siteName": "asynctp-biz-notes",
+    "favicon": "https://scrapbox.io/assets/img/favicon/favicon.ico",
+    "fetchedAt": "2026-05-08T16:19:04.043Z"
+  },
+  "https://scrapbox.io/asynctp-favs/": {
+    "url": "https://scrapbox.io/asynctp-favs/",
+    "title": "asynctp-favs",
+    "description": "asynctp / BLUE GIANT / 石塚真一 / バンダラ ランカ （BANDARA LANKA） / ハイパーインフレーション / 住吉九 / Mani Mani / 電音部 / 天 天和通りの快男児 / 福本伸行 / 衛府の七忍 / 山口貴由 / Biryani Tokyo / 蜜柑 / 芥川 竜之介 / ロビンズインドキッチン / 三燈舎 （SANTOSHAM） / ULTRAPA",
+    "image": "https://scrapbox.io/files/664992fd670e1e001c3909e2.png?type=thumbnail",
+    "siteName": "asynctp-favs",
+    "favicon": "https://scrapbox.io/assets/img/favicon/favicon.ico",
+    "fetchedAt": "2026-05-08T16:19:04.133Z"
+  },
+  "https://note.com/asynctp/": {
+    "url": "https://note.com/asynctp/",
+    "title": "asynctp｜note",
+    "description": "文系エンジニア。来世は宝石商か調香師になりたいです。\n発言は個人の見解に基づくものであり、所属組織を代表するものではありません。",
+    "image": "https://assets.st-note.com/production/uploads/images/196331089/profile_c70b7343a5b64f6ae2e23a149f15f74a.png?fit=bounds&format=jpeg&quality=85&width=330",
+    "siteName": "note（ノート）",
+    "favicon": "https://assets.st-note.com/poc-image/manual/note-common-images/production/svg/production.ico",
+    "fetchedAt": "2026-05-08T16:19:04.263Z"
+  },
+  "https://github.com/awayatakuma/sabidb/commit/4582a5b": {
+    "url": "https://github.com/awayatakuma/sabidb/commit/4582a5b",
+    "title": "feat: implement SQL IN operator and update roadmap · awayatakuma/sabidb@4582a5b",
+    "description": "Contribute to awayatakuma/sabidb development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/cebaa701756456a825a21e5db6eb255b0efc3571a7fe320c5bf1af9f677960a9/awayatakuma/sabidb/commit/4582a5bbe8d7cee56377bef916e32555aec80d8c",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-08T16:19:04.644Z"
   }
 }
