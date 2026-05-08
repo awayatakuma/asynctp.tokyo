@@ -115,5 +115,41 @@
     "siteName": "Claude API Docs",
     "favicon": "https://docs.anthropic.com/favicon.ico",
     "fetchedAt": "2026-05-04T23:09:09.240Z"
+  },
+  "https://github.com/awayatakuma/sabidb/commit/edf3d64": {
+    "url": "https://github.com/awayatakuma/sabidb/commit/edf3d64",
+    "title": "docs: add gratitude to SamehadaDB author in roadmap · awayatakuma/sabidb@edf3d64",
+    "description": "Contribute to awayatakuma/sabidb development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/a671ff55d4eaecdcd7cfa02b672d0e6940c8124e27259f0d30584489cc545be1/awayatakuma/sabidb/commit/edf3d64dd791f38444954e9d9fb0380a4d9a1b5f",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-08T16:01:35.412Z"
+  },
+  "https://github.com/awayatakuma/sabidb/commit/362cdff": {
+    "url": "https://github.com/awayatakuma/sabidb/commit/362cdff",
+    "title": "docs: enhance README with badges, emojis, and visual restructuring · awayatakuma/sabidb@362cdff",
+    "description": "Contribute to awayatakuma/sabidb development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/6c41d4f198ccde401106fe9d4ede08b73ff58fd92cf3e3decc7e36663807e04f/awayatakuma/sabidb/commit/362cdff136590d6a3410cfa1049c038950b39175",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-08T16:01:35.525Z"
+  },
+  "https://www.postgresql.org/docs/current/explicit-locking.html": {
+    "url": "https://www.postgresql.org/docs/current/explicit-locking.html",
+    "title": "13.3. Explicit Locking",
+    "description": "13.3.&nbsp;Explicit Locking # 13.3.1. Table-Level Locks 13.3.2. Row-Level Locks 13.3.3. Page-Level Locks 13.3.4. Deadlocks 13.3.5. Advisory Locks PostgreSQL provides various …",
+    "image": "https://www.postgresql.org/media/img/about/press/elephant.png",
+    "siteName": "PostgreSQL Documentation",
+    "favicon": "https://www.postgresql.org/favicon.ico",
+    "fetchedAt": "2026-05-08T16:01:35.823Z"
+  },
+  "https://github.com/storybookjs/storybook/issues/32095": {
+    "url": "https://github.com/storybookjs/storybook/issues/32095",
+    "title": "[Bug]: Error on manager-bundles when upgraded to React 19 · Issue #32095 · storybookjs/storybook",
+    "description": "Describe the bug On Storybook 9, React 18 my project runs great. But when upgrading to React 19, a few of my custom addons no longer show up. This error shows up in the console when running locally...",
+    "image": "https://opengraph.githubassets.com/ef958302de726d4910293b42071715578e9bbcddf11482c915df4c6532139357/storybookjs/storybook/issues/32095",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-05-08T16:01:36.083Z"
   }
 }
