@@ -63,6 +63,12 @@ export async function generateStaticParams() {
 
 export default async function PostPage(props: PageProps) {
   const params = props.params
+
+  // パストラバーサル対策: 英数字、ハイフン、アンダースコア以外が含まれる場合は404
+  if (!/^[a-zA-Z0-9-_]+$/.test(params.post)) {
+    notFound()
+  }
+
   const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, `${params.post}.mdx`)
 
   if (!fs.existsSync(fullpath)) {
