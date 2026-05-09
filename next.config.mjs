@@ -55,7 +55,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' blob: data: https: https://raw.githack.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: https://www.google-analytics.com https://stats.g.doubleclick.net https://raw.githack.com; frame-src 'self' https://www.youtube.com https://platform.twitter.com; worker-src 'self' blob:; object-src 'none';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' blob: data: https: https://raw.githack.com https://raw.githubusercontent.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: https://www.google-analytics.com https://stats.g.doubleclick.net https://raw.githack.com https://raw.githubusercontent.com; frame-src 'self' https://www.youtube.com https://platform.twitter.com; worker-src 'self' blob:; object-src 'none';",
           },
         ],
       },
