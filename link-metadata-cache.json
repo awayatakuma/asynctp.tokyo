@@ -187,5 +187,14 @@
     "siteName": "GitHub",
     "favicon": "https://github.githubassets.com/favicons/favicon.svg",
     "fetchedAt": "2026-05-08T16:19:04.644Z"
+  },
+  "https://b.hatena.ne.jp/asynctp/bookmark": {
+    "url": "https://b.hatena.ne.jp/asynctp/bookmark",
+    "title": "asynctpのブックマーク - はてなブックマーク",
+    "description": "No Description",
+    "image": "",
+    "siteName": "b.hatena.ne.jp",
+    "favicon": "https://b.hatena.ne.jp/favicon.ico",
+    "fetchedAt": "2026-05-09T06:23:34.066Z"
   }
 }
