@@ -1,4 +1,17 @@
-import { Box, Code, Divider, Heading, Image } from '@chakra-ui/react'
+import {
+  Box,
+  Code,
+  Divider,
+  Heading,
+  Image,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react'
 import type { MDXComponents } from 'mdx/types'
 import { AmazonCard, StaticLinkCardWrapper } from './components'
 
@@ -118,6 +131,33 @@ export function useMDXComponents(
         return <code>{children}</code>
       }
     },
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
+    table: ({ children }: any) => (
+      <TableContainer
+        my={6}
+        border="1px"
+        borderColor="gray.200"
+        borderRadius="md"
+      >
+        <Table variant="simple" size="sm">
+          {children}
+        </Table>
+      </TableContainer>
+    ),
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
+    thead: ({ children }: any) => <Thead bg="gray.50">{children}</Thead>,
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
+    tbody: ({ children }: any) => <Tbody>{children}</Tbody>,
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
+    tr: ({ children }: any) => <Tr>{children}</Tr>,
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
+    th: ({ children }: any) => (
+      <Th color="header" fontWeight="bold" textTransform="none">
+        {children}
+      </Th>
+    ),
+    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
+    td: ({ children }: any) => <Td>{children}</Td>,
 
     ...components,
   }
