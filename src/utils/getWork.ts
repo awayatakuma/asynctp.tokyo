@@ -5,6 +5,7 @@ import { formatDate } from './formatDate'
 import { getFilename } from './getFilename'
 import { getMarkdownContent } from './getMarkdownContent'
 
+// biome-ignore lint/suspicious/noExplicitAny: generic function wrapper
 const cachePolyfill = <T extends (...args: any[]) => any>(fn: T): T => {
   if (typeof cache === 'function') {
     return cache(fn)

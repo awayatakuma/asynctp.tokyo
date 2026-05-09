@@ -107,7 +107,6 @@ export function useMDXComponents(
     img: (img: any) => {
       return <Image display="block" mx="auto" src={img.src} alt={img.alt} />
     },
-    // biome-ignore lint/suspicious/noExplicitAny: MDX component props
     hr: () => {
       return <Divider my={6} />
     },
