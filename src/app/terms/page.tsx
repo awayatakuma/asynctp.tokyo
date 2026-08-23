@@ -1,4 +1,4 @@
-import { MDXArticle } from '@/components'
+import { MDXArticle } from '@/components/MDXArticle'
 import { TERMS_CONTENTS_PATH } from '@/constants'
 import { getMarkdownContent } from '@/utils'
 

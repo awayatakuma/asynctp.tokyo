@@ -1,5 +1,5 @@
 import { Avatar, Flex, Image, Text } from '@chakra-ui/react'
-import { Section } from '@/components'
+import { Section } from '@/components/Section'
 import { HERO_ICON } from '@/constants'
 import type { HeroProps } from '@/types/components'
 export const Hero: React.FC<HeroProps> = ({ ...props }) => (

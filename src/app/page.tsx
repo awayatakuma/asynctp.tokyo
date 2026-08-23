@@ -19,7 +19,10 @@ import { useEffect, useState } from 'react'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 
 const VRMViewer = dynamic(
-  () => import('@/components').then((mod) => ({ default: mod.VRMViewer })),
+  () =>
+    import('@/components/VRMViewer').then((mod) => ({
+      default: mod.VRMViewer,
+    })),
   {
     ssr: false,
     loading: () => (

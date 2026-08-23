@@ -1,7 +1,8 @@
 import { Box } from '@chakra-ui/react'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import type { Metadata } from 'next'
-import { Footer, Header } from '@/components'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
 import {
   AUTHOR,
   DESCRIPTION,
