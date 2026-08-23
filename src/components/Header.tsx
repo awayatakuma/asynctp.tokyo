@@ -13,7 +13,7 @@ import {
 import { motion } from 'framer-motion'
 import { useCallback, useEffect, useState } from 'react'
 import { FaMoon, FaSun } from 'react-icons/fa'
-import { Link } from '@/components'
+import { Link } from '@/components/Link'
 import { HOME_PATH, NAV_LINKS, SITE_NAME } from '@/constants'
 
 const MotionFlex = motion.create(Flex)

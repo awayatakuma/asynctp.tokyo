@@ -13,7 +13,8 @@ import {
   Tr,
 } from '@chakra-ui/react'
 import type { MDXComponents } from 'mdx/types'
-import { AmazonCard, StaticLinkCardWrapper } from './components'
+import { AmazonCard } from './components/StaticLinkCard'
+import { StaticLinkCardWrapper } from './components/StaticLinkCardWrapper'
 
 export function useMDXComponents(
   components: MDXComponents = {}

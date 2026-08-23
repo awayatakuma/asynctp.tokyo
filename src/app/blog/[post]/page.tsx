@@ -2,7 +2,8 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { MDXArticle, MDXFrontmatter } from '@/components'
+import { MDXArticle } from '@/components/MDXArticle'
+import { MDXFrontmatter } from '@/components/MDXFrontmatter'
 import {
   BLOG_CONTENTS_DIR_PATH,
   OG_IMAGE_PATH,
@@ -13,14 +14,14 @@ import {
 import { getPost } from '@/utils'
 
 type PageProps = {
-  params: {
+  params: Promise<{
     post: string
-  }
-  searchParams: { [key: string]: string | string[] | undefined }
+  }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
-  const params = props.params
+  const params = await props.params
   const fullpath = path.join(BLOG_CONTENTS_DIR_PATH, `${params.post}.mdx`)
 
   if (!fs.existsSync(fullpath)) {
@@ -62,7 +63,7 @@ export async function generateStaticParams() {
 }
 
 export default async function PostPage(props: PageProps) {
-  const params = props.params
+  const params = await props.params
 
   // パストラバーサル対策: 英数字、ハイフン、アンダースコア以外が含まれる場合は404
   if (!/^[a-zA-Z0-9-_]+$/.test(params.post)) {

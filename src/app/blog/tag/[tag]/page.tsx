@@ -1,13 +1,13 @@
 import { Flex, Heading } from '@chakra-ui/react'
 import type { Metadata } from 'next'
-import { BlogCard } from '@/components'
+import { BlogCard } from '@/components/BlogCard'
 import { getAllPostTags, getPostMetadataFromTag } from '@/utils'
 
 type PageProps = {
-  params: {
+  params: Promise<{
     tag: string
-  }
-  searchParams: { [key: string]: string | string[] | undefined }
+  }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateStaticParams() {
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
-  const params = props.params
+  const params = await props.params
   return {
     title: `Posts tagged '${params.tag}'`,
     description: `Posts tagged '${params.tag}'`,
@@ -26,7 +26,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 }
 
 export default async function TagPage(props: PageProps) {
-  const params = props.params
+  const params = await props.params
   const metadata = getPostMetadataFromTag(params.tag)
 
   return (

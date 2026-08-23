@@ -1,6 +1,6 @@
-import { Flex, Link, Spacer, Text } from '@chakra-ui/react'
-import NextLink from 'next/link'
-import { SocialLinks } from '@/components'
+import { Link } from '@chakra-ui/next-js'
+import { Flex, Spacer, Text } from '@chakra-ui/react'
+import { SocialLinks } from '@/components/SocialLinks'
 
 export const Footer: React.FC = () => (
   <Flex
@@ -25,12 +25,7 @@ export const Footer: React.FC = () => (
         <Text as="span" fontSize="sm">
           ©asynctp
         </Text>
-        <Link
-          as={NextLink}
-          href="/terms"
-          fontSize="sm"
-          _hover={{ color: 'gray.800' }}
-        >
+        <Link href="/terms" fontSize="sm" _hover={{ color: 'gray.800' }}>
           Terms
         </Link>
       </Flex>

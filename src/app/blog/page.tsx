@@ -1,6 +1,6 @@
 import { Flex, Heading } from '@chakra-ui/react'
 import type { Metadata } from 'next'
-import { BlogCard } from '@/components'
+import { BlogCard } from '@/components/BlogCard'
 import { getAllPosts } from '@/utils'
 
 export const metadata: Metadata = {
