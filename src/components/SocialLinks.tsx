@@ -1,6 +1,6 @@
 import type { FlexProps } from '@chakra-ui/react'
 import { Box, Flex, Text } from '@chakra-ui/react'
-import { Link } from '@/components'
+import { Link } from '@/components/Link'
 import { SOCIAL_LINKS } from '@/constants'
 
 export const SocialLinks: React.FC<FlexProps> = (props) => (

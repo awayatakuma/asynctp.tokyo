@@ -8,8 +8,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
   experimental: {
     optimizePackageImports: [
-      'shiki', 
-      'next-mdx-remote/rsc',
+      'shiki',
       '@chakra-ui/react',
       'framer-motion',
       'react-icons/fa',
@@ -18,15 +17,6 @@ const nextConfig = {
       '@react-three/fiber',
       '@react-three/drei'
     ],
-  },
-  webpack(config) {
-    // Three.js最適化設定
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'three/examples/jsm': 'three/examples/jsm',
-    }
-
-    return config
   },
   async headers() {
     return [

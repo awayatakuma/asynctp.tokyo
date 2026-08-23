@@ -1,6 +1,6 @@
 import { Heading } from '@chakra-ui/react'
 import type { Metadata } from 'next'
-import { MDXArticle } from '@/components'
+import { MDXArticle } from '@/components/MDXArticle'
 import { getAllWorks } from '@/utils/getAllWorks'
 
 export const metadata: Metadata = {
