@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, ColorModeScript } from '@chakra-ui/react'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import type { Metadata } from 'next'
 import { Footer } from '@/components/Footer'
@@ -14,6 +14,10 @@ import {
   SITE_TITLE,
   TWITTER_HANDLE,
 } from '@/constants'
+// Imported from the module itself rather than through '@/theme', whose index
+// calls extendTheme() at module scope — a client-only call that a Server
+// Component cannot make.
+import { config } from '@/theme/config'
 import { Providers } from './providers'
 
 export const metadata: Metadata = {
@@ -59,6 +63,13 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
+        {/*
+          Applies the stored or system colour mode before the first paint.
+          Without it the prerendered HTML is painted in light mode and Chakra
+          only switches to dark once React has hydrated, which the 200ms
+          background transition in the theme turns into a visible flash.
+        */}
+        <ColorModeScript initialColorMode={config.initialColorMode} />
         <Providers>
           <Header />
           <Box as="main" pt={{ base: 20, md: 20 }}>
