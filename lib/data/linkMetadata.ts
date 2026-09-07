@@ -9,7 +9,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://h8dxkfmaphn8o0p3.public.blob.vercel-storage.com/nextjs/twitter-card.png",
     "siteName": "@vercel",
     "favicon": "https://nextjs.org/favicon.ico?favicon.38folom4sz_yx.ico",
-    "fetchedAt": "2026-08-23T08:59:06.346Z"
+    "fetchedAt": "2026-09-07T14:42:33.628Z"
   },
   "https://docs.aws.amazon.com/streams/latest/dev/kcl2-standard-consumer-python-example.html": {
     "url": "https://docs.aws.amazon.com/streams/latest/dev/kcl2-standard-consumer-python-example.html",
@@ -18,7 +18,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "",
     "siteName": "docs.aws.amazon.com",
     "favicon": "https://docs.aws.amazon.com/assets/images/favicon.ico",
-    "fetchedAt": "2026-08-23T08:59:06.403Z"
+    "fetchedAt": "2026-09-07T14:42:34.037Z"
   },
   "https://mdxjs.com/docs/troubleshooting-mdx": {
     "url": "https://mdxjs.com/docs/troubleshooting-mdx",
@@ -27,7 +27,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://mdxjs.com/docs/troubleshooting-mdx/index.png",
     "siteName": "MDX",
     "favicon": "https://mdxjs.com/favicon.ico",
-    "fetchedAt": "2026-08-23T08:59:06.802Z"
+    "fetchedAt": "2026-09-07T14:42:34.110Z"
   },
   "https://github.com/awayatakuma/message-queue-go-linkage": {
     "url": "https://github.com/awayatakuma/message-queue-go-linkage",
@@ -36,16 +36,16 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://opengraph.githubassets.com/8c3a96e02f03a2596278041cee3e049436376cbd0045e05b56f4e70936a8c8a5/awayatakuma/message-queue-go-linkage",
     "siteName": "GitHub",
     "favicon": "https://github.githubassets.com/favicons/favicon.svg",
-    "fetchedAt": "2026-08-23T08:59:06.993Z"
+    "fetchedAt": "2026-09-07T14:42:34.604Z"
   },
   "https://github.com/awayatakuma/asynctp.tokyo": {
     "url": "https://github.com/awayatakuma/asynctp.tokyo",
     "title": "GitHub - awayatakuma/asynctp.tokyo",
     "description": "Contribute to awayatakuma/asynctp.tokyo development by creating an account on GitHub.",
-    "image": "https://opengraph.githubassets.com/a830b07de915f78594357c22e61f5032ecae8bac23befb2007706b5e3fc80220/awayatakuma/asynctp.tokyo",
+    "image": "https://opengraph.githubassets.com/83d0832b7d8336a5156f8dd653d37cc28933ae5c033f47fb47fc45812b7a335f/awayatakuma/asynctp.tokyo",
     "siteName": "GitHub",
     "favicon": "https://github.githubassets.com/favicons/favicon.svg",
-    "fetchedAt": "2026-08-23T08:59:06.916Z"
+    "fetchedAt": "2026-09-07T14:42:34.255Z"
   },
   "https://github.com/awayatakuma/sabidb": {
     "url": "https://github.com/awayatakuma/sabidb",
@@ -54,7 +54,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://opengraph.githubassets.com/8e51865eb60587d774a64fe3db175a5b389fa137d2689bc147b0962b4757c53f/awayatakuma/sabidb",
     "siteName": "GitHub",
     "favicon": "https://github.githubassets.com/favicons/favicon.svg",
-    "fetchedAt": "2026-08-23T08:59:06.941Z"
+    "fetchedAt": "2026-09-07T14:42:34.285Z"
   },
   "https://github.com/awayatakuma/cdk-sqs-kinesis-performance-check": {
     "url": "https://github.com/awayatakuma/cdk-sqs-kinesis-performance-check",
@@ -63,16 +63,16 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://opengraph.githubassets.com/3335ed57f4f1e723fd931928e2f239397b5f3d291329d3ea1ba034fe3838204d/awayatakuma/cdk-sqs-kinesis-performance-check",
     "siteName": "GitHub",
     "favicon": "https://github.githubassets.com/favicons/favicon.svg",
-    "fetchedAt": "2026-08-23T08:59:06.931Z"
+    "fetchedAt": "2026-09-07T14:42:34.585Z"
   },
   "https://github.com/hashicorp/next-mdx-remote": {
     "url": "https://github.com/hashicorp/next-mdx-remote",
     "title": "GitHub - hashicorp/next-mdx-remote: Load MDX content from anywhere",
     "description": "Load MDX content from anywhere. Contribute to hashicorp/next-mdx-remote development by creating an account on GitHub.",
-    "image": "https://opengraph.githubassets.com/c0afd18a76ecce29296f4e8980de53111e1d0e3f7e2625bc1ac107788122861e/hashicorp/next-mdx-remote",
+    "image": "https://opengraph.githubassets.com/835855fdbfd740e508907d24328ce0a86b0de748b604717511976885f1e5da29/hashicorp/next-mdx-remote",
     "siteName": "GitHub",
     "favicon": "https://github.githubassets.com/favicons/favicon.svg",
-    "fetchedAt": "2026-08-23T08:59:07.342Z"
+    "fetchedAt": "2026-09-07T14:42:34.196Z"
   },
   "https://github.com/awayatakuma/dotfiles": {
     "url": "https://github.com/awayatakuma/dotfiles",
@@ -81,7 +81,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://opengraph.githubassets.com/1f17b73581798b72dd636fe9e92145ba4ce1612260ebaf512ec7754788fc5df9/awayatakuma/dotfiles",
     "siteName": "GitHub",
     "favicon": "https://github.githubassets.com/favicons/favicon.svg",
-    "fetchedAt": "2026-08-23T08:59:07.212Z"
+    "fetchedAt": "2026-09-07T14:42:34.697Z"
   },
   "https://nextjs.org/docs/pages/building-your-application/configuring/mdx": {
     "url": "https://nextjs.org/docs/pages/building-your-application/configuring/mdx",
@@ -90,7 +90,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://nextjs.org/api/docs-og?title=Guides:%20MDX&sig=f34a3ce66e18a5eb",
     "siteName": "nextjs.org",
     "favicon": "https://nextjs.org/favicon.ico?favicon.38folom4sz_yx.ico",
-    "fetchedAt": "2026-08-23T08:59:06.826Z"
+    "fetchedAt": "2026-09-07T14:42:34.034Z"
   },
   "https://nextjs.org/docs/pages/building-your-application/configuring/mdx#remote-mdx": {
     "url": "https://nextjs.org/docs/pages/building-your-application/configuring/mdx#remote-mdx",
@@ -99,7 +99,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://nextjs.org/api/docs-og?title=Guides:%20MDX&sig=f34a3ce66e18a5eb",
     "siteName": "nextjs.org",
     "favicon": "https://nextjs.org/favicon.ico?favicon.38folom4sz_yx.ico",
-    "fetchedAt": "2026-08-23T08:59:06.794Z"
+    "fetchedAt": "2026-09-07T14:42:34.147Z"
   },
   "https://www.amazon.co.jp/LLM%E3%81%AE%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0-%E2%80%95GitHub-Copilot%E3%82%92%E7%94%9F%E3%82%93%E3%81%A0%E9%96%8B%E7%99%BA%E8%80%85%E3%81%8C%E6%95%99%E3%81%88%E3%82%8B%E7%94%9F%E6%88%90AI%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E9%96%8B%E7%99%BA-John-Berryman/dp/4814401132?&linkCode=ll1&tag=acasune-22&linkId=bf24681bda73172d3ee0c7bf7b5c57cc&language=ja_JP&ref_=as_li_ss_tl": {
     "url": "https://www.amazon.co.jp/LLM%E3%81%AE%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0-%E2%80%95GitHub-Copilot%E3%82%92%E7%94%9F%E3%82%93%E3%81%A0%E9%96%8B%E7%99%BA%E8%80%85%E3%81%8C%E6%95%99%E3%81%88%E3%82%8B%E7%94%9F%E6%88%90AI%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E9%96%8B%E7%99%BA-John-Berryman/dp/4814401132?&linkCode=ll1&tag=acasune-22&linkId=bf24681bda73172d3ee0c7bf7b5c57cc&language=ja_JP&ref_=as_li_ss_tl",
@@ -117,7 +117,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://platform.claude.com/web-api/og/docs/ja/build-with-claude/prompt-engineering/claude-prompting-best-practices?design-rev=2",
     "siteName": "Claude Platform Docs",
     "favicon": "https://docs.anthropic.com/favicon.ico",
-    "fetchedAt": "2026-08-23T08:59:07.428Z"
+    "fetchedAt": "2026-09-07T14:42:36.819Z"
   },
   "https://github.com/awayatakuma/sabidb/commit/edf3d64": {
     "url": "https://github.com/awayatakuma/sabidb/commit/edf3d64",
@@ -144,7 +144,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://www.postgresql.org/media/img/about/press/elephant.png",
     "siteName": "PostgreSQL Documentation",
     "favicon": "https://www.postgresql.org/favicon.ico",
-    "fetchedAt": "2026-08-23T08:59:07.354Z"
+    "fetchedAt": "2026-09-07T14:42:34.627Z"
   },
   "https://github.com/storybookjs/storybook/issues/32095": {
     "url": "https://github.com/storybookjs/storybook/issues/32095",
@@ -153,7 +153,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://opengraph.githubassets.com/ef958302de726d4910293b42071715578e9bbcddf11482c915df4c6532139357/storybookjs/storybook/issues/32095",
     "siteName": "GitHub",
     "favicon": "https://github.githubassets.com/favicons/favicon.svg",
-    "fetchedAt": "2026-08-23T08:59:07.544Z"
+    "fetchedAt": "2026-09-07T14:42:34.680Z"
   },
   "https://scrapbox.io/awayatakuma-biz-notes/": {
     "url": "https://scrapbox.io/awayatakuma-biz-notes/",
@@ -162,7 +162,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://scrapbox.io/files/6829921270c35dee1936f672.png?type=thumbnail",
     "siteName": "asynctp-biz-notes",
     "favicon": "https://scrapbox.io/assets/img/favicon/favicon.ico",
-    "fetchedAt": "2026-08-23T08:59:06.144Z"
+    "fetchedAt": "2026-09-07T14:42:33.291Z"
   },
   "https://scrapbox.io/asynctp-favs/": {
     "url": "https://scrapbox.io/asynctp-favs/",
@@ -171,7 +171,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://scrapbox.io/files/664992fd670e1e001c3909e2.png?type=thumbnail",
     "siteName": "asynctp-favs",
     "favicon": "https://scrapbox.io/assets/img/favicon/favicon.ico",
-    "fetchedAt": "2026-08-23T08:59:06.150Z"
+    "fetchedAt": "2026-09-07T14:42:33.295Z"
   },
   "https://note.com/asynctp/": {
     "url": "https://note.com/asynctp/",
@@ -180,7 +180,7 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "https://assets.st-note.com/production/uploads/images/196331089/profile_c70b7343a5b64f6ae2e23a149f15f74a.png?fit=bounds&format=jpeg&quality=85&width=330",
     "siteName": "note（ノート）",
     "favicon": "https://assets.st-note.com/poc-image/manual/note-common-images/production/svg/production.ico",
-    "fetchedAt": "2026-08-23T08:59:09.575Z"
+    "fetchedAt": "2026-09-07T14:42:34.103Z"
   },
   "https://github.com/awayatakuma/sabidb/commit/4582a5b": {
     "url": "https://github.com/awayatakuma/sabidb/commit/4582a5b",
@@ -198,6 +198,24 @@ export const staticLinkMetadata: Record<string, LinkMetadata> = {
     "image": "",
     "siteName": "b.hatena.ne.jp",
     "favicon": "https://b.hatena.ne.jp/favicon.ico",
-    "fetchedAt": "2026-08-23T10:58:25.066Z"
+    "fetchedAt": "2026-09-07T15:15:25.349Z"
+  },
+  "https://github.com/awayatakuma/monkey-lang": {
+    "url": "https://github.com/awayatakuma/monkey-lang",
+    "title": "GitHub - awayatakuma/monkey-lang",
+    "description": "Contribute to awayatakuma/monkey-lang development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/bbf7d9d831eee960feeb8feb6409fce7b8d8b751d668b0ee54f578940cff598f/awayatakuma/monkey-lang",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-09-07T15:15:25.626Z"
+  },
+  "https://github.com/awayatakuma/mikanos": {
+    "url": "https://github.com/awayatakuma/mikanos",
+    "title": "GitHub - awayatakuma/mikanos",
+    "description": "Contribute to awayatakuma/mikanos development by creating an account on GitHub.",
+    "image": "https://opengraph.githubassets.com/02c79a894691fc91dc4ae950d7ba39d7896eea1935a4a992a3b80935970d4883/awayatakuma/mikanos",
+    "siteName": "GitHub",
+    "favicon": "https://github.githubassets.com/favicons/favicon.svg",
+    "fetchedAt": "2026-09-07T15:15:25.759Z"
   }
 }
