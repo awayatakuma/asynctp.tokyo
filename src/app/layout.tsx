@@ -60,9 +60,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // suppressHydrationWarning is on both elements below because ColorModeScript
+  // rewrites them before React hydrates: data-theme and color-scheme on <html>,
+  // a class on <body>. The colour mode cannot be known while rendering on the
+  // server, so that difference is expected rather than a defect, and left
+  // unsuppressed it reports on every page load.
   return (
-    <html lang="ja">
-      <body>
+    <html lang="ja" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         {/*
           Applies the stored or system colour mode before the first paint.
           Without it the prerendered HTML is painted in light mode and Chakra
